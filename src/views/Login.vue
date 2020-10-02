@@ -1,13 +1,19 @@
 <template>
   <div id="login-form">
-    <h1 id="login-title" class="animate__animated animate__lightSpeedInRight">TWEETER LOGIN</h1>
+    <h1 id="login-title" class="animate__animated animate__lightSpeedInRight">
+      TWEETER LOGIN
+    </h1>
     <p>Email</p>
     <input type="text" id="email-input" v-model="email" />
     <p>Password</p>
     <input type="password" id="password-input" v-model="password" />
     <div></div>
     <button id="login-btn" @click="loginUser">Login</button>
-    <h3 id="status"> {{ loginStatus }} </h3>
+    <h3 id="status">{{ loginStatus }}</h3>
+    <router-link to="/signup" id="signup-link"
+      >Not a user? Sign up here</router-link
+    >
+    <router-link to="/home">Home</router-link>
   </div>
 </template>
 
@@ -27,7 +33,8 @@ export default {
   methods: {
     loginUser: function() {
       this.loginStatus = "Loading...";
-      axios.request({
+      axios
+        .request({
           method: "POST",
           url: "https://tweeterest.ml/api/login",
           headers: {
@@ -39,14 +46,14 @@ export default {
             password: this.password
           }
         })
-        .then((response) => {
-          // CHECK IG LOGINTOKEN SENT
+        .then(response => {
+          // CHECK If LOGINTOKEN SENT (ask alex about this, how would you check?)
           console.log(response);
           this.loginStatus = "Success!";
           cookies.set("loginToken", response.data.loginToken);
-          // SEND USER TO HOME PAGE
+          this.$router.push("/userhome");
         })
-        .catch((error) => {
+        .catch(error => {
           // SHOW USER LOGIN FAILURE
           console.log(error);
           this.loginStatus = "There was an error, please try again.";
@@ -57,23 +64,34 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+a:visited {
+  color: black;
+  font-family: "Arimo", sans-serif;
+}
+a:link {
+  color: #0d3955;
+  font-family: "Arimo", sans-serif;
+}
 #login-title {
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: white;
+  color: #1da1f2;
+  margin: 5vh;
 }
 #login-form {
   display: grid;
   align-items: center;
   justify-items: center;
+  margin: 10px;
 }
 p {
   font-family: "Arimo", sans-serif;
   letter-spacing: 2px;
-  color: white;
+  color: #0d3955;
 }
 input {
   border-radius: 10%;
+  margin: 10px;
 }
 #login-btn {
   margin: 2vh;
@@ -89,6 +107,14 @@ input {
 #status {
   font-family: "Arimo", sans-serif;
   letter-spacing: 2px;
-  color: white;
+  color: #0d3955;
+}
+#signup-link {
+  font-family: "Arimo", sans-serif;
+  color: #0d3955;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  margin: 10px;
 }
 </style>

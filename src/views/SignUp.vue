@@ -1,8 +1,12 @@
 <template>
   <div>
-    <h1 id="title-text" class="animate__animated animate__lightSpeedInRight">TWEETER SIGN UP</h1>
+    <h1 id="title-text" class="animate__animated animate__lightSpeedInRight">
+      TWEETER SIGN UP
+    </h1>
     <sign-up-form id="signup-form" />
-    <router-link to="/login" id="login-link">Login</router-link>
+    <router-link to="/login" id="login-link"
+      >Have an account? Login Here</router-link
+    >
   </div>
 </template>
 
@@ -21,18 +25,22 @@ export default {
 #title-text {
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: white;
+  color: #1da1f2;
+  margin: 5vh;
 }
 #signup-form {
   display: grid;
   align-items: center;
   justify-items: center;
+  color: #0d3955;
+  margin: 10px;
 }
 #login-link {
   font-family: "Arimo", sans-serif;
-  color: white;
-  text-align: center;
+  color: #0d3955;
+  display: grid;
   align-items: center;
   justify-items: center;
+  margin: 5vh;
 }
 </style>

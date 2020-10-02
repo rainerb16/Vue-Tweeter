@@ -55,7 +55,7 @@ export default {
         // eslint-disable-next-line prettier/prettier
         .then((response) => {
           //WRITE LOGIN TO ENSURE TOKEN WAS SENT (IF STATEMENT)
-          cookies.set("loginToken", response.data[0].loginToken);
+          cookies.set("loginToken", response.data.loginToken);
           // SEND TO HOME PAGE
         })
         // eslint-disable-next-line prettier/prettier
@@ -71,10 +71,13 @@ export default {
 p {
   font-family: "Arimo", sans-serif;
   letter-spacing: 2px;
-  color: white;
+  color: #0d3955;
+  padding: 5px;
 }
 input {
   border-radius: 10%;
+  padding: 5px;
+  margin: 5px;
 }
 #birthday-input {
   text-align: center;
