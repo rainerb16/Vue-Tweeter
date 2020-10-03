@@ -77,7 +77,7 @@ a:link {
   text-align: center;
   font-family: "Arimo", sans-serif;
   color: #0d3955;
-  margin-top: 5vh;
+  margin-top: 3vh;
   font-size: 25px;
   width: 40%;
   margin-left: 30%;
@@ -140,7 +140,7 @@ a:link {
     font-family: "Arimo", sans-serif;
     color: #0d3955;
     margin-top: 5vh;
-    margin-bottom: 5vh;
+    margin-bottom: 3vh;
     font-size: 40px;
     width: 40%;
     margin-left: 30%;

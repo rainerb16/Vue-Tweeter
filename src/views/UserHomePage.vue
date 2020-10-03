@@ -44,6 +44,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+a:visited {
+  color: black;
+  font-family: "Arimo", sans-serif;
+}
+a:link {
+  color: #0d3955;
+  font-family: "Arimo", sans-serif;
+}
 #login-error-msg {
   display: grid;
   align-items: center;
@@ -51,8 +59,8 @@ export default {
   text-align: center;
   font-family: "Arimo", sans-serif;
   color: #0d3955;
-  margin-top: 2vh;
-  font-size: 18px;
+  margin-top: 20vh;
+  font-size: 24px;
   width: 40%;
   margin-left: 30%;
   line-height: 5vh;

@@ -1,17 +1,18 @@
 <template>
   <div>
     <div id="navbar">
-      <img
-        id="tweeter-logo"
-        src="../assets/tweeter-logo.png"
-        alt="A Tweeter Logo"
-      />
+      <router-link to="/userhome"
+        ><img
+          id="tweeter-logo"
+          src="../assets/tweeter-logo.png"
+          alt="A Tweeter Logo"
+      /></router-link>
       <h3 id="logout-btn" @click="userLogout"><u>Logout</u></h3>
       <span></span>
-      <span></span>
-      <h3><router-link to="/userhome">Home</router-link></h3>
+      <router-link to="/profile"><h3>Profile</h3></router-link>
       <span></span>
       <h3>Discover</h3>
+      <span></span>
     </div>
   </div>
 </template>
@@ -55,9 +56,11 @@ export default {
 }
 a:visited {
   color: black;
+  font-family: "Arimo", sans-serif;
 }
 a:link {
-  color: black;
+  color: #0d3955;
+  font-family: "Arimo", sans-serif;
 }
 #tweeter-logo {
   width: 100%;
@@ -68,14 +71,13 @@ a:link {
   color: #0d3955;
   margin-top: 5vh;
   font-size: 40px;
-  font-family: "Arimo", sans-serif;
 }
 #navbar {
   display: grid;
   align-items: center;
   justify-items: center;
   text-align: center;
-  grid-template-columns: 3fr 1fr 3fr 3fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 4fr 1fr 1fr 1fr;
   background-color: white;
   padding: 10px;
   font-family: "Arimo", sans-serif;
