@@ -14,10 +14,10 @@
       <input type="text" id="birthdate-input" placeholder="yyyy-mm-dd" v-model="birthdate">
       <br><br>
       <button id="update-btn" @click="updateProfile">Update</button>
-      <div id="status">
+      <!-- <div id="status">
         <h3 v-if="updateProfile">Profile Updated!</h3>
         <h3 v-else>There was error, please try again.</h3>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>

@@ -2,7 +2,8 @@
   <div>
     <div v-if="loginToken != undefined">
       <nav-bar-section />
-      <tweeter-page />
+      <create-tweet />
+      <show-tweets />
     </div>
     <div id="login-error" v-else>
       <div id="login-error-msg">
@@ -24,15 +25,17 @@
 </template>
 
 <script>
-import TweeterPage from "../components/Tweeter";
+import ShowTweets from "../components/ShowTweets.vue";
+import CreateTweet from "../components/CreateTweet.vue";
 import NavBarSection from "../components/NavBar.vue";
 import cookies from "vue-cookies";
 
 export default {
   name: "user-homepage",
   components: {
-    TweeterPage,
-    NavBarSection
+    CreateTweet,
+    NavBarSection,
+    ShowTweets
   },
   data() {
     return {

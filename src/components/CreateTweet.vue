@@ -8,13 +8,10 @@
         TWEETER
       </h2>
       <div id="tweet-create">
-        <p>What's on your mind?</p>
-        <input type="text" id="tweet-post" v-model="tweetBody" placeholder="max 200 characters" />
+        <p id="title">What's on your mind?</p>
+        <textarea type="text" id="tweet-post" v-model="tweetContent" placeholder="max 200 characters" />
         <div></div>
-        <button id="post-tweet-btn" @click="postTweet">post!</button>
-      </div>
-      <div id="show-tweets">
-        <h3 id="show-tweets-btn" @click="showUserTweets">Show Tweets</h3>
+        <button id="post-tweet-btn" @click="postTweet">Post Tweet</button>
       </div>
     </div>
   </div>
@@ -25,31 +22,13 @@ import axios from "axios";
 import cookies from "vue-cookies";
 
 export default {
-  name: "tweeter-page",
+  name: "create-tweet-page",
   data() {
     return {
-      tweetBody: "",
-      loginToken: cookies.get("loginToken")
+      tweetContent: ""
     }
   },
   methods: {
-    showUserTweets: function() {
-      axios.request({
-        method: "GET",
-        url: "https://tweeterest.ml/api/tweets",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
-        },
-        data: {
-          "tweetId": this.tweetId
-        }
-      }).then((response) => {
-          console.log(response)
-      }).catch((error) => {
-          console.log(error)
-      });
-    },
     postTweet: function() {
       axios.request({
         method: "POST",
@@ -58,8 +37,9 @@ export default {
           "Content-Type": "application/json",
           "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
         },
-        params: {
-          loginToken: cookies.get("loginToken")
+        data: {
+          loginToken: cookies.get("loginToken"),
+          content: this.tweetContent
         }
       }).then((response) => {
         console.log(response)
@@ -87,10 +67,16 @@ a:link {
   font-family: "Arimo", sans-serif;
   color: #0d3955;
 }
+#title {
+  margin: 10px;
+}
 #tweet-create {
   margin: 5vh;
   align-items: center;
   justify-items: center;
+  text-align: center;
+}
+#tweet-post {
   text-align: center;
 }
 input {
