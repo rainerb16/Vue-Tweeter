@@ -1,0 +1,92 @@
+<template>
+  <div>
+    <div id="comments-container">
+      <p>Comments:</p>
+      <textarea type="text" id="comment" v-model="comment" />
+      <br>
+      <button id="tweet-btn" @click="createComment">Post Comment</button>
+      <br>
+      <br>
+      <h4 id="tweet-btn" @click="showComments">All comments:</h4>
+    </div>
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+import cookies from "vue-cookies";
+
+  export default {
+    name: "tweet-comment",
+    data() {
+      return {
+        comment: ""
+      }
+    },
+    methods: {
+      createComment: function() {
+        axios.request({
+          method: "POST",
+          url: "https://tweeterest.ml/api/comments",
+          headers: {
+          "Content-Type": "application/json",
+          "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
+          },
+          data: {
+          loginToken: cookies.get("loginToken"),
+          tweetComment: this.comment
+          }
+        }).then((response) => {
+
+          console.log(response)
+        }).catch((error) => {
+          console.log(error)
+        });
+      },
+      showComments: function() {
+        axios.request({
+          method: "GET",
+          url: "https://tweeterest.ml/api/comments",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
+          },
+          data: {
+            tweetId: this.tweetId
+          }
+        }).then((response) => {
+          this.tweets = response.data;
+          console.log(response);
+        }).catch((error) => {
+          console.log(error);
+        });
+      }
+    }
+  }
+</script>
+
+<style lang="scss" scoped>
+hr {
+  margin: 2vh;
+  background-color: #0d3955;
+}
+#comments-container {
+  margin-top: 2vh;
+}
+#tweet-btn {
+  background-color: #1da1f2;
+  color: white;
+  padding: 5px;
+  border-radius: 7%;
+  cursor: pointer;
+  transform: perspective(1px) translateZ(0);
+  transition-duration: 0.3s;
+  transition-property: transform;
+  width: 30%;
+  text-align: center;
+  margin: 1vh;
+}
+#tweet-btn:hover {
+  transform: scale(0.9);
+}
+</style>

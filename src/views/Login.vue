@@ -51,6 +51,7 @@ export default {
           console.log(response);
           this.loginStatus = "Success!";
           cookies.set("loginToken", response.data.loginToken);
+          // cookies.set("userId", response.data.userId);
           this.$router.push("/userhome");
         })
         .catch(error => {

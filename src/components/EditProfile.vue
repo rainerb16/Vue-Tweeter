@@ -2,15 +2,15 @@
   <div>
     <div id="edit-profile">
       <h3 id="edit-title">Edit Profile</h3>
-      <p>Email</p>
+      <p>Update Email</p>
       <input type="email" id="email-input" v-model="email">
-      <p>Username</p>
+      <p>Update Username</p>
       <input type="text" id="username-input" v-model="username">
-      <p>Password</p>
+      <p>Update Password</p>
       <input type="text" id="password-input" v-model="password">
-      <p>Bio</p>
+      <p>Update Bio</p>
       <textarea type="text" id="bio-input" v-model="bio" />
-      <p>Birthdate</p>
+      <p>Update Birthdate</p>
       <input type="text" id="birthdate-input" placeholder="yyyy-mm-dd" v-model="birthdate">
       <br><br>
       <button id="update-btn" @click="updateProfile">Update</button>

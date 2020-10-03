@@ -33,6 +33,7 @@ export default {
     // },
     userLogout() {
       cookies.remove("loginToken");
+      cookies.remove("userId");
       this.$router.push("/home");
     }
   }

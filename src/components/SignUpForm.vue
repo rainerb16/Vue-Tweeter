@@ -56,6 +56,7 @@ export default {
         .then((response) => {
           //WRITE LOGIN TO ENSURE TOKEN WAS SENT (IF STATEMENT)
           cookies.set("loginToken", response.data.loginToken);
+          // cookies.set("userId", response.data.userId);
           this.$router.push("/userhome");
         })
         // eslint-disable-next-line prettier/prettier
