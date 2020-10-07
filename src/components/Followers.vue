@@ -1,17 +1,11 @@
 <template>
   <div>
     <div id="show-tweets">
-        <h2 id="show-tweets-btn" @click="getFollowers">Show Your Feed</h2>
+        <h3 id="show-tweets-btn" @click="getFollowers">Show Your Followers</h3>
         <br>
         <div id="tweet-container" v-for="user in users" :key="user.userId">
-          <h1>{{ user.username }}</h1>
-          <p>{{ user.bio }}</p>
-          <div id="likes-container" v-if="isLiked">
-            <img id="heart" src="../assets/heart.png" @click="isLiked(tweet.tweetId)" alt="Heart Button">
-          </div> 
-          <div id="likes-container" v-else>
-            <img id="heart" src="../assets/heart.png" @click="unLiked(tweet.tweetId)" alt="Heart Button">
-          </div>
+          <h2>{{ user.username }}</h2>
+          <h3>Bio: {{ user.bio }}</h3>
           <br>
           <!-- <div id="delete-edit-post">
             <button class="tweet-btn" @click="deleteTweet(tweet.tweetId)">Delete Tweet</button>
@@ -21,7 +15,6 @@
             <textarea type="text" v-model="updatePost" />
             <br>
             <button class="tweet-btn" @click="updateTweet(tweet.tweetId)">Update Tweet</button>
-            <tweet-comment />
           </div>
         </div>
     </div>
@@ -31,13 +24,9 @@
 <script>
 import axios from "axios";
 import cookies from "vue-cookies";
-import TweetComment from "../components/Comment.vue";
 
   export default {
-    name: "show-tweets-page",
-    components: {
-      TweetComment
-    },
+    name: "followers-page",
     data() {
       return {
         loginToken: cookies.get("loginToken"),
@@ -159,6 +148,7 @@ import TweetComment from "../components/Comment.vue";
   width: 30%;
   margin-left: 35%;
   text-align: center;
+  font-family: "Arimo", sans-serif;
 }
 #show-tweets-btn:hover {
   transform: scale(0.9);

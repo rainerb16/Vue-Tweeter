@@ -11,7 +11,7 @@
       <span></span>
       <router-link to="/profile"><h3>Profile</h3></router-link> |
 
-      <router-link to="/userfeed"><h3>Your Tweets</h3></router-link> |
+      <router-link to="/userfeed"><h3>Tweeter Feed</h3></router-link> |
 
       <router-link to="/discover"><h3>Discover</h3></router-link>
     </div>

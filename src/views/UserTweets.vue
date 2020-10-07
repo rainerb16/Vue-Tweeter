@@ -4,26 +4,26 @@
       <h2
         id="homepage-title"
         class="animate__animated animate__lightSpeedInRight">
-        YOUR TWEETS
+        TWEETER FEED
       </h2>
     <div id="show-tweets">
-        <h3 id="show-tweets-btn" @click="showUserTweets">Show Your Tweets</h3>
-        <div id="tweet-container" v-for="tweet in tweets" :key="tweet.tweetId">
-          <h3 id="tweet-user"><strong>{{ tweet.username }}</strong></h3>
-          <br>
-          <h4>{{ tweet.content }}</h4>
-          <br>
-          <p>Created on: {{ tweet.created_at}}</p>
-          <br>
-          <div id="delete-edit-post">
-            <button class="tweet-btn" @click="deleteTweet(tweet.tweetId)">Delete Tweet</button>
+        <h3 id="show-tweets-btn" @click="showUserTweets">Show All Users</h3>
+          <div id="tweet-container" v-for="tweet in tweets" :key="tweet.tweetId">
+            <h2 id="tweet-user"><strong>{{ tweet.username }}</strong></h2>
+            <br>
+            <h4>{{ tweet.content }}</h4>
+            <br>
+            <p>Created on: {{ tweet.createdAt }}</p> 
+            <div id="delete-edit-post">
+              <div v-if="unfollowUser">
+                <button class="tweet-btn" @click="unfollowUser(tweet.userId)">Unfollow</button>
+              </div>
+              <div v-else>
+                <button class="tweet-btn" @click="followUser(tweet.userId)">Follow</button>
+              </div>
+            </div>
             <hr>
-            <br>
-            <textarea type="text" v-model="updatePost" />
-            <br>
-            <button class="tweet-btn" @click="updateTweet(tweet.tweetId)">Update Tweet</button>
-          </div>
-          <!-- <tweet-comment /> -->
+            <tweet-comment />
         </div>
     </div>
   </div>
@@ -54,9 +54,6 @@ import NavBarSection from "../components/NavBar.vue";
           headers: {
             "Content-Type": "application/json",
             "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
-          },
-          params: {
-            userId: cookies.get("userId")
           }
         }).then((response) => {
           this.tweets = response.data;

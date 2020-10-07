@@ -5,7 +5,7 @@
         id="homepage-title"
         class="animate__animated animate__lightSpeedInRight"
       >
-        TWEETER FEED
+        TWEETER FOLLOWERS
       </h2>
       <div id="tweet-create">
         <p id="title">What's on your mind?</p>

@@ -3,7 +3,7 @@
     <div v-if="loginToken != undefined">
       <nav-bar-section />
       <create-tweet />
-      <show-tweets />
+      <followers-page />
     </div>
     <div id="login-error" v-else>
       <div id="login-error-msg">
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import ShowTweets from "../components/ShowTweets.vue";
+import FollowersPage from "../components/Followers.vue";
 import CreateTweet from "../components/CreateTweet.vue";
 import NavBarSection from "../components/NavBar.vue";
 import cookies from "vue-cookies";
@@ -35,7 +35,7 @@ export default {
   components: {
     CreateTweet,
     NavBarSection,
-    ShowTweets
+    FollowersPage
   },
   data() {
     return {

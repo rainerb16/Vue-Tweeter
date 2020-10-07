@@ -14,13 +14,17 @@
             <br>
             <h4>{{ tweet.content }}</h4>
             <br>
-            <p>Created on: {{ tweet.createdAt}}</p> 
+            <p>Created on: {{ tweet.createdAt }}</p> 
             <div id="delete-edit-post">
-              <button class="tweet-btn" @click="followUser(tweet.userId)">Follow</button>
-              <!-- <button class="tweet-btn" @click="unfollowUser(tweet.followId)">Unfollow</button> -->
+              <div v-if="unfollowUser">
+                <button class="tweet-btn" @click="unfollowUser(tweet.userId)">Unfollow</button>
+              </div>
+              <div v-else>
+                <button class="tweet-btn" @click="followUser(tweet.userId)">Follow</button>
+              </div>
             </div>
             <hr>
-              <tweet-comment />
+            <tweet-comment />
           </div>
       </div>
     </div>
@@ -60,6 +64,7 @@ import TweetComment from "../components/Comment.vue";
         loginToken: cookies.get("loginToken"),
         tweets: [],
         userId: cookies.get("userId"),
+        unfollow: true
       }
     },
     methods: {
@@ -78,6 +83,24 @@ import TweetComment from "../components/Comment.vue";
           console.log(error);
         });
       },
+      checkFollowers: function() {
+        axios.request({
+          method: "GET",
+          url: "https://tweeterest.ml/api/follows",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
+          },
+          params: {
+            userId: cookies.get("userId")
+          }
+        }).then((response) => {
+            console.log(response);
+            this.users = response.data
+        }).catch((error) => {
+            console.log(error);
+        });
+      },
       followUser: function(userId) {
         axios.request({
           method: "POST",
@@ -91,29 +114,31 @@ import TweetComment from "../components/Comment.vue";
             followId: userId
           }
         }).then((response) => {
-            console.log(response);
+            console.log(response.data);
+            this.unfollow = true;
         }).catch((error) => {
             console.log(error);
         })
       },
-      // unfollowUser: function(followId) {
-      //   axios.request({
-      //     method: "DELETE",
-      //     url: "https://tweeterest.ml/api/follows",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //       "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
-      //     },
-      //     data: {
-      //       loginToken: cookies.get("loginToken"),
-      //       followId: this.userId
-      //     }
-      //   }).then((response) => {
-      //       console.log(response);
-      //   }).catch((error) => {
-      //       console.log(error);
-      //   })
-      // }
+      unfollowUser: function(userId) {
+        axios.request({
+          method: "DELETE",
+          url: "https://tweeterest.ml/api/follows",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
+          },
+          data: {
+            loginToken: cookies.get("loginToken"),
+            followId: userId
+          }
+        }).then((response) => {
+            console.log(response);
+            this.unfollow = true;
+        }).catch((error) => {
+            console.log(error);
+        })
+      }
     }
 
   }
