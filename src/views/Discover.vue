@@ -5,7 +5,7 @@
       <h2
         id="homepage-title"
         class="animate__animated animate__lightSpeedInRight">
-        TWEETER DISCOVER
+      TWEETER DISCOVER
       </h2>
       <div id="tweets-container">
         <h3 id="show-tweets-btn" @click="showUserTweets">Show All Users</h3>
@@ -15,13 +15,11 @@
             <h4>{{ tweet.content }}</h4>
             <br>
             <p>Created on: {{ tweet.createdAt }}</p> 
-            <div id="delete-edit-post">
-              <div v-if="unfollowUser">
-                <button class="tweet-btn" @click="unfollowUser(tweet.userId)">Unfollow</button>
-              </div>
-              <div v-else>
-                <button class="tweet-btn" @click="followUser(tweet.userId)">Follow</button>
-              </div>
+            <div id="follow-unfollow-btn">
+                <!-- v-else-if="!followingStatus" @click="followingStatus = true, add to unfollow btn -->
+                <button id="tweet-btn-unfollow" @click="followUser(tweet.userId)">Follow</button>
+                <!-- v-if="followStatus = true" @click="followingStatus = false, add to follow btn -->
+                <button id="tweet-btn-follow" @click="unfollowUser(tweet.userId)">Unfollow</button>
             </div>
             <hr>
             <tweet-comment />
@@ -64,8 +62,12 @@ import TweetComment from "../components/Comment.vue";
         loginToken: cookies.get("loginToken"),
         tweets: [],
         userId: cookies.get("userId"),
-        unfollow: true
+        followingStatus: null,
+        activeBtn: ""
       }
+    },
+    created() {
+      this.followingStatus = this.isFollowing;
     },
     methods: {
       showUserTweets: function() {
@@ -115,7 +117,6 @@ import TweetComment from "../components/Comment.vue";
           }
         }).then((response) => {
             console.log(response.data);
-            this.unfollow = true;
         }).catch((error) => {
             console.log(error);
         })
@@ -134,17 +135,25 @@ import TweetComment from "../components/Comment.vue";
           }
         }).then((response) => {
             console.log(response);
-            this.unfollow = true;
+            this.followUser = false;
         }).catch((error) => {
             console.log(error);
         })
       }
-    }
+    },
+    props: [
+      "follower",
+      "isFollowing"
+    ]
 
   }
 </script>
 
 <style lang="scss" scoped>
+* {
+  margin: 0;
+  padding: 0;
+}
 a:visited {
   color: black;
   font-family: "Arimo", sans-serif;
@@ -195,6 +204,8 @@ hr {
 #homepage-title {
   margin: 3vh;
   text-align: center;
+  align-items: center;
+  justify-items: center;
 }
 #show-tweets-btn {
   background-color: #1da1f2;
@@ -205,8 +216,8 @@ hr {
   transform: perspective(1px) translateZ(0);
   transition-duration: 0.3s;
   transition-property: transform;
-  width: 35%;
-  margin-left: 32.5%;
+  width: 40%;
+  margin-left: 30%;
   text-align: center;
 }
 #show-tweets-btn:hover {
@@ -222,7 +233,7 @@ hr {
   margin: 2vh;
   background-color: #0d3955;
 }
-.tweet-btn {
+#tweet-btn-follow {
   background-color: #1da1f2;
   color: white;
   padding: 5px;
@@ -235,7 +246,23 @@ hr {
   text-align: center;
   margin: 1vh;
 }
-.tweet-btn:hover {
+#tweet-btn-follow:hover {
+  transform: scale(0.9);
+}
+#tweet-btn-unfollow {
+  background-color: #1da1f2;
+  color: white;
+  padding: 5px;
+  border-radius: 7%;
+  cursor: pointer;
+  transform: perspective(1px) translateZ(0);
+  transition-duration: 0.3s;
+  transition-property: transform;
+  width: 30%;
+  text-align: center;
+  margin: 1vh;
+}
+#tweet-btn-unfollow:hover {
   transform: scale(0.9);
 }
 </style>

@@ -22,6 +22,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+* {
+  margin: 0;
+  padding: 0;
+}
 #title-text {
   text-align: center;
   font-family: "Arimo", sans-serif;

@@ -1,22 +1,17 @@
 <template>
   <div>
     <div id="show-tweets">
-        <h3 id="show-tweets-btn" @click="getFollowers">Show Your Followers</h3>
+        <h3 id="show-tweets-btn" @click="getFollowers">Show Who You Follow</h3>
         <br>
-        <div id="tweet-container" v-for="user in users" :key="user.userId">
-          <h2>{{ user.username }}</h2>
-          <h3>Bio: {{ user.bio }}</h3>
-          <br>
-          <!-- <div id="delete-edit-post">
-            <button class="tweet-btn" @click="deleteTweet(tweet.tweetId)">Delete Tweet</button>
-          </div> -->
-          <hr>
-          <div id="update-comments">
-            <textarea type="text" v-model="updatePost" />
+        <div v-if="users.length > 0">
+          <div id="tweet-container" v-for="user in users" :key="user.userId">
+            <h3>{{ user.username }}</h3>
+            <h4>Bio: {{ user.bio }}</h4>
             <br>
-            <button class="tweet-btn" @click="updateTweet(tweet.tweetId)">Update Tweet</button>
           </div>
         </div>
+        <h2 id="no-followers-msg" v-else>This looks empty :( <br><br>
+        Click "Show Who You Follow" OR Check out Discover to find cool Tweeters to follow!</h2>
     </div>
   </div>
 </template>
@@ -32,7 +27,8 @@ import cookies from "vue-cookies";
         loginToken: cookies.get("loginToken"),
         updatePost: "",
         likesNum: "",
-        users: []
+        users: [],
+        isHidden: true 
       }
     },
     methods: {
@@ -90,7 +86,7 @@ import cookies from "vue-cookies";
             console.log(response);
         }).catch((error) => {
             console.log(error);
-        })
+        });
       },
       unLiked: function(tweetId) {
         axios.request({
@@ -108,7 +104,7 @@ import cookies from "vue-cookies";
             console.log(response);
         }).catch((error) => {
             console.log(error);
-        })
+        });
       },
       getFollowers: function() {
         axios.request({
@@ -126,7 +122,7 @@ import cookies from "vue-cookies";
             this.users = response.data
         }).catch((error) => {
             console.log(error);
-        })
+        });
       }
     }
 }
@@ -147,6 +143,7 @@ import cookies from "vue-cookies";
   transition-property: transform;
   width: 30%;
   margin-left: 35%;
+  margin-top: 7vh;
   text-align: center;
   font-family: "Arimo", sans-serif;
 }
@@ -193,5 +190,11 @@ hr {
   align-items: center;
   justify-items: center;
   grid-template-columns: 2fr;
+}
+#no-followers-msg {
+  text-align: center;
+  font-family: "Arimo", sans-serif;
+  color: #0d3955;
+  margin: 5vh;
 }
 </style>

@@ -2,7 +2,6 @@
   <div>
     <div v-if="loginToken != undefined">
       <nav-bar-section />
-      <create-tweet />
       <followers-page />
     </div>
     <div id="login-error" v-else>
@@ -26,14 +25,12 @@
 
 <script>
 import FollowersPage from "../components/Followers.vue";
-import CreateTweet from "../components/CreateTweet.vue";
 import NavBarSection from "../components/NavBar.vue";
 import cookies from "vue-cookies";
 
 export default {
   name: "user-homepage",
   components: {
-    CreateTweet,
     NavBarSection,
     FollowersPage
   },
@@ -47,6 +44,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+* {
+  margin: 0;
+  padding: 0;
+}
 a:visited {
   color: black;
   font-family: "Arimo", sans-serif;
