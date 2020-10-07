@@ -9,10 +9,11 @@
       /></router-link>
       <h3 id="logout-btn" @click="userLogout"><u>Logout</u></h3>
       <span></span>
-      <router-link to="/profile"><h3>Profile</h3></router-link>
-      <span></span>
-      <h3>Discover</h3>
-      <span></span>
+      <router-link to="/profile"><h3>Profile</h3></router-link> |
+
+      <router-link to="/userfeed"><h3>Your Tweets</h3></router-link> |
+
+      <router-link to="/discover"><h3>Discover</h3></router-link>
     </div>
   </div>
 </template>
@@ -21,16 +22,7 @@
 import cookies from "vue-cookies";
 export default {
   name: "navbar-section",
-  // data() {
-  //   return {
-  //     userLoggedIn: ""
-  //   };
-  // },
   methods: {
-    // userLogin() {
-    //   let userLoggedIn = cookies.get("loginToken");
-    //   console.log(userLoggedIn);
-    // },
     userLogout() {
       cookies.remove("loginToken");
       cookies.remove("userId");
@@ -78,8 +70,8 @@ a:link {
   align-items: center;
   justify-items: center;
   text-align: center;
-  grid-template-columns: 2fr 1fr 4fr 1fr 1fr 1fr;
-  background-color: white;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  background-color: white; 
   padding: 10px;
   font-family: "Arimo", sans-serif;
 }

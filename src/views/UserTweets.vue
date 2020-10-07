@@ -1,28 +1,29 @@
 <template>
   <div>
+    <nav-bar-section />
+      <h2
+        id="homepage-title"
+        class="animate__animated animate__lightSpeedInRight">
+        YOUR TWEETS
+      </h2>
     <div id="show-tweets">
-        <h2 id="show-tweets-btn" @click="getFollowers">Show Your Feed</h2>
-        <br>
-        <div id="tweet-container" v-for="user in users" :key="user.userId">
-          <h1>{{ user.username }}</h1>
-          <p>{{ user.bio }}</p>
-          <div id="likes-container" v-if="isLiked">
-            <img id="heart" src="../assets/heart.png" @click="isLiked(tweet.tweetId)" alt="Heart Button">
-          </div> 
-          <div id="likes-container" v-else>
-            <img id="heart" src="../assets/heart.png" @click="unLiked(tweet.tweetId)" alt="Heart Button">
-          </div>
+        <h3 id="show-tweets-btn" @click="showUserTweets">Show Your Tweets</h3>
+        <div id="tweet-container" v-for="tweet in tweets" :key="tweet.tweetId">
+          <h3 id="tweet-user"><strong>{{ tweet.username }}</strong></h3>
           <br>
-          <!-- <div id="delete-edit-post">
+          <h4>{{ tweet.content }}</h4>
+          <br>
+          <p>Created on: {{ tweet.created_at}}</p>
+          <br>
+          <div id="delete-edit-post">
             <button class="tweet-btn" @click="deleteTweet(tweet.tweetId)">Delete Tweet</button>
-          </div> -->
-          <hr>
-          <div id="update-comments">
+            <hr>
+            <br>
             <textarea type="text" v-model="updatePost" />
             <br>
             <button class="tweet-btn" @click="updateTweet(tweet.tweetId)">Update Tweet</button>
-            <tweet-comment />
           </div>
+          <!-- <tweet-comment /> -->
         </div>
     </div>
   </div>
@@ -31,22 +32,39 @@
 <script>
 import axios from "axios";
 import cookies from "vue-cookies";
-import TweetComment from "../components/Comment.vue";
+import NavBarSection from "../components/NavBar.vue";
 
   export default {
-    name: "show-tweets-page",
+    name: "user-tweets-page",
     components: {
-      TweetComment
+      NavBarSection
     },
     data() {
       return {
+        tweets: [],
         loginToken: cookies.get("loginToken"),
-        updatePost: "",
-        likesNum: "",
-        users: []
+        updatePost: ""
       }
     },
     methods: {
+      showUserTweets: function() {
+        axios.request({
+          method: "GET",
+          url: "https://tweeterest.ml/api/tweets",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
+          },
+          params: {
+            userId: cookies.get("userId")
+          }
+        }).then((response) => {
+          this.tweets = response.data;
+          console.log(response);
+        }).catch((error) => {
+          console.log(error);
+        });
+      },
       deleteTweet: function(tweetId) {
         axios.request({
           method: "DELETE",
@@ -84,60 +102,6 @@ import TweetComment from "../components/Comment.vue";
         }).catch((error) => {
             console.log(error);
         });
-      },
-      isLiked: function(tweetId) {
-        axios.request({
-          method: "POST",
-          url: "https://tweeterest.ml/api/tweet-likes",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
-          },
-          data: {
-            loginToken: cookies.get("loginToken"),
-            tweetId: tweetId
-          }
-        }).then((response) => {
-            console.log(response);
-        }).catch((error) => {
-            console.log(error);
-        })
-      },
-      unLiked: function(tweetId) {
-        axios.request({
-          method: "DELETE",
-          url: "https://tweeterest.ml/api/tweet-likes",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
-          },
-          data: {
-            loginToken: cookies.get("loginToken"),
-            tweetId: tweetId
-          }
-        }).then((response) => {
-            console.log(response);
-        }).catch((error) => {
-            console.log(error);
-        })
-      },
-      getFollowers: function() {
-        axios.request({
-          method: "GET",
-          url: "https://tweeterest.ml/api/follows",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
-          },
-          params: {
-            userId: cookies.get("userId")
-          }
-        }).then((response) => {
-            console.log(response);
-            this.users = response.data
-        }).catch((error) => {
-            console.log(error);
-        })
       }
     }
 }
@@ -179,11 +143,6 @@ import TweetComment from "../components/Comment.vue";
 .tweet-btn:hover {
   transform: scale(0.9);
 }
-#delete-edit-post {
-  align-items: center;
-  justify-items: center;
-  display: grid;
-}
 #tweet-container {
   border: 1px solid #0d3955;
   margin: 7px;
@@ -198,10 +157,10 @@ hr {
   width: 10%;
   margin-top: 1vh;
 }
-#update-comments {
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  grid-template-columns: 2fr;
+#homepage-title {
+  margin: 3vh;
+  text-align: center;
+  font-family: "Arimo", sans-serif;
+  color: #0d3955;
 }
 </style>

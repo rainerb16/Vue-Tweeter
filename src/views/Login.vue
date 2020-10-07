@@ -47,11 +47,10 @@ export default {
           }
         })
         .then(response => {
-          // CHECK If LOGINTOKEN SENT (ask alex about this, how would you check?)
           console.log(response);
           this.loginStatus = "Success!";
           cookies.set("loginToken", response.data.loginToken);
-          // cookies.set("userId", response.data.userId);
+          cookies.set("userId", response.data.userId);
           this.$router.push("/userhome");
         })
         .catch(error => {

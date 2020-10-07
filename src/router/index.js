@@ -5,6 +5,8 @@ import LoginPage from "../views/Login.vue";
 import HomePage from "../views/HomePage.vue";
 import UserHomePage from "../views/UserHomePage.vue";
 import ProfilePage from "../views/Profile.vue";
+import DiscoverPage from "../views/Discover.vue";
+import UserTweetsPage from "../views/UserTweets.vue";
 
 Vue.use(VueRouter);
 
@@ -33,6 +35,16 @@ const routes = [
     path: "/profile",
     name: "user-profile",
     component: ProfilePage
+  },
+  {
+    path: "/discover",
+    name: "discover-page",
+    component: DiscoverPage
+  },
+  {
+    path: "/userfeed",
+    name: "user-tweets-page",
+    component: UserTweetsPage
   }
 ];
 

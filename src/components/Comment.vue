@@ -1,13 +1,14 @@
 <template>
   <div>
     <div id="comments-container">
+      <br>
       <p>Comments:</p>
       <textarea type="text" id="comment" v-model="comment" />
       <br>
-      <button id="tweet-btn" @click="createComment">Post Comment</button>
-      <br>
-      <br>
-      <h4 id="tweet-btn" @click="showComments">All comments:</h4>
+      <div id="buttons">
+        <button id="tweet-btn" @click="createComment">Post Comment</button>
+        <button id="tweet-btn" @click="showComments">All comments:</button>
+      </div>
     </div>
   </div>
 </template>
@@ -23,6 +24,12 @@ import cookies from "vue-cookies";
         comment: ""
       }
     },
+    // props: {
+    //   comment: {
+    //     type: Object,
+    //     required: true
+    //   }
+    // },
     methods: {
       createComment: function() {
         axios.request({
@@ -34,13 +41,13 @@ import cookies from "vue-cookies";
           },
           data: {
           loginToken: cookies.get("loginToken"),
-          tweetComment: this.comment
-          }
+          // tweetId: this.tweetId,
+          content: this.comment
+          },
         }).then((response) => {
-
-          console.log(response)
+          console.log(response);
         }).catch((error) => {
-          console.log(error)
+          console.log(error);
         });
       },
       showComments: function() {
@@ -72,6 +79,9 @@ hr {
 }
 #comments-container {
   margin-top: 2vh;
+  display: grid;
+  align-items: center;
+  justify-items: center;
 }
 #tweet-btn {
   background-color: #1da1f2;
@@ -82,11 +92,18 @@ hr {
   transform: perspective(1px) translateZ(0);
   transition-duration: 0.3s;
   transition-property: transform;
-  width: 30%;
+  width: 100%;
   text-align: center;
   margin: 1vh;
 }
 #tweet-btn:hover {
   transform: scale(0.9);
+}
+#buttons {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: 2fr 2fr;
+  column-gap: 10px;
 }
 </style>
