@@ -10,10 +10,12 @@
       id="homepage-container"
       class="animate__animated animate__lightSpeedInLeft"
     >
-      <h3>
-        what are folks talking about right now? that's what tweeter is for
-      </h3>
+      <h4>
+        what are folks talking about right now?<br><br>
+        that's what tweeter is for
+      </h4>
       <br />
+      <img id="twt-photo-gif" src="https://www.socialchamp.io/blog/wp-content/uploads/2019/06/twittercelebration.gif" alt="A Social Media Icon GIF" />
       <br />
     </div>
     <div id="bottom-container">
@@ -22,7 +24,7 @@
           <router-link to="/login">Have an account? Login Here</router-link>
         </button>
         <button id="homepage-btn">
-          <router-link to="/signup">explore tweeter</router-link>
+          <router-link to="/signup">Explore Tweeter</router-link>
         </button>
       </div>
       <div id="last-container">
@@ -100,12 +102,20 @@ a:link {
   border-radius: 10%;
   font-size: 16px;
 }
+#twt-photo-gif {
+  width: 100%;
+  border-radius: 50%;
+}
 #twt-photo {
   width: 50%;
 }
 
 // TABLET
 @media only screen and (min-width: 670px) {
+  #twt-photo-gif {
+    width: 75%;
+    border-radius: 50%;
+}
 }
 
 // DESKTOP

@@ -10,8 +10,8 @@
             <br>
           </div>
         </div>
-        <h2 id="no-followers-msg" v-else>This looks empty :( <br><br>
-        Click "Show Who You Follow" OR Check out Discover to find cool Tweeters to follow!</h2>
+        <h2 id="no-followers-msg" v-else>This looks empty :( <br><br><br>
+        Click "<u>Show Who You Follow</u>"<br><br> OR <br><br> Check out <u>Discover to find cool Tweeters to follow</u>!</h2>
     </div>
   </div>
 </template>
@@ -196,5 +196,32 @@ hr {
   font-family: "Arimo", sans-serif;
   color: #0d3955;
   margin: 5vh;
+}
+
+
+//TABLET
+@media only screen and (min-width: 670px) {
+  #show-tweets-btn {
+    background-color: #1da1f2;
+    color: white;
+    padding: 5px;
+    border-radius: 7%;
+    cursor: pointer;
+    transform: perspective(1px) translateZ(0);
+    transition-duration: 0.3s;
+    transition-property: transform;
+    width: 15%;
+    margin-left: 42.5%;
+    margin-top: 7vh;
+    text-align: center;
+    font-family: "Arimo", sans-serif;
+  }
+#show-tweets-btn:hover {
+  transform: scale(0.9);
+  }
+}
+
+//DESKTOP
+@media only screen and (min-width: 1020px) {
 }
 </style>

@@ -22,7 +22,7 @@
                 <button id="tweet-btn-follow" @click="unfollowUser(tweet.userId)">Unfollow</button>
             </div>
             <hr>
-            <tweet-comment />
+            <tweet-comment :tweetId="tweet.tweetId" />
           </div>
       </div>
     </div>
@@ -135,7 +135,6 @@ import TweetComment from "../components/Comment.vue";
           }
         }).then((response) => {
             console.log(response);
-            this.followUser = false;
         }).catch((error) => {
             console.log(error);
         })
@@ -150,6 +149,8 @@ import TweetComment from "../components/Comment.vue";
 </script>
 
 <style lang="scss" scoped>
+
+// MOBILE
 * {
   margin: 0;
   padding: 0;
@@ -233,22 +234,6 @@ hr {
   margin: 2vh;
   background-color: #0d3955;
 }
-#tweet-btn-follow {
-  background-color: #1da1f2;
-  color: white;
-  padding: 5px;
-  border-radius: 7%;
-  cursor: pointer;
-  transform: perspective(1px) translateZ(0);
-  transition-duration: 0.3s;
-  transition-property: transform;
-  width: 30%;
-  text-align: center;
-  margin: 1vh;
-}
-#tweet-btn-follow:hover {
-  transform: scale(0.9);
-}
 #tweet-btn-unfollow {
   background-color: #1da1f2;
   color: white;
@@ -258,11 +243,123 @@ hr {
   transform: perspective(1px) translateZ(0);
   transition-duration: 0.3s;
   transition-property: transform;
-  width: 30%;
+  width: 20%;
   text-align: center;
   margin: 1vh;
 }
 #tweet-btn-unfollow:hover {
   transform: scale(0.9);
+}
+#tweet-btn-follow {
+  background-color: #1da1f2;
+  color: white;
+  padding: 5px;
+  border-radius: 7%;
+  cursor: pointer;
+  transform: perspective(1px) translateZ(0);
+  transition-duration: 0.3s;
+  transition-property: transform;
+  width: 20%;
+  text-align: center;
+  margin: 1vh;
+}
+#tweet-btn-follow:hover {
+  transform: scale(0.9);
+}
+
+// TABLET
+@media only screen and (min-width: 670px) {
+    #show-tweets-btn {
+    background-color: #1da1f2;
+    color: white;
+    padding: 5px;
+    border-radius: 7%;
+    cursor: pointer;
+    transform: perspective(1px) translateZ(0);
+    transition-duration: 0.3s;
+    transition-property: transform;
+    width: 20%;
+    margin-left: 40%;
+    text-align: center;
+    } 
+    #show-tweets-btn:hover {
+    transform: scale(0.9);
+    }
+}
+
+
+// DESKTOP
+@media only screen and (min-width: 1020px){
+  #tweeter-discover {
+    font-family: "Arimo", sans-serif;
+    color: #0d3955;
+  }
+  #homepage-title {
+    margin: 3vh;
+    text-align: center;
+    align-items: center;
+    justify-items: center;
+  }
+  #show-tweets-btn {
+    background-color: #1da1f2;
+    color: white;
+    padding: 5px;
+    border-radius: 7%;
+    cursor: pointer;
+    transform: perspective(1px) translateZ(0);
+    transition-duration: 0.3s;
+    transition-property: transform;
+    width: 10%;
+    margin-left: 45%;
+    text-align: center;
+  }
+  #show-tweets-btn:hover {
+    transform: scale(0.9);
+  }
+  #tweet-container {
+    border: 1px solid #0d3955;
+    margin: 7px;
+    padding: 5px;
+    font-family: "Arimo", sans-serif;
+    width: 75%;
+    margin-left: 12.5%;
+    margin-top: 5vh;
+  }
+  hr {
+    margin: 2vh;
+    background-color: #0d3955;
+  }
+  #tweet-btn-unfollow {
+    background-color: #1da1f2;
+    color: white;
+    padding: 5px;
+    border-radius: 7%;
+    cursor: pointer;
+    transform: perspective(1px) translateZ(0);
+    transition-duration: 0.3s;
+    transition-property: transform;
+    width: 10%;
+    text-align: center;
+  margin: 1vh;
+  }
+  #tweet-btn-unfollow:hover {
+    transform: scale(0.9);
+  }
+  #tweet-btn-follow {
+    background-color: #1da1f2;
+    color: white;
+    padding: 5px;
+    border-radius: 7%;
+    cursor: pointer;
+    transform: perspective(1px) translateZ(0);
+    transition-duration: 0.3s;
+    transition-property: transform;
+    width: 10%;
+    text-align: center;
+    margin: 1vh;
+  }
+  #tweet-btn-follow:hover {
+    transform: scale(0.9);
+  }
 }
 </style>

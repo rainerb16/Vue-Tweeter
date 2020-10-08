@@ -10,11 +10,10 @@
             <h4>{{ tweet.content }}</h4>
             <br>
             <p>Created on: {{ tweet.createdAt }}</p> 
+            <tweet-likes :tweetId="tweet.tweetId" />
             <div id="delete-edit-post">
               <div id="follow-unfollow-btn">
-                <!-- v-else-if="!followingStatus" @click="followingStatus = true, add to unfollow btn -->
                 <button id="tweet-btn-unfollow" @click="followUser(tweet.userId)">Follow</button>
-                <!-- v-if="followStatus = true" @click="followingStatus = false, add to follow btn -->
                 <button id="tweet-btn-follow" @click="unfollowUser(tweet.userId)">Unfollow</button>
               </div>
             </div>
@@ -31,13 +30,15 @@ import cookies from "vue-cookies";
 import NavBarSection from "../components/NavBar.vue";
 import TweetComment from "../components/Comment.vue";
 import CreateTweet from "../components/CreateTweet.vue";
+import TweetLikes from "../components/TweetLikes.vue";
 
   export default {
     name: "user-tweets-page",
     components: {
       NavBarSection,
       TweetComment,
-      CreateTweet
+      CreateTweet,
+      TweetLikes
     },
     data() {
       return {
@@ -218,5 +219,70 @@ hr {
   text-align: center;
   font-family: "Arimo", sans-serif;
   color: #0d3955;
+}
+
+// TABLET
+@media only screen and (min-width: 670px) {
+  #show-tweets-btn {
+    background-color: #1da1f2;
+    color: white;
+    padding: 5px;
+    border-radius: 7%;
+    cursor: pointer;
+    transform: perspective(1px) translateZ(0);
+    transition-duration: 0.3s;
+    transition-property: transform;
+    width: 20%;
+    margin-left: 40%;
+    text-align: center;
+  }
+  #show-tweets-btn:hover {
+    transform: scale(0.9);
+  }
+  #tweet-btn-follow {
+    background-color: #1da1f2;
+    color: white;
+    padding: 5px;
+    border-radius: 7%;
+    cursor: pointer;
+    transform: perspective(1px) translateZ(0);
+    transition-duration: 0.3s;
+    transition-property: transform;
+    width: 10%;
+    text-align: center;
+    margin: 1vh;
+  }
+  #tweet-btn-follow:hover {
+    transform: scale(0.9);
+  }
+  #tweet-btn-unfollow {
+    background-color: #1da1f2;
+    color: white;
+    padding: 5px;
+    border-radius: 7%;
+    cursor: pointer;
+    transform: perspective(1px) translateZ(0);
+    transition-duration: 0.3s;
+    transition-property: transform;
+    width: 10%;
+    text-align: center;
+    margin: 1vh;
+  }
+#tweet-btn-unfollow:hover {
+  transform: scale(0.9);
+}
+}
+
+// DESKTOP
+@media only screen and (min-width: 1020px) {
+  #tweet-container {
+    border: 1px solid #0d3955;
+    margin: 7px;
+    padding: 5px;
+    font-family: "Arimo", sans-serif;
+    width: 75%;
+    margin-left: 12.5%;
+    margin-top: 5vh;
+  }
 }
 </style>

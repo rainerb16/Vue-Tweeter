@@ -36,14 +36,16 @@ export default {
   },
   data() {
     return {
-      loginToken: cookies.get("loginToken")
+      loginToken: cookies.get("loginToken"),
+      username: cookies.get("userId")
     };
-  },
-  methods: {}
+  }
 };
 </script>
 
 <style lang="scss" scoped>
+
+//MOBILE
 * {
   margin: 0;
   padding: 0;
@@ -86,4 +88,7 @@ a:link {
   width: 75%;
   margin: 5vh;
 }
+
+//TABLET
+@media only screen and (min-width: 670px) {}
 </style>
