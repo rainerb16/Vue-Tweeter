@@ -7,20 +7,7 @@
       <delete-profile />
     </div>
     <div id="login-error" v-else>
-      <div id="login-error-msg">
-        <h3>
-          No user logged in, please
-          <router-link to="/login" id="login-link">return to login</router-link>
-        </h3>
-      </div>
-      <div id="no-user-error">
-        <h1>UH OH...</h1>
-        <img
-          id="no-user"
-          src="../assets/no-user-logged-in.png"
-          alt="Uh Oh! No user logged in photo"
-        />
-      </div>
+      <error-message />
     </div>
   </div>
 </template>
@@ -30,13 +17,15 @@ import cookies from "vue-cookies";
 import NavBarSection from "../components/NavBar.vue";
 import ProfilePage from "../components/EditProfile.vue";
 import DeleteProfile from "../components/DeleteProfile.vue";
+import ErrorMessage from "../components/404error.vue";
 
   export default {
     name: "user-profile",
     components: {
       ProfilePage,
       NavBarSection,
-      DeleteProfile
+      DeleteProfile,
+      ErrorMessage
     },
     data() {
       return {
@@ -52,11 +41,11 @@ import DeleteProfile from "../components/DeleteProfile.vue";
   padding: 0;
 }
 a:visited {
-  color: black;
+  color: #4ecca3;
   font-family: "Arimo", sans-serif;
 }
 a:link {
-  color: #0d3955;
+  color: #4ecca3;
   font-family: "Arimo", sans-serif;
 }
 #login-error-msg {
@@ -65,7 +54,7 @@ a:link {
   justify-items: center;
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #0d3955;
+  color: #4ecca3;
   margin-top: 20vh;
   font-size: 24px;
   width: 40%;
@@ -78,7 +67,7 @@ a:link {
   justify-items: center;
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #0d3955;
+  color: #4ecca3;
   margin-top: 10vh;
   font-size: 18px;
   width: 40%;
@@ -91,7 +80,7 @@ a:link {
 }
 hr {
   margin: 7vh;
-  background-color: #0d3955;
+  background-color: #4ecca3;
   height: 1px;
 }
 </style>

@@ -5,10 +5,10 @@
       <h2
         id="homepage-title"
         class="animate__animated animate__lightSpeedInRight">
-      TWEETER DISCOVER
+      NERDR DISCOVER
       </h2>
       <div id="tweets-container">
-        <h3 id="show-tweets-btn" @click="showUserTweets">Show All Users</h3>
+        <h3 id="show-tweets-btn" @click="showUserTweets">Show All NERDRS</h3>
           <div id="tweet-container" v-for="tweet in tweets" :key="tweet.tweetId">
             <h2 id="tweet-user"><strong>{{ tweet.username }}</strong></h2>
             <br>
@@ -27,20 +27,7 @@
       </div>
     </div>
     <div id="login-error" v-else>
-      <div id="login-error-msg">
-        <h3>
-          No user logged in, please
-          <router-link to="/login" id="login-link">return to login</router-link>
-        </h3>
-      </div>
-      <div id="no-user-error">
-        <h1>UH OH...</h1>
-        <img
-          id="no-user"
-          src="../assets/no-user-logged-in.png"
-          alt="Uh Oh! No user logged in photo"
-        />
-      </div>
+      <error-message />
     </div>
   </div>
 </template>
@@ -50,12 +37,14 @@ import axios from "axios";
 import cookies from "vue-cookies";
 import NavBarSection from "../components/NavBar.vue";
 import TweetComment from "../components/Comment.vue";
+import ErrorMessage from "../components/404error.vue";
 
   export default {
     name: "disover-page",
     components: {
       NavBarSection,
-      TweetComment
+      TweetComment,
+      ErrorMessage
     },
     data() {
       return {
@@ -156,11 +145,11 @@ import TweetComment from "../components/Comment.vue";
   padding: 0;
 }
 a:visited {
-  color: black;
+  color: #4ecca3;
   font-family: "Arimo", sans-serif;
 }
 a:link {
-  color: #0d3955;
+  color: #4ecca3;
   font-family: "Arimo", sans-serif;
 }
 #login-error-msg {
@@ -169,7 +158,7 @@ a:link {
   justify-items: center;
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #0d3955;
+  color: #4ecca3;
   margin-top: 20vh;
   font-size: 24px;
   width: 40%;
@@ -182,7 +171,7 @@ a:link {
   justify-items: center;
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #0d3955;
+  color: #4ecca3;
   margin-top: 10vh;
   font-size: 18px;
   width: 40%;
@@ -195,12 +184,12 @@ a:link {
 }
 hr {
   margin: 7vh;
-  background-color: #0d3955;
+  background-color: #4ecca3;
   height: 1px;
 }
 #tweeter-discover {
   font-family: "Arimo", sans-serif;
-  color: #0d3955;
+  color: #4ecca3;
 }
 #homepage-title {
   margin: 3vh;
@@ -209,8 +198,8 @@ hr {
   justify-items: center;
 }
 #show-tweets-btn {
-  background-color: #1da1f2;
-  color: white;
+  background-color: #4ecca3;
+  color: black;
   padding: 5px;
   border-radius: 7%;
   cursor: pointer;
@@ -225,18 +214,18 @@ hr {
   transform: scale(0.9);
 }
 #tweet-container {
-  border: 1px solid #0d3955;
+  border: 1px solid #4ecca3;
   margin: 7px;
   padding: 5px;
   font-family: "Arimo", sans-serif;
 }
 hr {
   margin: 2vh;
-  background-color: #0d3955;
+  background-color: #4ecca3;
 }
 #tweet-btn-unfollow {
-  background-color: #1da1f2;
-  color: white;
+  background-color: #4ecca3;
+  color: black;
   padding: 5px;
   border-radius: 7%;
   cursor: pointer;
@@ -251,8 +240,8 @@ hr {
   transform: scale(0.9);
 }
 #tweet-btn-follow {
-  background-color: #1da1f2;
-  color: white;
+  background-color: #4ecca3;
+  color: black;
   padding: 5px;
   border-radius: 7%;
   cursor: pointer;
@@ -270,8 +259,8 @@ hr {
 // TABLET
 @media only screen and (min-width: 670px) {
     #show-tweets-btn {
-    background-color: #1da1f2;
-    color: white;
+    background-color: #4ecca3;
+    color: black;
     padding: 5px;
     border-radius: 7%;
     cursor: pointer;
@@ -292,7 +281,7 @@ hr {
 @media only screen and (min-width: 1020px){
   #tweeter-discover {
     font-family: "Arimo", sans-serif;
-    color: #0d3955;
+    color: #4ecca3;
   }
   #homepage-title {
     margin: 3vh;
@@ -301,8 +290,8 @@ hr {
     justify-items: center;
   }
   #show-tweets-btn {
-    background-color: #1da1f2;
-    color: white;
+    background-color: #4ecca3;
+    color: black;
     padding: 5px;
     border-radius: 7%;
     cursor: pointer;
@@ -317,7 +306,7 @@ hr {
     transform: scale(0.9);
   }
   #tweet-container {
-    border: 1px solid #0d3955;
+    border: 1px solid #4ecca3;
     margin: 7px;
     padding: 5px;
     font-family: "Arimo", sans-serif;
@@ -327,11 +316,11 @@ hr {
   }
   hr {
     margin: 2vh;
-    background-color: #0d3955;
+    background-color: #4ecca3;
   }
   #tweet-btn-unfollow {
-    background-color: #1da1f2;
-    color: white;
+    background-color: #4ecca3;
+    color: black;
     padding: 5px;
     border-radius: 7%;
     cursor: pointer;
@@ -340,14 +329,14 @@ hr {
     transition-property: transform;
     width: 10%;
     text-align: center;
-  margin: 1vh;
-  }
+    margin: 1vh;
+    }
   #tweet-btn-unfollow:hover {
     transform: scale(0.9);
   }
   #tweet-btn-follow {
-    background-color: #1da1f2;
-    color: white;
+    background-color: #4ecca3;
+    color: black;
     padding: 5px;
     border-radius: 7%;
     cursor: pointer;

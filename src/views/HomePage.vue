@@ -4,18 +4,18 @@
       id="homepage-title"
       class="animate__animated animate__lightSpeedInRight"
     >
-      TWEETER
+      <u><i>NERDR</i></u>
     </h1>
     <div
       id="homepage-container"
       class="animate__animated animate__lightSpeedInLeft"
     >
       <h4>
-        what are folks talking about right now?<br><br>
-        that's what tweeter is for
+        what are other nerds talking about right now?<br><br>
+        that's what NERDR is for 🤓
       </h4>
       <br />
-      <img id="twt-photo-gif" src="https://www.socialchamp.io/blog/wp-content/uploads/2019/06/twittercelebration.gif" alt="A Social Media Icon GIF" />
+      <img id="twt-photo-gif" src="https://i.gifer.com/JFJN.gif" alt="NERDR Social Media Icon GIF" />
       <br />
     </div>
     <div id="bottom-container">
@@ -24,11 +24,10 @@
           <router-link to="/login">Have an account? Login Here</router-link>
         </button>
         <button id="homepage-btn">
-          <router-link to="/signup">Explore Tweeter</router-link>
+          <router-link to="/signup">Explore NERDR</router-link>
         </button>
       </div>
       <div id="last-container">
-        <img id="twt-photo" src="../assets/twt.png" alt="A Social Media Icon" />
         <h3>see what's happening...</h3>
       </div>
     </div>
@@ -47,29 +46,38 @@ export default {
   padding: 0;
 }
 // MOBILE
+body {
+  background-color: #232931;
+}
 a:visited {
   color: black;
   font-family: "Arimo", sans-serif;
 }
 a:link {
-  color: #0d3955;
+  color: #4ecca3;
   font-family: "Arimo", sans-serif;
 }
 #homepage-title {
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #1da1f2;
+  color: #4ecca3;
   margin-top: 5vh;
   font-size: 28px;
+  align-items: center;
+  justify-items: center;
 }
 #homepage-container {
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #0d3955;
+  color: #4ecca3;
   margin-top: 2vh;
-  font-size: 25px;
+  font-size: 20px;
   width: 40%;
   margin-left: 30%;
+  margin-top: 5vh;
+  background-color: #232931;
+  align-items: center;
+  justify-items: center;
 }
 #first-container {
   display: grid;
@@ -78,23 +86,25 @@ a:link {
   text-align: center;
   grid-template-columns: 1fr 1fr;
   margin: 10px;
+  background-color: #232931;
 }
 #last-container {
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #0d3955;
-  margin-top: 3vh;
+  color: #4ecca3;
+  margin-top: 8vh;
   font-size: 25px;
   width: 40%;
   margin-left: 30%;
+  background-color: #232931;
 }
 #bottom-container {
-  background-color: white;
+  background-color: #232931;
   padding: 20px;
 }
 #homepage-btn {
-  background-color: white;
-  color: #1da1f2;
+  background-color: #4ecca3;
+  color: black;
   width: 60%;
   text-align: center;
   font-family: "Arimo", sans-serif;
@@ -103,11 +113,14 @@ a:link {
   font-size: 16px;
 }
 #twt-photo-gif {
-  width: 100%;
+  width: 120%;
+  margin-left: -10%;
   border-radius: 50%;
 }
 #twt-photo {
-  width: 50%;
+  width: 75%;
+  margin: 5vh;
+  margin-left: 12.5%;
 }
 
 // TABLET
@@ -115,7 +128,10 @@ a:link {
   #twt-photo-gif {
     width: 75%;
     border-radius: 50%;
-}
+  }
+  body {
+    background-color: #232931;
+  }
 }
 
 // DESKTOP
@@ -124,23 +140,28 @@ a:link {
     color: black;
   }
   a:link {
-    color: black;
+    color: #4ecca3;
   }
   #homepage-title {
     text-align: center;
     font-family: "Arimo", sans-serif;
-    color: #1da1f2;
+    color: #4ecca3;
     margin-top: 5vh;
     font-size: 40px;
+    align-items: center;
+    justify-items: center;
   }
   #homepage-container {
     text-align: center;
     font-family: "Arimo", sans-serif;
-    color: #0d3955;
+    color: #4ecca3;
     margin-top: 2vh;
     font-size: 40px;
     width: 40%;
     margin-left: 30%;
+    background-color: #232931;
+    align-items: center;
+    justify-items: center;
   }
   #first-container {
     display: grid;
@@ -148,24 +169,26 @@ a:link {
     justify-items: center;
     text-align: center;
     grid-template-columns: 1fr 1fr;
+    background-color: #232931;
   }
   #last-container {
     text-align: center;
     font-family: "Arimo", sans-serif;
-    color: #0d3955;
+    color: #4ecca3;
     margin-top: 5vh;
     margin-bottom: 3vh;
     font-size: 40px;
     width: 40%;
     margin-left: 30%;
+    background-color: #232931;
   }
   #bottom-container {
-    background-color: white;
     padding: 20px;
+    background-color: #232931;
   }
   #homepage-btn {
-    background-color: white;
-    color: #1da1f2;
+    background-color: #4ecca3;
+    color: black;
     width: 30%;
     margin-top: 7vh;
     text-align: center;
@@ -174,8 +197,14 @@ a:link {
     border-radius: 10%;
     font-size: 16px;
   }
-  #twt-photo {
-    width: 40%;
+  body {
+    background-color: #232931;
+  }
+  #twt-photo-gif {
+    width: 50%;
+    align-items: center;
+    justify-items: center;
+    border-radius: 50%;
   }
 }
 </style>

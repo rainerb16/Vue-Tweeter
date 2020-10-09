@@ -68,7 +68,7 @@ import cookies from "vue-cookies";
 #edit-title {
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #0d3955;
+  color: #4ecca3;
   margin: 5vh;
   font-size: 24px;
 }
@@ -76,10 +76,12 @@ import cookies from "vue-cookies";
   display: grid;
   align-items: center;
   justify-items: center;
+  border: 1px solid #4ecca3;
+  padding: 10px;
 }
 p {
   font-family: "Arimo", sans-serif;
-  color: #0d3955;
+  color: #4ecca3;
   margin: 1vh;
 }
 #birthdate-input {
@@ -89,21 +91,22 @@ input {
   margin: 1vh;
 }
 #update-btn {
-  background-color: #1da1f2;
-  color: white;
+  background-color: #4ecca3;
+  color: black;
   padding: 5px;
   border-radius: 7%;
   cursor: pointer;
   transform: perspective(1px) translateZ(0);
   transition-duration: 0.3s;
   transition-property: transform;
+  margin-bottom: 10px;
 }
 #update-btn:hover {
   transform: scale(0.9);
 }
 #status {
   font-family: "Arimo", sans-serif;
-  color: #0d3955;
+  color: #4ecca3;
   margin: 4vh;
 }
 </style>

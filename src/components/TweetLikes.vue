@@ -1,7 +1,22 @@
 <template>
   <div>
-    <img id="heart" @click="likeTweet" src="../assets/heart.png" alt="Heart Icon">
-    <p>Likes: {{ likesNum.length }}</p>
+    <div id="likes-container">
+      <img
+        id="like"
+        @click="likeTweet"
+        v-if="isLiked == false"
+        src="../assets/like.png"
+        alt="Heart Icon"
+      />
+      <img
+        id="unlike"
+        @click="unlikeTweet"
+        v-else-if="isLiked == true"
+        src="../assets/unlike.png"
+        alt="Broken Heart Icon"
+      />
+      <span></span>
+    </div>
   </div>
 </template>
 
@@ -9,68 +24,115 @@
 import axios from "axios";
 import cookies from "vue-cookies";
 
-  export default {
-    name: "tweet-likes",
-    data() {
-      return {
-        likesNum: []
-      }
-    },
-    props: {
-      tweetId: Number
-    },
-    methods: {
-      likeTweet: function() {
-        axios.request({
-          url: "https://tweeterest.ml/api/tweet-likes",
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
-          },
-          data: {
-            loginToken: cookies.get("loginToken"),
-            tweetId: this.tweetId
-          }
-        }).then((response) => {
+export default {
+  name: "tweet-likes",
+  data() {
+    return {
+      likesNum: Number,
+      isLiked: false
+    };
+  },
+  props: {
+    tweetId: Number
+  },
+  methods: {
+    likeTweet: function() {
+      (this.isLiked = true),
+        axios
+          .request({
+            url: "https://tweeterest.ml/api/tweet-likes",
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
+            },
+            data: {
+              loginToken: cookies.get("loginToken"),
+              tweetId: this.tweetId
+            }
+          })
+          .then(response => {
             console.log(response);
-        }).catch((error) => {
+          })
+          .catch(error => {
             console.log(error);
-        });
-      },
-      getLikes: function() {
-        axios.request({
+          });
+    },
+    getLikes: function() {
+      axios
+        .request({
           url: "https://tweeterest.ml/api/tweet-likes",
           method: "GET",
-          header: {
+          headers: {
             "Content-Type": "application/json",
             "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
           },
           params: {
             tweetId: this.tweetId
           }
-        }).then((response) => {
-            console.log(response.data);
-            this.likesNum = response.data;
-        }).catch((error) => {
-            console.log(error);
         })
-      }
+        .then(response => {
+          console.log(response);
+          this.likesNum = response.data;
+          let currentUser = cookies.get("userId");
+          for (let i = 0; i < this.likesNum.length; i++) {
+            if (currentUser == this.likesNum[i].userId) {
+              this.isLiked = true;
+            } else if (currentUser != this.likesNum[i].userId) {
+              this.isLiked = false;
+            }
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    unlikeTweet: function() {
+      (this.isLiked = false),
+        axios
+          .request({
+            url: "https://tweeterest.ml/api/tweet-likes",
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
+            },
+            data: {
+              loginToken: cookies.get("loginToken"),
+              tweetId: this.tweetId
+            }
+          })
+          .then(response => {
+            console.log(response);
+          })
+          .catch(error => {
+            console.log(error);
+          });
     }
   }
+};
 </script>
 
 <style lang="scss" scoped>
 //MOBILE
-#heart {
-  width: 7%;
-  margin: 1vw;
+#likes-container {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr 4fr;
+}
+#like,
+#unlike {
+  width: 40%;
+  margin: 4vw;
 }
 
 //DESKTOP
-@media only screen and (min-width: 1020px){
-  #heart {
-    width: 5%;
+@media only screen and (min-width: 1020px) {
+  #like,
+  #unlike {
+    width: 15%;
+    margin: 4vw;
   }
 }
 </style>

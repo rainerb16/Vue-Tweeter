@@ -7,6 +7,7 @@ import UserHomePage from "../views/UserHomePage.vue";
 import ProfilePage from "../views/Profile.vue";
 import DiscoverPage from "../views/Discover.vue";
 import UserTweetsPage from "../views/UserTweets.vue";
+import FollowersProfilePage from "../views/FollowersProfile.vue";
 
 Vue.use(VueRouter);
 
@@ -45,6 +46,11 @@ const routes = [
     path: "/userfeed",
     name: "user-tweets-page",
     component: UserTweetsPage
+  },
+  {
+    path: "/followersprofile",
+    name: "folowers-profile",
+    component: FollowersProfilePage
   }
 ];
 

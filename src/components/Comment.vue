@@ -1,15 +1,26 @@
+/* eslint-disable prettier/prettier */
 <template>
   <div>
     <div id="comments-container">
-      <br>
+      <br />
       <p>Comments:</p>
-      <textarea type="text" id="comment" v-model="comment" />
-      <br>
+      <textarea type="text" id="comment" v-model="commentContent" />
+      <br />
       <div id="comments-container">
         <div id="comment-btn" @click="createComment">Post Comment</div>
-        <div id="comment-btn" @click="showComments">Show Comments:</div>
+        <div id="comment-btn" @click="showComments">Show Comments</div>
       </div>
     </div>
+    <div
+      id="user-comments"
+      v-for="comment in comments"
+      :key="comment.commentId"
+    >
+      <h2 id="user-username">{{ comment.username }}</h2>
+      <p id="user-comment">{{ comment.content }}</p>
+      <p id="user-created-on">Created On: {{ comment.createdAt }}</p>
+    </div>
+    <!-- <edit-comments v-bind:commentId="comment.commentId" v-bind:userId="comment.userId"> </edit-comments> -->
   </div>
 </template>
 
@@ -17,19 +28,21 @@
 import axios from "axios";
 import cookies from "vue-cookies";
 
-  export default {
-    name: "tweet-comment",
-    props: {
-      tweetId: Number
-    },
-    data() {
-      return {
-        comment: ""
-      }
-    },
-    methods: {
-      createComment: function() {
-        axios.request({
+export default {
+  name: "tweet-comment",
+  props: {
+    tweetId: Number
+  },
+  data() {
+    return {
+      comments: [],
+      commentContent: ""
+    };
+  },
+  methods: {
+    createComment: function() {
+      axios
+        .request({
           method: "POST",
           url: "https://tweeterest.ml/api/comments",
           headers: {
@@ -39,41 +52,45 @@ import cookies from "vue-cookies";
           data: {
             loginToken: cookies.get("loginToken"),
             tweetId: this.tweetId,
-            content: this.comment
+            content: this.commentContent
           }
-        }).then((response) => {
-            console.log(response);
-            this.comment = "";
-        }).catch((error) => {
-            console.log(error);
+        })
+        .then(response => {
+          console.log(response);
+          this.commentContent = "";
+        })
+        .catch(error => {
+          console.log(error);
         });
-      },
-      showComments: function() {
-        axios.request({
+    },
+    showComments: function() {
+      axios
+        .request({
           method: "GET",
           url: "https://tweeterest.ml/api/comments",
           headers: {
             "Content-Type": "application/json",
             "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
           },
-          data: {
+          params: {
             tweetId: this.tweetId
           }
-        }).then((response) => {
-          console.log(response);
-          this.commentId = "";
-        }).catch((error) => {
+        })
+        .then(response => {
+          this.comments = response.data;
+        })
+        .catch(error => {
           console.log(error);
         });
-      }
     }
   }
+};
 </script>
 
 <style lang="scss" scoped>
 hr {
   margin: 2vh;
-  background-color: #0d3955;
+  background-color: #4ecca3;
 }
 #comments-container {
   margin-top: 2vh;
@@ -82,8 +99,8 @@ hr {
   justify-items: center;
 }
 #tweet-btn {
-  background-color: #1da1f2;
-  color: white;
+  background-color: #4ecca3;
+  color: black;
   padding: 5px;
   border-radius: 7%;
   cursor: pointer;
@@ -105,8 +122,8 @@ hr {
   column-gap: 10px;
 }
 #comment-btn {
-  background-color: #1da1f2;
-  color: white;
+  background-color: #4ecca3;
+  color: black;
   padding: 5px;
   border-radius: 7%;
   cursor: pointer;
@@ -119,5 +136,15 @@ hr {
 }
 #comment-btn:hover {
   transform: scale(0.9);
+}
+#user-comments {
+  margin: 2vw;
+  padding: 10px;
+  border: 1px solid #4ecca3;
+}
+#user-username,
+#username-comment,
+#user-created-on {
+  padding: 5px;
 }
 </style>

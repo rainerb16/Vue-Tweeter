@@ -1,17 +1,21 @@
 <template>
   <div>
     <div id="show-tweets">
-        <h3 id="show-tweets-btn" @click="getFollowers">Show Who You Follow</h3>
-        <br>
-        <div v-if="users.length > 0">
-          <div id="tweet-container" v-for="user in users" :key="user.userId">
-            <h3>{{ user.username }}</h3>
-            <h4>Bio: {{ user.bio }}</h4>
-            <br>
-          </div>
+      <h3 id="show-tweets-btn" @click="getFollowers">Show Who You Follow</h3>
+      <br />
+      <div v-if="users.length > 0">
+        <div id="tweet-container" v-for="user in users" :key="user.userId">
+          <h3>{{ user.username }}</h3>
+          <h4>Bio: {{ user.bio }}</h4>
+          <br />
         </div>
-        <h2 id="no-followers-msg" v-else>This looks empty :( <br><br><br>
-        Click "<u>Show Who You Follow</u>"<br><br> OR <br><br> Check out <u>Discover to find cool Tweeters to follow</u>!</h2>
+      </div>
+      <h2 id="no-followers-msg" v-else>
+        This looks empty :( <br /><br /><br />
+        Click "<u>Show Who You Follow</u>"<br /><br />
+        OR <br /><br />
+        Check out <u>Discover to find nerdy NERDRS to follow</u>!
+      </h2>
     </div>
   </div>
 </template>
@@ -20,20 +24,21 @@
 import axios from "axios";
 import cookies from "vue-cookies";
 
-  export default {
-    name: "followers-page",
-    data() {
-      return {
-        loginToken: cookies.get("loginToken"),
-        updatePost: "",
-        likesNum: "",
-        users: [],
-        isHidden: true 
-      }
-    },
-    methods: {
-      deleteTweet: function(tweetId) {
-        axios.request({
+export default {
+  name: "followers-page",
+  data() {
+    return {
+      loginToken: cookies.get("loginToken"),
+      updatePost: "",
+      likesNum: "",
+      users: [],
+      isHidden: true
+    };
+  },
+  methods: {
+    deleteTweet: function(tweetId) {
+      axios
+        .request({
           method: "DELETE",
           url: "https://tweeterest.ml/api/tweets",
           headers: {
@@ -45,14 +50,17 @@ import cookies from "vue-cookies";
             tweetId: tweetId,
             content: this.content
           }
-        }).then((response) => {
-            console.log(response);
-        }).catch((error) => {
-            console.log(error);
+        })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
         });
-      },
-      updateTweet: function(tweetId) {
-        axios.request({
+    },
+    updateTweet: function(tweetId) {
+      axios
+        .request({
           method: "PATCH",
           url: "https://tweeterest.ml/api/tweets",
           headers: {
@@ -64,14 +72,17 @@ import cookies from "vue-cookies";
             tweetId: tweetId,
             content: this.updatePost
           }
-        }).then((response) => {
-            console.log(response);
-        }).catch((error) => {
-            console.log(error);
+        })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
         });
-      },
-      isLiked: function(tweetId) {
-        axios.request({
+    },
+    isLiked: function(tweetId) {
+      axios
+        .request({
           method: "POST",
           url: "https://tweeterest.ml/api/tweet-likes",
           headers: {
@@ -82,14 +93,17 @@ import cookies from "vue-cookies";
             loginToken: cookies.get("loginToken"),
             tweetId: tweetId
           }
-        }).then((response) => {
-            console.log(response);
-        }).catch((error) => {
-            console.log(error);
+        })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
         });
-      },
-      unLiked: function(tweetId) {
-        axios.request({
+    },
+    unLiked: function(tweetId) {
+      axios
+        .request({
           method: "DELETE",
           url: "https://tweeterest.ml/api/tweet-likes",
           headers: {
@@ -100,14 +114,17 @@ import cookies from "vue-cookies";
             loginToken: cookies.get("loginToken"),
             tweetId: tweetId
           }
-        }).then((response) => {
-            console.log(response);
-        }).catch((error) => {
-            console.log(error);
+        })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
         });
-      },
-      getFollowers: function() {
-        axios.request({
+    },
+    getFollowers: function() {
+      axios
+        .request({
           method: "GET",
           url: "https://tweeterest.ml/api/follows",
           headers: {
@@ -117,15 +134,17 @@ import cookies from "vue-cookies";
           params: {
             userId: cookies.get("userId")
           }
-        }).then((response) => {
-            console.log(response);
-            this.users = response.data
-        }).catch((error) => {
-            console.log(error);
+        })
+        .then(response => {
+          console.log(response);
+          this.users = response.data;
+        })
+        .catch(error => {
+          console.log(error);
         });
-      }
     }
-}
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -133,8 +152,8 @@ import cookies from "vue-cookies";
   margin-bottom: 5vh;
 }
 #show-tweets-btn {
-  background-color: #1da1f2;
-  color: white;
+  background-color: #4ecca3;
+  color: black;
   padding: 5px;
   border-radius: 7%;
   cursor: pointer;
@@ -151,8 +170,8 @@ import cookies from "vue-cookies";
   transform: scale(0.9);
 }
 .tweet-btn {
-  background-color: #1da1f2;
-  color: white;
+  background-color: #4ecca3;
+  color: black;
   padding: 5px;
   border-radius: 7%;
   cursor: pointer;
@@ -172,14 +191,15 @@ import cookies from "vue-cookies";
   display: grid;
 }
 #tweet-container {
-  border: 1px solid #0d3955;
+  border: 1px solid #4ecca3;
   margin: 7px;
   padding: 5px;
   font-family: "Arimo", sans-serif;
+  color: #4ecca3;
 }
 hr {
   margin: 2vh;
-  background-color: #0d3955;
+  background-color: #4ecca3;
 }
 #heart {
   width: 10%;
@@ -194,16 +214,15 @@ hr {
 #no-followers-msg {
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #0d3955;
+  color: #4ecca3;
   margin: 5vh;
 }
-
 
 //TABLET
 @media only screen and (min-width: 670px) {
   #show-tweets-btn {
-    background-color: #1da1f2;
-    color: white;
+    background-color: #4ecca3;
+    color: black;
     padding: 5px;
     border-radius: 7%;
     cursor: pointer;
@@ -216,12 +235,28 @@ hr {
     text-align: center;
     font-family: "Arimo", sans-serif;
   }
-#show-tweets-btn:hover {
-  transform: scale(0.9);
+  #show-tweets-btn:hover {
+    transform: scale(0.9);
+  }
+  #tweet-container {
+    border: 1px solid #4ecca3;
+    margin: 7px;
+    padding: 5px;
+    font-family: "Arimo", sans-serif;
+    width: 75%;
+    margin-left: 12.5%;
   }
 }
 
 //DESKTOP
 @media only screen and (min-width: 1020px) {
+  #tweet-container {
+    border: 1px solid #4ecca3;
+    margin: 7px;
+    padding: 5px;
+    font-family: "Arimo", sans-serif;
+    width: 60%;
+    margin-left: 20%;
+  }
 }
 </style>

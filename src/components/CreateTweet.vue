@@ -5,13 +5,13 @@
         id="homepage-title"
         class="animate__animated animate__lightSpeedInRight"
       >
-        TWEETER FEED
+        NERDR FEED
       </h2>
       <div id="tweet-create">
         <p id="title">What's on your mind?</p>
         <textarea type="text" id="tweet-post" v-model="tweetContent" placeholder="max 200 characters" />
         <div></div>
-        <button id="post-tweet-btn" @click="postTweet">Post Tweet</button>
+        <button id="post-tweet-btn" @click="postTweet">Post NERD</button>
       </div>
     </div>
   </div>
@@ -57,7 +57,7 @@ a:visited {
   font-family: "Arimo", sans-serif;
 }
 a:link {
-  color: #0d3955;
+  color:#4ecca3;
   font-family: "Arimo", sans-serif;
 }
 #newsfeed-container {
@@ -65,7 +65,7 @@ a:link {
   align-items: center;
   justify-items: center;
   font-family: "Arimo", sans-serif;
-  color: #0d3955;
+  color: #4ecca3;
 }
 #title {
   margin: 10px;
@@ -83,8 +83,8 @@ input {
   margin: 2vh;
 }
 #show-tweets-btn {
-  background-color: #1da1f2;
-  color: white;
+  background-color: #4ecca3;
+  color: black;
   padding: 5px;
   border-radius: 7%;
   cursor: pointer;

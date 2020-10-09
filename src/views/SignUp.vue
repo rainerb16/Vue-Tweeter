@@ -29,19 +29,19 @@ export default {
 #title-text {
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #1da1f2;
+  color: #4ecca3;
   margin: 5vh;
 }
 #signup-form {
   display: grid;
   align-items: center;
   justify-items: center;
-  color: #0d3955;
+  color: #4ecca3;
   margin: 10px;
 }
 #login-link {
   font-family: "Arimo", sans-serif;
-  color: #0d3955;
+  color: #4ecca3;
   display: grid;
   align-items: center;
   justify-items: center;

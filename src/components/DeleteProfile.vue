@@ -51,7 +51,7 @@ import cookies from "vue-cookies";
 #delete-title {
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #0d3955;
+  color: #4ecca3;
   margin-bottom: 5vh;
   font-size: 24px;
 }
@@ -62,14 +62,16 @@ import cookies from "vue-cookies";
   margin: 5vh;
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #0d3955;
+  color: #4ecca3;
+  border: 1px solid #4ecca3;
+  padding: 10px;
 }
 input {
   margin: 10px;
 }
 #delete-btn {
-  background-color: #1da1f2;
-  color: white;
+  background-color: #4ecca3;
+  color: black;
   padding: 5px;
   border-radius: 7%;
   cursor: pointer;

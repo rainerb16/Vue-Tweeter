@@ -1,7 +1,7 @@
 <template>
   <div id="login-form">
     <h1 id="login-title" class="animate__animated animate__lightSpeedInRight">
-      TWEETER LOGIN
+      NERDR LOGIN
     </h1>
     <p>Email</p>
     <input type="text" id="email-input" v-model="email" />
@@ -69,17 +69,17 @@ export default {
   padding: 0;
 }
 a:visited {
-  color: black;
+  color: #4ecca3;
   font-family: "Arimo", sans-serif;
 }
 a:link {
-  color: #0d3955;
+  color: #4ecca3;
   font-family: "Arimo", sans-serif;
 }
 #login-title {
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #1da1f2;
+  color: #4ecca3;
   margin: 5vh;
 }
 #login-form {
@@ -91,7 +91,7 @@ a:link {
 p {
   font-family: "Arimo", sans-serif;
   letter-spacing: 2px;
-  color: #0d3955;
+  color: #4ecca3;
 }
 input {
   border-radius: 10%;
@@ -111,11 +111,11 @@ input {
 #status {
   font-family: "Arimo", sans-serif;
   letter-spacing: 2px;
-  color: #0d3955;
+  color: #4ecca3;
 }
 #signup-link {
   font-family: "Arimo", sans-serif;
-  color: #0d3955;
+  color: #4ecca3;
   display: grid;
   align-items: center;
   justify-items: center;

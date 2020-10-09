@@ -1,43 +1,30 @@
 <template>
   <div>
-    <div v-if="loginToken != undefined">
-      <nav-bar-section />
-      <followers-page />
-    </div>
-    <div id="login-error" v-else>
-      <error-message />
-    </div>
+      <div id="login-error-msg">
+        <h3>
+          No user logged in, please<br><br>
+          <router-link to="/login" id="login-link">return to login</router-link>
+        </h3>
+      </div>
+      <div id="no-user-error">
+        <h1>UH OH...</h1>
+        <img
+          id="no-user"
+          src="../assets/404.gif"
+          alt="Uh Oh! No user logged in photo"
+        />
+      </div>
   </div>
 </template>
 
 <script>
-import FollowersPage from "../components/Followers.vue";
-import NavBarSection from "../components/NavBar.vue";
-import cookies from "vue-cookies";
-import ErrorMessage from "../components/404error.vue";
-
-export default {
-  name: "user-homepage",
-  components: {
-    NavBarSection,
-    FollowersPage,
-    ErrorMessage
-  },
-  data() {
-    return {
-      loginToken: cookies.get("loginToken"),
-      username: cookies.get("userId")
-    };
+  export default {
+    name: "404-error"
   }
-};
 </script>
 
-<style lang="scss" scoped>
-//MOBILE
-* {
-  margin: 0;
-  padding: 0;
-}
+<style scoped>
+/* MOBILE */
 a:visited {
   color: #4ecca3;
   font-family: "Arimo", sans-serif;
@@ -75,9 +62,5 @@ a:link {
 #no-user {
   width: 75%;
   margin: 5vh;
-}
-
-//TABLET
-@media only screen and (min-width: 670px) {
 }
 </style>
