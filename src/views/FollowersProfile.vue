@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "user-profile-page"
+  name: "followers-profile-page"
 };
 </script>
 

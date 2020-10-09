@@ -5,8 +5,10 @@
       <br />
       <div v-if="users.length > 0">
         <div id="tweet-container" v-for="user in users" :key="user.userId">
-          <h3>{{ user.username }}</h3>
-          <h4>Bio: {{ user.bio }}</h4>
+          <h3 id="user-username">{{ user.username }}</h3>
+          <h4><u>Bio:</u> {{ user.bio }}</h4>
+          <h4><u>Birthdate:</u> {{ user.birthdate }}</h4>
+          <h4><u>Email:</u> {{ user.email }}</h4>
           <br />
         </div>
       </div>
@@ -32,7 +34,9 @@ export default {
       updatePost: "",
       likesNum: "",
       users: [],
-      isHidden: true
+      isHidden: true,
+      userId: cookies.get("userId"),
+      followingStatus: null
     };
   },
   methods: {
@@ -142,6 +146,27 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    unfollowUser: function(userId) {
+      axios
+        .request({
+          method: "DELETE",
+          url: "https://tweeterest.ml/api/follows",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
+          },
+          data: {
+            loginToken: cookies.get("loginToken"),
+            followId: userId
+          }
+        })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 };
@@ -191,15 +216,16 @@ export default {
   display: grid;
 }
 #tweet-container {
-  border: 1px solid #4ecca3;
+  border: 1px solid #f56476;
   margin: 7px;
   padding: 5px;
   font-family: "Arimo", sans-serif;
-  color: #4ecca3;
+  color: #f56476;
+  line-height: 4vh;
 }
 hr {
   margin: 2vh;
-  background-color: #4ecca3;
+  background-color: #f56476;
 }
 #heart {
   width: 10%;
@@ -214,8 +240,11 @@ hr {
 #no-followers-msg {
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #4ecca3;
+  color: #f56476;
   margin: 5vh;
+}
+#user-username {
+  color: #4ecca3;
 }
 
 //TABLET
@@ -239,7 +268,7 @@ hr {
     transform: scale(0.9);
   }
   #tweet-container {
-    border: 1px solid #4ecca3;
+    border: 1px solid #f56476;
     margin: 7px;
     padding: 5px;
     font-family: "Arimo", sans-serif;
@@ -251,7 +280,7 @@ hr {
 //DESKTOP
 @media only screen and (min-width: 1020px) {
   #tweet-container {
-    border: 1px solid #4ecca3;
+    border: 1px solid #f56476;
     margin: 7px;
     padding: 5px;
     font-family: "Arimo", sans-serif;

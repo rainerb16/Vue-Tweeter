@@ -69,17 +69,17 @@ export default {
   padding: 0;
 }
 a:visited {
-  color: #4ecca3;
+  color: #F56476;
   font-family: "Arimo", sans-serif;
 }
 a:link {
-  color: #4ecca3;
+  color: #F56476;
   font-family: "Arimo", sans-serif;
 }
 #login-title {
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #4ecca3;
+  color: #F56476;
   margin: 5vh;
 }
 #login-form {
@@ -91,7 +91,7 @@ a:link {
 p {
   font-family: "Arimo", sans-serif;
   letter-spacing: 2px;
-  color: #4ecca3;
+  color: #F56476;
 }
 input {
   border-radius: 10%;
@@ -111,11 +111,11 @@ input {
 #status {
   font-family: "Arimo", sans-serif;
   letter-spacing: 2px;
-  color: #4ecca3;
+  color: #F56476;
 }
 #signup-link {
   font-family: "Arimo", sans-serif;
-  color: #4ecca3;
+  color: #F56476;
   display: grid;
   align-items: center;
   justify-items: center;

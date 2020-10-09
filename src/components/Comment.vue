@@ -3,7 +3,7 @@
   <div>
     <div id="comments-container">
       <br />
-      <p>Comments:</p>
+      <p id="title-comment">Comments:</p>
       <textarea type="text" id="comment" v-model="commentContent" />
       <br />
       <div id="comments-container">
@@ -99,7 +99,7 @@ hr {
   justify-items: center;
 }
 #tweet-btn {
-  background-color: #4ecca3;
+  background-color: #64f59a;
   color: black;
   padding: 5px;
   border-radius: 7%;
@@ -122,7 +122,7 @@ hr {
   column-gap: 10px;
 }
 #comment-btn {
-  background-color: #4ecca3;
+  background-color: #64f59a;
   color: black;
   padding: 5px;
   border-radius: 7%;
@@ -140,11 +140,17 @@ hr {
 #user-comments {
   margin: 2vw;
   padding: 10px;
-  border: 1px solid #4ecca3;
+  border: 1px solid #f56476;
 }
 #user-username,
 #username-comment,
 #user-created-on {
   padding: 5px;
+}
+#user-username {
+  color: #64f59a;
+}
+#title-comment {
+  color: #f56476;
 }
 </style>

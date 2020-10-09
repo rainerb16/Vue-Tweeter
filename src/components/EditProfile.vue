@@ -76,12 +76,12 @@ import cookies from "vue-cookies";
   display: grid;
   align-items: center;
   justify-items: center;
-  border: 1px solid #4ecca3;
+  border: 1px solid #F56476;
   padding: 10px;
 }
 p {
   font-family: "Arimo", sans-serif;
-  color: #4ecca3;
+  color: #F56476;
   margin: 1vh;
 }
 #birthdate-input {
@@ -106,7 +106,7 @@ input {
 }
 #status {
   font-family: "Arimo", sans-serif;
-  color: #4ecca3;
+  color: #F56476;
   margin: 4vh;
 }
 </style>

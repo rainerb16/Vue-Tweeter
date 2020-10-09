@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 id="title-text" class="animate__animated animate__lightSpeedInRight">
-      TWEETER SIGN UP
+      NERDR SIGN UP
     </h1>
     <sign-up-form id="signup-form" />
     <router-link to="/login" id="login-link"
@@ -29,19 +29,19 @@ export default {
 #title-text {
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #4ecca3;
+  color: #F56476;
   margin: 5vh;
 }
 #signup-form {
   display: grid;
   align-items: center;
   justify-items: center;
-  color: #4ecca3;
+  color: #F56476;
   margin: 10px;
 }
 #login-link {
   font-family: "Arimo", sans-serif;
-  color: #4ecca3;
+  color: #F56476;
   display: grid;
   align-items: center;
   justify-items: center;

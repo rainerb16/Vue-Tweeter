@@ -2,16 +2,16 @@
   <div>
     <div id="navbar">
       <router-link to="/userhome"
-        ><img
-          id="nerdr-logo"
-          src="../assets/nerdface.png"
-          alt="A NERDR Logo"
+        ><img id="nerdr-logo" src="../assets/nerdface.png" alt="A NERDR Logo"
       /></router-link>
       <h4 id="logout-btn" @click="userLogout"><u>Logout</u></h4>
       <span></span>
       <router-link to="/profile"><h4 id="nav-link">Profile</h4></router-link> |
 
-      <router-link to="/userfeed"><h4 id="nav-link">NERDR Feed</h4></router-link> |
+      <router-link to="/userfeed"
+        ><h4 id="nav-link">NERDR Feed</h4></router-link
+      >
+      |
 
       <router-link to="/discover"><h4 id="nav-link">Discover</h4></router-link>
     </div>
@@ -39,7 +39,7 @@ export default {
 }
 // MOBILE
 #logout-btn {
-  background-color: #4ecca3;
+  background-color: #64f59a;
   color: black;
   padding: 5px;
   border-radius: 7%;
@@ -52,11 +52,11 @@ export default {
   transform: scale(0.9);
 }
 a:visited {
-  color: #4ecca3;
+  color: #e43f6f;
   font-family: "Arimo", sans-serif;
 }
 a:link {
-  color: #4ecca3;
+  color: #64f59a;
   font-family: "Arimo", sans-serif;
   text-decoration: none;
 }
@@ -67,7 +67,7 @@ a:link {
 #homepage-title {
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #4ecca3;
+  color: #f56476;
   margin-top: 5vh;
   font-size: 40px;
 }
@@ -77,10 +77,11 @@ a:link {
   justify-items: center;
   text-align: center;
   grid-template-columns: 3fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  background-color: #393e46;
+  background-color: #6a7388;
   padding: 10px;
   font-family: "Arimo", sans-serif;
   color: #4ecca3;
+  column-gap: 5px;
 }
 
 // TABLET
@@ -94,6 +95,17 @@ a:link {
 @media only screen and (min-width: 1020px) {
   #nerdr-logo {
     width: 15%;
+  }
+  #navbar {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+    grid-template-columns: 2fr 1fr 2fr 1fr 1fr 1fr 1fr 1fr;
+    background-color: #6a7388;
+    padding: 10px;
+    font-family: "Arimo", sans-serif;
+    color: #4ecca3;
   }
   #nav-link {
     display: inline-block;
@@ -114,13 +126,15 @@ a:link {
     left: 51%;
     right: 51%;
     bottom: 0;
-    background: #4ecca3;
+    background: #e43f6f;
     height: 3px;
     transition-property: left, right;
     transition-duration: 0.3s;
     transition-timing-function: ease-out;
   }
-  #nav-link:hover:before, #nav-link:focus:before, #nav-link:active:before {
+  #nav-link:hover:before,
+  #nav-link:focus:before,
+  #nav-link:active:before {
     left: 0;
     right: 0;
   }

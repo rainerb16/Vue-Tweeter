@@ -9,9 +9,15 @@
       </h2>
       <div id="tweet-create">
         <p id="title">What's on your mind?</p>
-        <textarea type="text" id="tweet-post" v-model="tweetContent" placeholder="max 200 characters" />
+        <textarea
+          type="text"
+          id="tweet-post"
+          v-model="tweetContent"
+          placeholder="max 200 characters"
+        />
         <div></div>
         <button id="post-tweet-btn" @click="postTweet">Post NERD</button>
+        <button id="post-tweet-btn" @click="postTweet">Update NERD</button>
       </div>
     </div>
   </div>
@@ -25,27 +31,53 @@ export default {
   name: "create-tweet-page",
   data() {
     return {
-      tweetContent: ""
-    }
+      tweetContent: "",
+      updatePost: ""
+    };
   },
   methods: {
     postTweet: function() {
-      axios.request({
-        method: "POST",
-        url: "https://tweeterest.ml/api/tweets",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
-        },
-        data: {
-          loginToken: cookies.get("loginToken"),
-          content: this.tweetContent
-        }
-      }).then((response) => {
-        console.log(response)
-      }).catch((error) => {
-        console.log(error)
-      });
+      axios
+        .request({
+          method: "POST",
+          url: "https://tweeterest.ml/api/tweets",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
+          },
+          data: {
+            loginToken: cookies.get("loginToken"),
+            content: this.tweetContent
+          }
+        })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    updateTweet: function(tweetId) {
+      axios
+        .request({
+          method: "PATCH",
+          url: "https://tweeterest.ml/api/tweets",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
+          },
+          data: {
+            loginToken: cookies.get("loginToken"),
+            tweetId: tweetId,
+            content: this.updatePost
+          }
+        })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 };
@@ -57,7 +89,7 @@ a:visited {
   font-family: "Arimo", sans-serif;
 }
 a:link {
-  color:#4ecca3;
+  color: #f56476;
   font-family: "Arimo", sans-serif;
 }
 #newsfeed-container {
@@ -65,7 +97,7 @@ a:link {
   align-items: center;
   justify-items: center;
   font-family: "Arimo", sans-serif;
-  color: #4ecca3;
+  color: #f56476;
 }
 #title {
   margin: 10px;
@@ -83,7 +115,7 @@ input {
   margin: 2vh;
 }
 #show-tweets-btn {
-  background-color: #4ecca3;
+  background-color: #f56476;
   color: black;
   padding: 5px;
   border-radius: 7%;
@@ -105,5 +137,6 @@ input {
 }
 #homepage-title {
   margin: 3vh;
+  color: #4ecca3;
 }
 </style>

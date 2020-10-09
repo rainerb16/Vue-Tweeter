@@ -39,42 +39,12 @@ export default {
   padding: 0;
 }
 a:visited {
-  color: #4ecca3;
+  color: #f56476;
   font-family: "Arimo", sans-serif;
 }
 a:link {
-  color: #4ecca3;
+  color: #f56476;
   font-family: "Arimo", sans-serif;
-}
-#login-error-msg {
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  text-align: center;
-  font-family: "Arimo", sans-serif;
-  color: #4ecca3;
-  margin-top: 20vh;
-  font-size: 24px;
-  width: 40%;
-  margin-left: 30%;
-  line-height: 5vh;
-}
-#no-user-error {
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  text-align: center;
-  font-family: "Arimo", sans-serif;
-  color: #4ecca3;
-  margin-top: 10vh;
-  font-size: 18px;
-  width: 40%;
-  margin-left: 30%;
-  line-height: 5vh;
-}
-#no-user {
-  width: 75%;
-  margin: 5vh;
 }
 
 //TABLET

@@ -4,27 +4,11 @@
       <nav-bar-section />
       <h2
         id="homepage-title"
-        class="animate__animated animate__lightSpeedInRight">
-      NERDR DISCOVER
+        class="animate__animated animate__lightSpeedInRight"
+      >
+        NERDR DISCOVER
       </h2>
-      <div id="tweets-container">
-        <h3 id="show-tweets-btn" @click="showUserTweets">Show All NERDRS</h3>
-          <div id="tweet-container" v-for="tweet in tweets" :key="tweet.tweetId">
-            <h2 id="tweet-user"><strong>{{ tweet.username }}</strong></h2>
-            <br>
-            <h4>{{ tweet.content }}</h4>
-            <br>
-            <p>Created on: {{ tweet.createdAt }}</p> 
-            <div id="follow-unfollow-btn">
-                <!-- v-else-if="!followingStatus" @click="followingStatus = true, add to unfollow btn -->
-                <button id="tweet-btn-unfollow" @click="followUser(tweet.userId)">Follow</button>
-                <!-- v-if="followStatus = true" @click="followingStatus = false, add to follow btn -->
-                <button id="tweet-btn-follow" @click="unfollowUser(tweet.userId)">Unfollow</button>
-            </div>
-            <hr>
-            <tweet-comment :tweetId="tweet.tweetId" />
-          </div>
-      </div>
+      <following-tweets :tweetId="tweet.tweetId" />
     </div>
     <div id="login-error" v-else>
       <error-message />
@@ -33,322 +17,35 @@
 </template>
 
 <script>
-import axios from "axios";
-import cookies from "vue-cookies";
+import FollowingTweets from "../components/FollowingTweets.vue";
 import NavBarSection from "../components/NavBar.vue";
-import TweetComment from "../components/Comment.vue";
 import ErrorMessage from "../components/404error.vue";
+import cookies from "vue-cookies";
 
-  export default {
-    name: "disover-page",
-    components: {
-      NavBarSection,
-      TweetComment,
-      ErrorMessage
-    },
-    data() {
-      return {
-        loginToken: cookies.get("loginToken"),
-        tweets: [],
-        userId: cookies.get("userId"),
-        followingStatus: null,
-        activeBtn: ""
-      }
-    },
-    created() {
-      this.followingStatus = this.isFollowing;
-    },
-    methods: {
-      showUserTweets: function() {
-        axios.request({
-          method: "GET",
-          url: "https://tweeterest.ml/api/tweets",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
-          }
-        }).then((response) => {
-          this.tweets = response.data;
-          console.log(response);
-        }).catch((error) => {
-          console.log(error);
-        });
-      },
-      checkFollowers: function() {
-        axios.request({
-          method: "GET",
-          url: "https://tweeterest.ml/api/follows",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
-          },
-          params: {
-            userId: cookies.get("userId")
-          }
-        }).then((response) => {
-            console.log(response);
-            this.users = response.data
-        }).catch((error) => {
-            console.log(error);
-        });
-      },
-      followUser: function(userId) {
-        axios.request({
-          method: "POST",
-          url: "https://tweeterest.ml/api/follows",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
-          },
-          data: {
-            loginToken: cookies.get("loginToken"),
-            followId: userId
-          }
-        }).then((response) => {
-            console.log(response.data);
-        }).catch((error) => {
-            console.log(error);
-        })
-      },
-      unfollowUser: function(userId) {
-        axios.request({
-          method: "DELETE",
-          url: "https://tweeterest.ml/api/follows",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
-          },
-          data: {
-            loginToken: cookies.get("loginToken"),
-            followId: userId
-          }
-        }).then((response) => {
-            console.log(response);
-        }).catch((error) => {
-            console.log(error);
-        })
-      }
-    },
-    props: [
-      "follower",
-      "isFollowing"
-    ]
-
+export default {
+  name: "disover-page",
+  components: {
+    NavBarSection,
+    ErrorMessage,
+    FollowingTweets
+  },
+  data() {
+    return {
+      loginToken: cookies.get("loginToken"),
+      username: cookies.get("userId"),
+      tweet: ""
+    };
   }
+};
 </script>
 
 <style lang="scss" scoped>
-
-// MOBILE
-* {
-  margin: 0;
-  padding: 0;
-}
-a:visited {
-  color: #4ecca3;
-  font-family: "Arimo", sans-serif;
-}
-a:link {
-  color: #4ecca3;
-  font-family: "Arimo", sans-serif;
-}
-#login-error-msg {
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  text-align: center;
-  font-family: "Arimo", sans-serif;
-  color: #4ecca3;
-  margin-top: 20vh;
-  font-size: 24px;
-  width: 40%;
-  margin-left: 30%;
-  line-height: 5vh;
-}
-#no-user-error {
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  text-align: center;
-  font-family: "Arimo", sans-serif;
-  color: #4ecca3;
-  margin-top: 10vh;
-  font-size: 18px;
-  width: 40%;
-  margin-left: 30%;
-  line-height: 5vh;
-}
-#no-user {
-  width: 75%;
-  margin: 5vh;
-}
-hr {
-  margin: 7vh;
-  background-color: #4ecca3;
-  height: 1px;
-}
-#tweeter-discover {
-  font-family: "Arimo", sans-serif;
-  color: #4ecca3;
-}
 #homepage-title {
   margin: 3vh;
   text-align: center;
   align-items: center;
   justify-items: center;
-}
-#show-tweets-btn {
-  background-color: #4ecca3;
-  color: black;
-  padding: 5px;
-  border-radius: 7%;
-  cursor: pointer;
-  transform: perspective(1px) translateZ(0);
-  transition-duration: 0.3s;
-  transition-property: transform;
-  width: 40%;
-  margin-left: 30%;
-  text-align: center;
-}
-#show-tweets-btn:hover {
-  transform: scale(0.9);
-}
-#tweet-container {
-  border: 1px solid #4ecca3;
-  margin: 7px;
-  padding: 5px;
+  color: #4ecca3;
   font-family: "Arimo", sans-serif;
-}
-hr {
-  margin: 2vh;
-  background-color: #4ecca3;
-}
-#tweet-btn-unfollow {
-  background-color: #4ecca3;
-  color: black;
-  padding: 5px;
-  border-radius: 7%;
-  cursor: pointer;
-  transform: perspective(1px) translateZ(0);
-  transition-duration: 0.3s;
-  transition-property: transform;
-  width: 20%;
-  text-align: center;
-  margin: 1vh;
-}
-#tweet-btn-unfollow:hover {
-  transform: scale(0.9);
-}
-#tweet-btn-follow {
-  background-color: #4ecca3;
-  color: black;
-  padding: 5px;
-  border-radius: 7%;
-  cursor: pointer;
-  transform: perspective(1px) translateZ(0);
-  transition-duration: 0.3s;
-  transition-property: transform;
-  width: 20%;
-  text-align: center;
-  margin: 1vh;
-}
-#tweet-btn-follow:hover {
-  transform: scale(0.9);
-}
-
-// TABLET
-@media only screen and (min-width: 670px) {
-    #show-tweets-btn {
-    background-color: #4ecca3;
-    color: black;
-    padding: 5px;
-    border-radius: 7%;
-    cursor: pointer;
-    transform: perspective(1px) translateZ(0);
-    transition-duration: 0.3s;
-    transition-property: transform;
-    width: 20%;
-    margin-left: 40%;
-    text-align: center;
-    } 
-    #show-tweets-btn:hover {
-    transform: scale(0.9);
-    }
-}
-
-
-// DESKTOP
-@media only screen and (min-width: 1020px){
-  #tweeter-discover {
-    font-family: "Arimo", sans-serif;
-    color: #4ecca3;
-  }
-  #homepage-title {
-    margin: 3vh;
-    text-align: center;
-    align-items: center;
-    justify-items: center;
-  }
-  #show-tweets-btn {
-    background-color: #4ecca3;
-    color: black;
-    padding: 5px;
-    border-radius: 7%;
-    cursor: pointer;
-    transform: perspective(1px) translateZ(0);
-    transition-duration: 0.3s;
-    transition-property: transform;
-    width: 10%;
-    margin-left: 45%;
-    text-align: center;
-  }
-  #show-tweets-btn:hover {
-    transform: scale(0.9);
-  }
-  #tweet-container {
-    border: 1px solid #4ecca3;
-    margin: 7px;
-    padding: 5px;
-    font-family: "Arimo", sans-serif;
-    width: 75%;
-    margin-left: 12.5%;
-    margin-top: 5vh;
-  }
-  hr {
-    margin: 2vh;
-    background-color: #4ecca3;
-  }
-  #tweet-btn-unfollow {
-    background-color: #4ecca3;
-    color: black;
-    padding: 5px;
-    border-radius: 7%;
-    cursor: pointer;
-    transform: perspective(1px) translateZ(0);
-    transition-duration: 0.3s;
-    transition-property: transform;
-    width: 10%;
-    text-align: center;
-    margin: 1vh;
-    }
-  #tweet-btn-unfollow:hover {
-    transform: scale(0.9);
-  }
-  #tweet-btn-follow {
-    background-color: #4ecca3;
-    color: black;
-    padding: 5px;
-    border-radius: 7%;
-    cursor: pointer;
-    transform: perspective(1px) translateZ(0);
-    transition-duration: 0.3s;
-    transition-property: transform;
-    width: 10%;
-    text-align: center;
-    margin: 1vh;
-  }
-  #tweet-btn-follow:hover {
-    transform: scale(0.9);
-  }
 }
 </style>

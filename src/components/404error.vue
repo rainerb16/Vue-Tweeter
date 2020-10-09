@@ -1,36 +1,36 @@
 <template>
   <div>
-      <div id="login-error-msg">
-        <h3>
-          No user logged in, please<br><br>
-          <router-link to="/login" id="login-link">return to login</router-link>
-        </h3>
-      </div>
-      <div id="no-user-error">
-        <h1>UH OH...</h1>
-        <img
-          id="no-user"
-          src="../assets/404.gif"
-          alt="Uh Oh! No user logged in photo"
-        />
-      </div>
+    <div id="login-error-msg">
+      <h3>
+        No NERDR logged in, please<br /><br />
+        <router-link to="/login" id="login-link">return to login</router-link>
+      </h3>
+    </div>
+    <div id="no-user-error">
+      <h1>UH OH...</h1>
+      <img
+        id="no-user"
+        src="../assets/404.gif"
+        alt="Uh Oh! No user logged in photo"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name: "404-error"
-  }
+export default {
+  name: "404-error"
+};
 </script>
 
 <style scoped>
 /* MOBILE */
 a:visited {
-  color: #4ecca3;
+  color: #f56476;
   font-family: "Arimo", sans-serif;
 }
 a:link {
-  color: #4ecca3;
+  color: #f56476;
   font-family: "Arimo", sans-serif;
 }
 #login-error-msg {

@@ -11,11 +11,15 @@
       class="animate__animated animate__lightSpeedInLeft"
     >
       <h4>
-        what are other nerds talking about right now?<br><br>
+        what are other nerds talking about right now?<br /><br />
         that's what NERDR is for 🤓
       </h4>
       <br />
-      <img id="twt-photo-gif" src="https://i.gifer.com/JFJN.gif" alt="NERDR Social Media Icon GIF" />
+      <img
+        id="twt-photo-gif"
+        src="https://i.gifer.com/JFJN.gif"
+        alt="NERDR Social Media Icon GIF"
+      />
       <br />
     </div>
     <div id="bottom-container">
@@ -47,7 +51,7 @@ export default {
 }
 // MOBILE
 body {
-  background-color: #232931;
+  background-color: #373F51;
 }
 a:visited {
   color: black;
@@ -60,7 +64,7 @@ a:link {
 #homepage-title {
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #4ecca3;
+  color: #f56476;
   margin-top: 5vh;
   font-size: 28px;
   align-items: center;
@@ -75,7 +79,7 @@ a:link {
   width: 40%;
   margin-left: 30%;
   margin-top: 5vh;
-  background-color: #232931;
+  background-color: #373F51;
   align-items: center;
   justify-items: center;
 }
@@ -86,20 +90,21 @@ a:link {
   text-align: center;
   grid-template-columns: 1fr 1fr;
   margin: 10px;
-  background-color: #232931;
+  background-color: #373F51;
+  color: #f56476;
 }
 #last-container {
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #4ecca3;
+  color: #f56476;
   margin-top: 8vh;
   font-size: 25px;
   width: 40%;
   margin-left: 30%;
-  background-color: #232931;
+  background-color: #373F51;
 }
 #bottom-container {
-  background-color: #232931;
+  background-color: #373F51;
   padding: 20px;
 }
 #homepage-btn {
@@ -130,22 +135,22 @@ a:link {
     border-radius: 50%;
   }
   body {
-    background-color: #232931;
+    background-color: #373F51;
   }
 }
 
 // DESKTOP
 @media only screen and (min-width: 1020px) {
   a:visited {
-    color: black;
+    color: #f56476;
   }
   a:link {
-    color: #4ecca3;
+    color: #f56476;
   }
   #homepage-title {
     text-align: center;
     font-family: "Arimo", sans-serif;
-    color: #4ecca3;
+    color: #f56476;
     margin-top: 5vh;
     font-size: 40px;
     align-items: center;
@@ -154,12 +159,12 @@ a:link {
   #homepage-container {
     text-align: center;
     font-family: "Arimo", sans-serif;
-    color: #4ecca3;
+    color: #f56476;
     margin-top: 2vh;
     font-size: 40px;
     width: 40%;
     margin-left: 30%;
-    background-color: #232931;
+    background-color: #373F51;
     align-items: center;
     justify-items: center;
   }
@@ -169,25 +174,25 @@ a:link {
     justify-items: center;
     text-align: center;
     grid-template-columns: 1fr 1fr;
-    background-color: #232931;
+    background-color: #373F51;
   }
   #last-container {
     text-align: center;
     font-family: "Arimo", sans-serif;
-    color: #4ecca3;
+    color: #f56476;
     margin-top: 5vh;
     margin-bottom: 3vh;
     font-size: 40px;
     width: 40%;
     margin-left: 30%;
-    background-color: #232931;
+    background-color: #373f51;
   }
   #bottom-container {
     padding: 20px;
-    background-color: #232931;
+    background-color: #373f51;
   }
   #homepage-btn {
-    background-color: #4ecca3;
+    background-color: #f56476;
     color: black;
     width: 30%;
     margin-top: 7vh;
@@ -198,7 +203,7 @@ a:link {
     font-size: 16px;
   }
   body {
-    background-color: #232931;
+    background-color: #373f51;
   }
   #twt-photo-gif {
     width: 50%;

@@ -62,8 +62,8 @@ import cookies from "vue-cookies";
   margin: 5vh;
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #4ecca3;
-  border: 1px solid #4ecca3;
+  color: #F56476;
+  border: 1px solid #F56476;
   padding: 10px;
 }
 input {

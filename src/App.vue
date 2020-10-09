@@ -10,7 +10,7 @@
   padding: 0;
 }
 body {
-  background-color: #232931;
+  background-color: #373F51;
 }
 
 </style>

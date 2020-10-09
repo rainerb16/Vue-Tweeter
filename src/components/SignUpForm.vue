@@ -71,7 +71,7 @@ export default {
 p {
   font-family: "Arimo", sans-serif;
   letter-spacing: 2px;
-  color: #4ecca3;
+  color: #F56476;
   padding: 5px;
 }
 input {
