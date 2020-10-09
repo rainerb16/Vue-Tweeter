@@ -8,6 +8,7 @@ import ProfilePage from "../views/Profile.vue";
 import DiscoverPage from "../views/Discover.vue";
 import UserTweetsPage from "../views/UserTweets.vue";
 import FollowersProfilePage from "../views/FollowersProfile.vue";
+import HashtagErrorPage from "../views/HashtagPage.vue";
 
 Vue.use(VueRouter);
 
@@ -51,6 +52,11 @@ const routes = [
     path: "/followersprofile",
     name: "folowers-profile",
     component: FollowersProfilePage
+  },
+  {
+    path: "/#/",
+    name: "hashtag-page",
+    component: HashtagErrorPage
   }
 ];
 

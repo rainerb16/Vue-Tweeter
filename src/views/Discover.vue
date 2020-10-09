@@ -8,7 +8,7 @@
       >
         NERDR DISCOVER
       </h2>
-      <following-tweets :tweetId="tweet.tweetId" />
+      <all-user-tweets :tweetId="tweet.tweetId" />
     </div>
     <div id="login-error" v-else>
       <error-message />
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import FollowingTweets from "../components/FollowingTweets.vue";
+import AllUserTweets from "../components/AllUserTweets.vue";
 import NavBarSection from "../components/NavBar.vue";
 import ErrorMessage from "../components/404error.vue";
 import cookies from "vue-cookies";
@@ -27,7 +27,7 @@ export default {
   components: {
     NavBarSection,
     ErrorMessage,
-    FollowingTweets
+    AllUserTweets
   },
   data() {
     return {
