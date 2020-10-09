@@ -4,7 +4,12 @@
     <div id="comments-container">
       <br />
       <p id="title-comment">Comments:</p>
-      <textarea type="text" id="comment" v-model="commentContent" />
+      <textarea
+        type="text"
+        id="comment"
+        v-model="commentContent"
+        placeholder="Max 150 characters"
+      />
       <br />
       <div id="comments-container">
         <div id="comment-btn" @click="createComment">Post Comment</div>
@@ -15,6 +20,7 @@
       id="user-comments"
       v-for="comment in comments"
       :key="comment.commentId"
+      placeholder="Max 150 characters"
     >
       <h2 id="user-username">{{ comment.username }}</h2>
       <p id="user-comment">{{ comment.content }}</p>
@@ -99,7 +105,7 @@ hr {
   justify-items: center;
 }
 #tweet-btn {
-  background-color: #64f59a;
+  background-color: #4ecca3;
   color: black;
   padding: 5px;
   border-radius: 7%;
@@ -122,7 +128,7 @@ hr {
   column-gap: 10px;
 }
 #comment-btn {
-  background-color: #64f59a;
+  background-color: #4ecca3;
   color: black;
   padding: 5px;
   border-radius: 7%;
@@ -148,7 +154,7 @@ hr {
   padding: 5px;
 }
 #user-username {
-  color: #64f59a;
+  color: #4ecca3;
 }
 #title-comment {
   color: #f56476;

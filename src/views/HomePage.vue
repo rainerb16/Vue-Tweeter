@@ -21,6 +21,7 @@
         alt="NERDR Social Media Icon GIF"
       />
       <br />
+      <br />
     </div>
     <div id="bottom-container">
       <div id="first-container">
@@ -51,7 +52,7 @@ export default {
 }
 // MOBILE
 body {
-  background-color: #373F51;
+  background-color: #373f51;
 }
 a:visited {
   color: black;
@@ -79,7 +80,7 @@ a:link {
   width: 40%;
   margin-left: 30%;
   margin-top: 5vh;
-  background-color: #373F51;
+  background-color: #373f51;
   align-items: center;
   justify-items: center;
 }
@@ -90,7 +91,7 @@ a:link {
   text-align: center;
   grid-template-columns: 1fr 1fr;
   margin: 10px;
-  background-color: #373F51;
+  background-color: #373f51;
   color: #f56476;
 }
 #last-container {
@@ -101,10 +102,10 @@ a:link {
   font-size: 25px;
   width: 40%;
   margin-left: 30%;
-  background-color: #373F51;
+  background-color: #373f51;
 }
 #bottom-container {
-  background-color: #373F51;
+  background-color: #373f51;
   padding: 20px;
 }
 #homepage-btn {
@@ -135,17 +136,17 @@ a:link {
     border-radius: 50%;
   }
   body {
-    background-color: #373F51;
+    background-color: #373f51;
   }
 }
 
 // DESKTOP
 @media only screen and (min-width: 1020px) {
   a:visited {
-    color: #f56476;
+    color: black;
   }
   a:link {
-    color: #f56476;
+    color: black;
   }
   #homepage-title {
     text-align: center;
@@ -159,12 +160,12 @@ a:link {
   #homepage-container {
     text-align: center;
     font-family: "Arimo", sans-serif;
-    color: #f56476;
+    color: #4ecca3;
     margin-top: 2vh;
     font-size: 40px;
     width: 40%;
     margin-left: 30%;
-    background-color: #373F51;
+    background-color: #373f51;
     align-items: center;
     justify-items: center;
   }
@@ -174,12 +175,12 @@ a:link {
     justify-items: center;
     text-align: center;
     grid-template-columns: 1fr 1fr;
-    background-color: #373F51;
+    background-color: #373f51;
   }
   #last-container {
     text-align: center;
     font-family: "Arimo", sans-serif;
-    color: #f56476;
+    color: #4ecca3;
     margin-top: 5vh;
     margin-bottom: 3vh;
     font-size: 40px;

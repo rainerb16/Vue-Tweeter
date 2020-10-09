@@ -5,7 +5,7 @@
         id="homepage-title"
         class="animate__animated animate__lightSpeedInRight"
       >
-        NERDR FEED
+        YOUR NERDR FEED
       </h2>
       <div id="tweet-create">
         <p id="title">What's on your mind?</p>
@@ -13,11 +13,10 @@
           type="text"
           id="tweet-post"
           v-model="tweetContent"
-          placeholder="max 200 characters"
+          placeholder="Max 200 characters"
         />
         <div></div>
         <button id="post-tweet-btn" @click="postTweet">Post NERD</button>
-        <button id="post-tweet-btn" @click="postTweet">Update NERD</button>
       </div>
     </div>
   </div>
@@ -31,8 +30,7 @@ export default {
   name: "create-tweet-page",
   data() {
     return {
-      tweetContent: "",
-      updatePost: ""
+      tweetContent: ""
     };
   },
   methods: {
@@ -48,28 +46,6 @@ export default {
           data: {
             loginToken: cookies.get("loginToken"),
             content: this.tweetContent
-          }
-        })
-        .then(response => {
-          console.log(response);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
-    updateTweet: function(tweetId) {
-      axios
-        .request({
-          method: "PATCH",
-          url: "https://tweeterest.ml/api/tweets",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
-          },
-          data: {
-            loginToken: cookies.get("loginToken"),
-            tweetId: tweetId,
-            content: this.updatePost
           }
         })
         .then(response => {

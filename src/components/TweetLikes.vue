@@ -127,6 +127,15 @@ export default {
   margin: 4vw;
 }
 
+// TABLET
+@media only screen and (min-width: 670px) {
+  #like,
+  #unlike {
+    width: 30%;
+    margin: 4vw;
+  }
+}
+
 //DESKTOP
 @media only screen and (min-width: 1020px) {
   #like,
