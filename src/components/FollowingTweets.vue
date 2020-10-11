@@ -1,13 +1,19 @@
 <template>
   <div>
     <div>
+      <h2
+        id="homepage-title"
+        class="animate__animated animate__lightSpeedInRight"
+      >
+        YOUR NERDR FEED
+      </h2>
       <div id="button-container">
-        <h3 id="show-following-tweets-btn" @click="showFollowingTweets">
-          NERDRS YOU FOLLOW
-        </h3>
-        <h3 id="show-following-tweets-btn" @click="showCurrentUserTweets">
-          YOUR NERDS
-        </h3>
+        <button id="show-following-tweets-btn" @click="showFollowingTweets">
+          VIEW YOUR NERDRS
+        </button>
+        <button id="show-following-tweets-btn" @click="showCurrentUserTweets">
+          VIEW YOUR NERDS
+        </button>
       </div>
       <div id="tweet-container" v-for="tweet in tweets" :key="tweet.tweetId">
         <h2 id="tweet-user">
@@ -19,23 +25,16 @@
         <p>Created on: {{ tweet.createdAt }}</p>
         <tweet-likes :tweetId="tweet.tweetId" />
         <div id="follow-unfollow-btn">
-          <button id="delete-tweet" @click="deleteTweet(tweet.tweetId)">
-            Delete
-          </button>
+          <delete-tweet
+            v-if="userId == tweet.userId"
+            :tweetId="tweet.tweetId"
+          />
           <follow-unfollow-btn />
           <div></div>
-          <div id="edit-container">
-            <textarea
-              type="text"
-              id="tweet-post"
-              v-model="updateTweetContent"
-              placeholder="Update your NERDR. Max 200 characters"
-            />
-            <div></div>
-            <button id="edit-tweet" @click="updateTweet(tweet.tweetId)">
-              Update
-            </button>
-          </div>
+          <update-tweet
+            v-if="userId == tweet.userId"
+            :tweetId="tweet.tweetId"
+          />
         </div>
         <hr />
         <tweet-comment :tweetId="tweet.tweetId" />
@@ -46,31 +45,28 @@
 
 <script>
 import TweetLikes from "../components/TweetLikes.vue";
+import DeleteTweet from "../components/DeleteTweet.vue";
 import axios from "axios";
 import cookies from "vue-cookies";
 import TweetComment from "../components/Comment.vue";
 import FollowUnfollowBtn from "../components/FollowUnfollowBtn.vue";
+import UpdateTweet from "../components/UpdateTweet.vue";
+// import DeleteTweet from "../components/DeleteTweet.vue";
 
 export default {
   name: "following-tweets",
   components: {
     TweetLikes,
     TweetComment,
-    FollowUnfollowBtn
+    FollowUnfollowBtn,
+    UpdateTweet,
+    DeleteTweet
   },
-  // props: {
-  //   tweets: {
-  //     type: Array,
-  //     required: true
-  //   }
-  // },
   data() {
     return {
       loginToken: cookies.get("loginToken"),
       followedTweets: [],
       userId: cookies.get("userId"),
-      tweet: "",
-      updateTweetContent: "",
       tweets: []
     };
   },
@@ -158,28 +154,6 @@ export default {
           console.log(error);
         });
     },
-    deleteTweet: function(tweetId) {
-      axios
-        .request({
-          method: "DELETE",
-          url: "https://tweeterest.ml/api/tweets",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
-          },
-          data: {
-            loginToken: cookies.get("loginToken"),
-            tweetId: tweetId,
-            content: this.content
-          }
-        })
-        .then(response => {
-          console.log(response);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
     updateTweet: function(tweetId) {
       axios
         .request({
@@ -202,6 +176,9 @@ export default {
           console.log(error);
         });
     }
+  },
+  mounted: function() {
+    this.showFollowingTweets();
   }
 };
 </script>
@@ -231,6 +208,7 @@ hr {
   align-items: center;
   justify-items: center;
   color: #783030;
+  font-family: "Arimo", sans-serif;
 }
 #delete-tweet {
   background-color: #f0f0f0;
@@ -246,22 +224,6 @@ hr {
   margin: 1vh;
 }
 #delete-tweet:hover {
-  transform: scale(0.9);
-}
-#edit-tweet {
-  background-color: #f0f0f0;
-  color: black;
-  padding: 5px;
-  border-radius: 7%;
-  cursor: pointer;
-  transform: perspective(1px) translateZ(0);
-  transition-duration: 0.3s;
-  transition-property: transform;
-  width: 40%;
-  text-align: center;
-  margin: 1vh;
-}
-#edit-tweet:hover {
   transform: scale(0.9);
 }
 #post-tweet-btn {
@@ -284,14 +246,15 @@ hr {
   background-color: #f0f0f0;
   color: black;
   border: 1px solid black;
-  padding: 5px;
+  box-shadow: 3px 5px 5px darkgray;
+  padding: 3px;
   border-radius: 7%;
   cursor: pointer;
   transform: perspective(1px) translateZ(0);
   transition-duration: 0.3s;
   transition-property: transform;
-  width: 50%;
-  margin-left: 23%;
+  width: 40%;
+  margin-left: 30%;
   margin-bottom: 3vh;
   text-align: center;
   font-family: "Arimo", sans-serif;

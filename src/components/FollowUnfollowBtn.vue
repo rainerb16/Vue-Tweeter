@@ -124,7 +124,7 @@ export default {
     transform: perspective(1px) translateZ(0);
     transition-duration: 0.3s;
     transition-property: transform;
-    width: 100%;
+    width: 50%;
     text-align: center;
     margin: 1vh;
   }
@@ -140,7 +140,7 @@ export default {
     transform: perspective(1px) translateZ(0);
     transition-duration: 0.3s;
     transition-property: transform;
-    width: 100%;
+    width: 50%;
     text-align: center;
     margin: 1vh;
   }
@@ -168,7 +168,7 @@ export default {
     transform: perspective(1px) translateZ(0);
     transition-duration: 0.3s;
     transition-property: transform;
-    width: 50%;
+    width: 30%;
     text-align: center;
     margin: 1vh;
   }
@@ -184,7 +184,7 @@ export default {
     transform: perspective(1px) translateZ(0);
     transition-duration: 0.3s;
     transition-property: transform;
-    width: 50%;
+    width: 30%;
     text-align: center;
     margin: 1vh;
   }

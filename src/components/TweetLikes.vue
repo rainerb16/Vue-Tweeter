@@ -124,11 +124,11 @@ export default {
   display: grid;
   align-items: center;
   justify-items: center;
-  grid-template-columns: 1fr 1fr 4fr;
+  grid-template-columns: repeat(5, 1fr);
 }
 #like,
 #unlike {
-  width: 40%;
+  width: 30%;
   margin: 4vw;
 }
 
@@ -136,8 +136,11 @@ export default {
 @media only screen and (min-width: 670px) {
   #like,
   #unlike {
-    width: 30%;
+    width: 20%;
     margin: 4vw;
+  }
+  #likes-container {
+    grid-template-columns: repeat(6, 1fr);
   }
 }
 
@@ -147,6 +150,9 @@ export default {
   #unlike {
     width: 15%;
     margin: 4vw;
+  }
+  #likes-container {
+    grid-template-columns: repeat(10, 1fr);
   }
 }
 </style>
