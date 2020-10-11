@@ -45,7 +45,7 @@ export default {
   text-align: center;
   align-items: center;
   justify-items: center;
-  color: #4ecca3;
+  color: #783030;
   font-family: "Arimo", sans-serif;
 }
 </style>

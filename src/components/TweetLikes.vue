@@ -3,7 +3,7 @@
     <div id="likes-container">
       <img
         id="like"
-        @click="likeTweet"
+        @click="likeTweet(tweetId)"
         v-if="isLiked == false"
         src="../assets/like.png"
         alt="Heart Icon"
@@ -15,6 +15,8 @@
         src="../assets/unlike.png"
         alt="Broken Heart Icon"
       />
+      <span></span>
+      <div>Likes: {{ likesNum.length }}</div>
       <span></span>
     </div>
   </div>
@@ -28,15 +30,18 @@ export default {
   name: "tweet-likes",
   data() {
     return {
-      likesNum: Number,
+      likesNum: [],
       isLiked: false
     };
   },
   props: {
     tweetId: Number
   },
+  mounted: function() {
+    this.getLikes();
+  },
   methods: {
-    likeTweet: function() {
+    likeTweet: function(tweetId) {
       (this.isLiked = true),
         axios
           .request({
@@ -48,7 +53,7 @@ export default {
             },
             data: {
               loginToken: cookies.get("loginToken"),
-              tweetId: this.tweetId
+              tweetId: tweetId
             }
           })
           .then(response => {
@@ -74,12 +79,12 @@ export default {
         .then(response => {
           console.log(response);
           this.likesNum = response.data;
+
           let currentUser = cookies.get("userId");
           for (let i = 0; i < this.likesNum.length; i++) {
             if (currentUser == this.likesNum[i].userId) {
               this.isLiked = true;
-            } else if (currentUser != this.likesNum[i].userId) {
-              this.isLiked = false;
+              return;
             }
           }
         })

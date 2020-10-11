@@ -25,8 +25,18 @@
       <h2 id="user-username">{{ comment.username }}</h2>
       <p id="user-comment">{{ comment.content }}</p>
       <p id="user-created-on">Created On: {{ comment.createdAt }}</p>
+      <div v-if="comment.userId == userId">
+        <textarea
+          type="text"
+          id="edit-comment"
+          v-model="editContent"
+          placeholder="Max 150 characters"
+        />
+        <div id="edit-comment-btn" @click="editComment(comment.commentId)">
+          Edit Comment
+        </div>
+      </div>
     </div>
-    <!-- <edit-comments v-bind:commentId="comment.commentId" v-bind:userId="comment.userId"> </edit-comments> -->
   </div>
 </template>
 
@@ -42,7 +52,10 @@ export default {
   data() {
     return {
       comments: [],
-      commentContent: ""
+      commentContent: "",
+      commentId: Number,
+      editContent: "",
+      userId: cookies.get("userId")
     };
   },
   methods: {
@@ -88,6 +101,28 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    editComment: function(commentId) {
+      axios
+        .request({
+          method: "PATCH",
+          url: "https://tweeterest.ml/api/comments",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
+          },
+          data: {
+            loginToken: cookies.get("loginToken"),
+            commentId: commentId,
+            content: this.editContent
+          }
+        })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 };
@@ -96,7 +131,7 @@ export default {
 <style lang="scss" scoped>
 hr {
   margin: 2vh;
-  background-color: #4ecca3;
+  background-color: black;
 }
 #comments-container {
   margin-top: 2vh;
@@ -105,8 +140,9 @@ hr {
   justify-items: center;
 }
 #tweet-btn {
-  background-color: #4ecca3;
+  background-color: #f0f0f0;
   color: black;
+  border: 1px solid black;
   padding: 5px;
   border-radius: 7%;
   cursor: pointer;
@@ -127,9 +163,19 @@ hr {
   grid-template-columns: 2fr 2fr;
   column-gap: 10px;
 }
-#comment-btn {
-  background-color: #4ecca3;
+#edit-comment-btn {
+  width: 50%;
   color: black;
+  border: 1px solid black;
+  margin: 2vh;
+  padding: 5px;
+  border-radius: 7%;
+  text-align: center;
+}
+#comment-btn {
+  background-color: #f0f0f0;
+  color: black;
+  border: 1px solid black;
   padding: 5px;
   border-radius: 7%;
   cursor: pointer;
@@ -146,7 +192,7 @@ hr {
 #user-comments {
   margin: 2vw;
   padding: 10px;
-  border: 1px solid #f56476;
+  border: 1px solid black;
 }
 #user-username,
 #username-comment,
@@ -154,9 +200,9 @@ hr {
   padding: 5px;
 }
 #user-username {
-  color: #4ecca3;
+  color: #783030;
 }
 #title-comment {
-  color: #f56476;
+  color: #783030;
 }
 </style>

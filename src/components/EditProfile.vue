@@ -3,16 +3,21 @@
     <div id="edit-profile">
       <h3 id="edit-title">Edit Profile</h3>
       <p>Update Email</p>
-      <input type="email" id="email-input" v-model="email">
+      <input type="email" id="email-input" v-model="email" />
       <p>Update Username</p>
-      <input type="text" id="username-input" v-model="username">
+      <input type="text" id="username-input" v-model="username" />
       <p>Update Password</p>
-      <input type="text" id="password-input" v-model="password">
+      <input type="text" id="password-input" v-model="password" />
       <p>Update Bio</p>
       <textarea type="text" id="bio-input" v-model="bio" />
       <p>Update Birthdate</p>
-      <input type="text" id="birthdate-input" placeholder="yyyy-mm-dd" v-model="birthdate">
-      <br><br>
+      <input
+        type="text"
+        id="birthdate-input"
+        placeholder="yyyy-mm-dd"
+        v-model="birthdate"
+      />
+      <br /><br />
       <button id="update-btn" @click="updateProfile">Update</button>
       <!-- <div id="status">
         <h3 v-if="updateProfile">Profile Updated!</h3>
@@ -26,20 +31,21 @@
 import axios from "axios";
 import cookies from "vue-cookies";
 
-  export default {
-    name: "edit-profile",
-    data() {
-      return {
-        email: "",
-        username: "",
-        password: "",
-        bio: "",
-        birthdate: ""
-      }
-    },
-    methods: {
-      updateProfile: function() {
-        axios.request({
+export default {
+  name: "edit-profile",
+  data() {
+    return {
+      email: "",
+      username: "",
+      password: "",
+      bio: "",
+      birthdate: ""
+    };
+  },
+  methods: {
+    updateProfile: function() {
+      axios
+        .request({
           method: "PATCH",
           url: "https://tweeterest.ml/api/users",
           headers: {
@@ -54,21 +60,23 @@ import cookies from "vue-cookies";
             bio: this.bio,
             birthdate: this.birthdate
           }
-        }).then((response) => {
-            console.log(response)
-        }).catch((error) => {
-            console.log(error)
+        })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
         });
-      }
     }
   }
+};
 </script>
 
 <style lang="scss" scoped>
 #edit-title {
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #4ecca3;
+  color: #783030;
   margin: 5vh;
   font-size: 24px;
 }
@@ -76,12 +84,15 @@ import cookies from "vue-cookies";
   display: grid;
   align-items: center;
   justify-items: center;
-  border: 1px solid #F56476;
+  border: 1px solid black;
   padding: 10px;
+  width: 75%;
+  margin-left: 12.5%;
+  margin-top: 5vh;
 }
 p {
   font-family: "Arimo", sans-serif;
-  color: #F56476;
+  color: #783030;
   margin: 1vh;
 }
 #birthdate-input {
@@ -91,7 +102,7 @@ input {
   margin: 1vh;
 }
 #update-btn {
-  background-color: #4ecca3;
+  background-color: #f0f0f0;
   color: black;
   padding: 5px;
   border-radius: 7%;
@@ -106,7 +117,7 @@ input {
 }
 #status {
   font-family: "Arimo", sans-serif;
-  color: #F56476;
+  color: #783030;
   margin: 4vh;
 }
 </style>

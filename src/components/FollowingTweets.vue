@@ -9,67 +9,33 @@
           YOUR NERDS
         </h3>
       </div>
-
-      <!-- FOLLOWERS NERDRS -->
-      <div
-        id="tweet-container"
-        v-for="followsTweet in followsTweets"
-        :key="followsTweet.tweetId"
-      >
-        <h2 id="tweet-user">
-          <strong>{{ followsTweet.username }}</strong>
-        </h2>
-        <br />
-
-        <h4>{{ followsTweet.content }}</h4>
-        <br />
-
-        <p>Created on: {{ followsTweet.createdAt }}</p>
-
-        <tweet-likes :tweetId="tweet.tweetId" />
-
-        <div>
-          <button id="delete-tweet-btn" @click="deleteTweet(tweet.tweetId)">
-            Delete
-          </button>
-          <button id="tweet-btn-unfollow" @click="followUser(tweet.userId)">
-            Follow
-          </button>
-          <button id="tweet-btn-follow" @click="unfollowUser(tweet.userId)">
-            Unfollow
-          </button>
-        </div>
-      </div>
-
-      <!-- CURRENT USER NERDRS -->
       <div id="tweet-container" v-for="tweet in tweets" :key="tweet.tweetId">
         <h2 id="tweet-user">
           <strong>{{ tweet.username }}</strong>
         </h2>
         <br />
-
         <h4>{{ tweet.content }}</h4>
         <br />
-
         <p>Created on: {{ tweet.createdAt }}</p>
-
         <tweet-likes :tweetId="tweet.tweetId" />
-
         <div id="follow-unfollow-btn">
           <button id="delete-tweet" @click="deleteTweet(tweet.tweetId)">
             Delete
           </button>
+          <follow-unfollow-btn />
           <div></div>
-          <textarea
-            type="text"
-            id="tweet-post"
-            v-model="updatePost"
-            placeholder="Update your NERDR. Max 200 characters"
-          />
-          <div></div>
-          <button id="post-tweet-btn" @click="updateTweet(tweet.tweetId)">
-            Update NERD
-          </button>
+          <div id="edit-container">
+            <textarea
+              type="text"
+              id="tweet-post"
+              v-model="updateTweetContent"
+              placeholder="Update your NERDR. Max 200 characters"
+            />
+            <div></div>
+            <button id="edit-tweet" @click="updateTweet(tweet.tweetId)">
+              Update
+            </button>
+          </div>
         </div>
         <hr />
         <tweet-comment :tweetId="tweet.tweetId" />
@@ -83,22 +49,29 @@ import TweetLikes from "../components/TweetLikes.vue";
 import axios from "axios";
 import cookies from "vue-cookies";
 import TweetComment from "../components/Comment.vue";
+import FollowUnfollowBtn from "../components/FollowUnfollowBtn.vue";
 
 export default {
   name: "following-tweets",
   components: {
     TweetLikes,
-    TweetComment
+    TweetComment,
+    FollowUnfollowBtn
   },
+  // props: {
+  //   tweets: {
+  //     type: Array,
+  //     required: true
+  //   }
+  // },
   data() {
     return {
-      tweets: [],
       loginToken: cookies.get("loginToken"),
+      followedTweets: [],
       userId: cookies.get("userId"),
-      followsTweets: [],
       tweet: "",
-      tweetContent: "",
-      updatePost: ""
+      updateTweetContent: "",
+      tweets: []
     };
   },
   methods: {
@@ -137,8 +110,28 @@ export default {
           }
         })
         .then(response => {
-          this.followsTweets = response.data;
           console.log(response);
+          this.followedTweets = response.data;
+          for (let i = 0; i < this.followedTweets.length; i++) {
+            axios
+              .request({
+                method: "GET",
+                url: "https://tweeterest.ml/api/tweets",
+                headers: {
+                  "Content-Type": "application/json",
+                  "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
+                },
+                params: {
+                  userId: this.followedTweets[i].userId
+                }
+              })
+              .then(response => {
+                this.tweets = this.tweets.concat(response.data);
+              })
+              .catch(error => {
+                console.log(error);
+              });
+          }
         })
         .catch(error => {
           console.log(error);
@@ -160,48 +153,6 @@ export default {
         .then(response => {
           console.log(response);
           this.users = response.data;
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
-    followUser: function(userId) {
-      axios
-        .request({
-          method: "POST",
-          url: "https://tweeterest.ml/api/follows",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
-          },
-          data: {
-            loginToken: cookies.get("loginToken"),
-            followId: userId
-          }
-        })
-        .then(response => {
-          console.log(response.data);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
-    unfollowUser: function(userId) {
-      axios
-        .request({
-          method: "DELETE",
-          url: "https://tweeterest.ml/api/follows",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
-          },
-          data: {
-            loginToken: cookies.get("loginToken"),
-            followId: userId
-          }
-        })
-        .then(response => {
-          console.log(response);
         })
         .catch(error => {
           console.log(error);
@@ -241,7 +192,7 @@ export default {
           data: {
             loginToken: cookies.get("loginToken"),
             tweetId: tweetId,
-            content: this.updatePost
+            content: this.updateTweetContent
           }
         })
         .then(response => {
@@ -262,16 +213,16 @@ export default {
   padding: 0;
 }
 a:visited {
-  color: #f56476;
+  color: #783030;
   font-family: "Arimo", sans-serif;
 }
 a:link {
-  color: #4ecca3;
+  color: #783030;
   font-family: "Arimo", sans-serif;
 }
 hr {
   margin: 7vh;
-  background-color: #f56476;
+  background-color: black;
   height: 1px;
 }
 #homepage-title {
@@ -279,11 +230,26 @@ hr {
   text-align: center;
   align-items: center;
   justify-items: center;
-  color: #4ecca3;
+  color: #783030;
 }
-#delete-tweet,
-#post-tweet-btn {
-  background-color: #4ecca3;
+#delete-tweet {
+  background-color: #f0f0f0;
+  color: black;
+  padding: 5px;
+  border-radius: 7%;
+  cursor: pointer;
+  transform: perspective(1px) translateZ(0);
+  transition-duration: 0.3s;
+  transition-property: transform;
+  width: 20%;
+  text-align: center;
+  margin: 1vh;
+}
+#delete-tweet:hover {
+  transform: scale(0.9);
+}
+#edit-tweet {
+  background-color: #f0f0f0;
   color: black;
   padding: 5px;
   border-radius: 7%;
@@ -295,12 +261,11 @@ hr {
   text-align: center;
   margin: 1vh;
 }
-#delete-tweet:hover,
-#post-tweet-btn:hover {
+#edit-tweet:hover {
   transform: scale(0.9);
 }
-#show-following-tweets-btn {
-  background-color: #4ecca3;
+#post-tweet-btn {
+  background-color: #f0f0f0;
   color: black;
   padding: 5px;
   border-radius: 7%;
@@ -308,8 +273,25 @@ hr {
   transform: perspective(1px) translateZ(0);
   transition-duration: 0.3s;
   transition-property: transform;
-  width: 40%;
-  margin-left: 30%;
+  width: 20%;
+  text-align: center;
+  margin: 1vh;
+}
+#post-tweet-btn:hover {
+  transform: scale(0.9);
+}
+#show-following-tweets-btn {
+  background-color: #f0f0f0;
+  color: black;
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 7%;
+  cursor: pointer;
+  transform: perspective(1px) translateZ(0);
+  transition-duration: 0.3s;
+  transition-property: transform;
+  width: 50%;
+  margin-left: 23%;
   margin-bottom: 3vh;
   text-align: center;
   font-family: "Arimo", sans-serif;
@@ -318,70 +300,67 @@ hr {
   transform: scale(0.9);
 }
 #tweet-container {
-  border: 1px solid #f56476;
+  border: 1px solid black;
   margin: 7px;
   padding: 5px;
   font-family: "Arimo", sans-serif;
 }
 hr {
   margin: 2vh;
-  background-color: #f56476;
+  background-color: black;
 }
-#tweet-btn-unfollow,
-#delete-tweet-btn {
-  background-color: #4ecca3;
-  color: black;
-  padding: 5px;
-  border-radius: 7%;
-  cursor: pointer;
-  transform: perspective(1px) translateZ(0);
-  transition-duration: 0.3s;
-  transition-property: transform;
-  width: 20%;
-  text-align: center;
-  margin: 1vh;
-}
-#tweet-btn-unfollow:hover,
-#delete-tweet-btn:hover {
-  transform: scale(0.9);
-}
-#tweet-btn-follow {
-  background-color: #4ecca3;
-  color: black;
-  padding: 5px;
-  border-radius: 7%;
-  cursor: pointer;
-  transform: perspective(1px) translateZ(0);
-  transition-duration: 0.3s;
-  transition-property: transform;
-  width: 20%;
-  text-align: center;
-  margin: 1vh;
-}
-#tweet-btn-follow:hover {
-  transform: scale(0.9);
-}
+
 #tweet-user {
-  color: #4ecca3;
+  color: #783030;
 }
 h4,
 p {
-  color: #f56476;
+  color: black;
 }
-#follow-unfollow-btn {
+#edit-container {
   display: grid;
   align-items: center;
   justify-items: center;
-  grid-template-columns: 1fr 1fr;
-}
-textarea {
   margin-top: 5vh;
 }
 // TABLET
 @media only screen and (min-width: 670px) {
-  #show-following-tweets-btn {
-    background-color: #4ecca3;
+  #delete-tweet {
+    background-color: #f0f0f0;
     color: black;
+    padding: 5px;
+    border-radius: 7%;
+    cursor: pointer;
+    transform: perspective(1px) translateZ(0);
+    transition-duration: 0.3s;
+    transition-property: transform;
+    width: 20%;
+    text-align: center;
+    margin: 1vh;
+  }
+  #delete-tweet:hover {
+    transform: scale(0.9);
+  }
+  #edit-tweet {
+    background-color: #f0f0f0;
+    color: black;
+    padding: 5px;
+    border-radius: 7%;
+    cursor: pointer;
+    transform: perspective(1px) translateZ(0);
+    transition-duration: 0.3s;
+    transition-property: transform;
+    width: 20%;
+    text-align: center;
+    margin: 1vh;
+  }
+  #edit-tweet:hover {
+    transform: scale(0.9);
+  }
+  #show-following-tweets-btn {
+    background-color: #f0f0f0;
+    color: black;
+    border: 1px solid black;
     padding: 5px;
     border-radius: 7%;
     cursor: pointer;
@@ -395,9 +374,8 @@ textarea {
   #show-following-tweets-btn:hover {
     transform: scale(0.9);
   }
-  #delete-tweet,
   #post-tweet-btn {
-    background-color: #4ecca3;
+    background-color: #f0f0f0;
     color: black;
     padding: 5px;
     border-radius: 7%;
@@ -405,11 +383,10 @@ textarea {
     transform: perspective(1px) translateZ(0);
     transition-duration: 0.3s;
     transition-property: transform;
-    width: 20%;
+    width: 50%;
     text-align: center;
     margin: 1vh;
   }
-  #delete-tweet:hover,
   #post-tweet-btn:hover {
     transform: scale(0.9);
   }
@@ -419,7 +396,23 @@ textarea {
 @media only screen and (min-width: 1020px) {
   #tweeter-discover {
     font-family: "Arimo", sans-serif;
-    color: #f56476;
+    color: black;
+  }
+  #edit-tweet {
+    background-color: #f0f0f0;
+    color: black;
+    padding: 5px;
+    border-radius: 7%;
+    cursor: pointer;
+    transform: perspective(1px) translateZ(0);
+    transition-duration: 0.3s;
+    transition-property: transform;
+    width: 13%;
+    text-align: center;
+    margin: 1vh;
+  }
+  #edit-tweet:hover {
+    transform: scale(0.9);
   }
   #homepage-title {
     margin: 3vh;
@@ -428,8 +421,9 @@ textarea {
     justify-items: center;
   }
   #show-following-tweets-btn {
-    background-color: #4ecca3;
+    background-color: #f0f0f0;
     color: black;
+    border: 1px solid black;
     padding: 5px;
     border-radius: 7%;
     cursor: pointer;
@@ -444,7 +438,7 @@ textarea {
     transform: scale(0.9);
   }
   #tweet-container {
-    border: 1px solid #f56476;
+    border: 1px solid black;
     margin: 7px;
     padding: 5px;
     font-family: "Arimo", sans-serif;
@@ -454,11 +448,10 @@ textarea {
   }
   hr {
     margin: 2vh;
-    background-color: #f56476;
+    background-color: black;
   }
-  #tweet-btn-unfollow,
   #delete-tweet-btn {
-    background-color: #4ecca3;
+    background-color: #f0f0f0;
     color: black;
     padding: 5px;
     border-radius: 7%;
@@ -470,29 +463,12 @@ textarea {
     text-align: center;
     margin: 1vh;
   }
-  #tweet-btn-unfollow:hover,
   #delete-tweet-btn:hover {
-    transform: scale(0.9);
-  }
-  #tweet-btn-follow {
-    background-color: #4ecca3;
-    color: black;
-    padding: 5px;
-    border-radius: 7%;
-    cursor: pointer;
-    transform: perspective(1px) translateZ(0);
-    transition-duration: 0.3s;
-    transition-property: transform;
-    width: 10%;
-    text-align: center;
-    margin: 1vh;
-  }
-  #tweet-btn-follow:hover {
     transform: scale(0.9);
   }
   #delete-tweet,
   #post-tweet-btn {
-    background-color: #4ecca3;
+    background-color: #f0f0f0;
     color: black;
     padding: 5px;
     border-radius: 7%;
@@ -500,7 +476,7 @@ textarea {
     transform: perspective(1px) translateZ(0);
     transition-duration: 0.3s;
     transition-property: transform;
-    width: 30%;
+    width: 10%;
     text-align: center;
     margin: 1vh;
   }

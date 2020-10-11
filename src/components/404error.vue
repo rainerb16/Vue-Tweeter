@@ -26,11 +26,11 @@ export default {
 <style scoped>
 /* MOBILE */
 a:visited {
-  color: #f56476;
+  color: black;
   font-family: "Arimo", sans-serif;
 }
 a:link {
-  color: #f56476;
+  color: black;
   font-family: "Arimo", sans-serif;
 }
 #login-error-msg {
@@ -39,7 +39,7 @@ a:link {
   justify-items: center;
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #4ecca3;
+  color: black;
   margin-top: 20vh;
   font-size: 24px;
   width: 40%;
@@ -52,7 +52,7 @@ a:link {
   justify-items: center;
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #4ecca3;
+  color: #783030;
   margin-top: 10vh;
   font-size: 18px;
   width: 40%;

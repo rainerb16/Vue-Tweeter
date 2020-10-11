@@ -65,7 +65,7 @@ a:visited {
   font-family: "Arimo", sans-serif;
 }
 a:link {
-  color: #f56476;
+  color: #783030;
   font-family: "Arimo", sans-serif;
 }
 #newsfeed-container {
@@ -73,7 +73,7 @@ a:link {
   align-items: center;
   justify-items: center;
   font-family: "Arimo", sans-serif;
-  color: #f56476;
+  color: black;
 }
 #title {
   margin: 10px;
@@ -91,7 +91,7 @@ input {
   margin: 2vh;
 }
 #show-tweets-btn {
-  background-color: #f56476;
+  background-color: #F0F0F0;
   color: black;
   padding: 5px;
   border-radius: 7%;
@@ -113,6 +113,6 @@ input {
 }
 #homepage-title {
   margin: 3vh;
-  color: #4ecca3;
+  color: #783030;
 }
 </style>

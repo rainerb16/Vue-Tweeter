@@ -52,20 +52,20 @@ export default {
 }
 // MOBILE
 body {
-  background-color: #373f51;
+  background-color: #F0F0F0;
 }
 a:visited {
-  color: black;
+  color: #783030;
   font-family: "Arimo", sans-serif;
 }
 a:link {
-  color: #4ecca3;
+  color: #783030;
   font-family: "Arimo", sans-serif;
 }
 #homepage-title {
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #f56476;
+  color: #783030;
   margin-top: 5vh;
   font-size: 28px;
   align-items: center;
@@ -74,13 +74,13 @@ a:link {
 #homepage-container {
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #4ecca3;
+  color: #783030;
   margin-top: 2vh;
   font-size: 20px;
   width: 40%;
   margin-left: 30%;
   margin-top: 5vh;
-  background-color: #373f51;
+  background-color: #F0F0F0;
   align-items: center;
   justify-items: center;
 }
@@ -91,26 +91,27 @@ a:link {
   text-align: center;
   grid-template-columns: 1fr 1fr;
   margin: 10px;
-  background-color: #373f51;
-  color: #f56476;
+  background-color: #F0F0F0;
+  color: #783030;
 }
 #last-container {
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #f56476;
+  color: #783030;
   margin-top: 8vh;
   font-size: 25px;
   width: 40%;
   margin-left: 30%;
-  background-color: #373f51;
+  background-color: #F0F0F0;
 }
 #bottom-container {
-  background-color: #373f51;
+  background-color: #F0F0F0;
   padding: 20px;
 }
 #homepage-btn {
-  background-color: #4ecca3;
+  background-color: #F0F0F0;
   color: black;
+  border: 1px solid black;
   width: 60%;
   text-align: center;
   font-family: "Arimo", sans-serif;
@@ -136,22 +137,22 @@ a:link {
     border-radius: 50%;
   }
   body {
-    background-color: #373f51;
+    background-color: #F0F0F0;
   }
 }
 
 // DESKTOP
 @media only screen and (min-width: 1020px) {
   a:visited {
-    color: black;
+    color: #783030;
   }
   a:link {
-    color: black;
+    color: #783030;
   }
   #homepage-title {
     text-align: center;
     font-family: "Arimo", sans-serif;
-    color: #f56476;
+    color: #783030;
     margin-top: 5vh;
     font-size: 40px;
     align-items: center;
@@ -160,12 +161,12 @@ a:link {
   #homepage-container {
     text-align: center;
     font-family: "Arimo", sans-serif;
-    color: #4ecca3;
+    color: #783030;
     margin-top: 2vh;
     font-size: 40px;
     width: 40%;
     margin-left: 30%;
-    background-color: #373f51;
+    background-color: #F0F0F0;
     align-items: center;
     justify-items: center;
   }
@@ -175,26 +176,27 @@ a:link {
     justify-items: center;
     text-align: center;
     grid-template-columns: 1fr 1fr;
-    background-color: #373f51;
+    background-color: #F0F0F0;
   }
   #last-container {
     text-align: center;
     font-family: "Arimo", sans-serif;
-    color: #4ecca3;
+    color: #783030;
     margin-top: 5vh;
     margin-bottom: 3vh;
     font-size: 40px;
     width: 40%;
     margin-left: 30%;
-    background-color: #373f51;
+    background-color: #F0F0F0;
   }
   #bottom-container {
     padding: 20px;
-    background-color: #373f51;
+    background-color: #F0F0F0;
   }
   #homepage-btn {
-    background-color: #f56476;
+    background-color: #F0F0F0;
     color: black;
+    border: 1px solid black;
     width: 30%;
     margin-top: 7vh;
     text-align: center;
@@ -204,7 +206,7 @@ a:link {
     font-size: 16px;
   }
   body {
-    background-color: #373f51;
+    background-color: #F0F0F0;
   }
   #twt-photo-gif {
     width: 50%;

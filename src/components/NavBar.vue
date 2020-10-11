@@ -39,8 +39,8 @@ export default {
 }
 // MOBILE
 #logout-btn {
-  background-color: #64f59a;
-  color: black;
+  background-color: #783030;
+  color: white;
   padding: 5px;
   border-radius: 7%;
   cursor: pointer;
@@ -52,11 +52,11 @@ export default {
   transform: scale(0.9);
 }
 a:visited {
-  color: #e43f6f;
+  color: #783030;
   font-family: "Arimo", sans-serif;
 }
 a:link {
-  color: #64f59a;
+  color: #783030;
   font-family: "Arimo", sans-serif;
   text-decoration: none;
 }
@@ -67,7 +67,7 @@ a:link {
 #homepage-title {
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #f56476;
+  color: #783030;
   margin-top: 5vh;
   font-size: 40px;
 }
@@ -77,10 +77,10 @@ a:link {
   justify-items: center;
   text-align: center;
   grid-template-columns: 3fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  background-color: #6a7388;
+  background-color: #A8A8A8;
   padding: 10px;
   font-family: "Arimo", sans-serif;
-  color: #4ecca3;
+  color: #783030;
   column-gap: 5px;
 }
 
@@ -102,10 +102,10 @@ a:link {
     justify-items: center;
     text-align: center;
     grid-template-columns: 2fr 1fr 2fr 1fr 1fr 1fr 1fr 1fr;
-    background-color: #6a7388;
+    background-color: #A8A8A8;
     padding: 10px;
     font-family: "Arimo", sans-serif;
-    color: #4ecca3;
+    color: #783030;
   }
   #nav-link {
     display: inline-block;
@@ -115,7 +115,7 @@ a:link {
     position: relative;
     overflow: hidden;
     font-size: 18px;
-    color: #4ecca3;
+    color: #783030;
     padding: 7px;
   }
 
@@ -126,7 +126,7 @@ a:link {
     left: 51%;
     right: 51%;
     bottom: 0;
-    background: #e43f6f;
+    background: black;
     height: 3px;
     transition-property: left, right;
     transition-duration: 0.3s;

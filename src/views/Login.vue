@@ -3,6 +3,7 @@
     <h1 id="login-title" class="animate__animated animate__lightSpeedInRight">
       NERDR LOGIN
     </h1>
+    <img id="logo" src="../assets/nerdface.png" alt="NERDR Logo" />
     <p>Email</p>
     <input type="text" id="email-input" v-model="email" />
     <p>Password</p>
@@ -69,17 +70,21 @@ export default {
   padding: 0;
 }
 a:visited {
-  color: #F56476;
+  color: #783030;
   font-family: "Arimo", sans-serif;
 }
 a:link {
-  color: #F56476;
+  color: #783030;
   font-family: "Arimo", sans-serif;
+}
+#logo {
+  width: 25%;
+  margin-bottom: 5vh;
 }
 #login-title {
   text-align: center;
   font-family: "Arimo", sans-serif;
-  color: #F56476;
+  color: #783030;
   margin: 5vh;
 }
 #login-form {
@@ -91,7 +96,7 @@ a:link {
 p {
   font-family: "Arimo", sans-serif;
   letter-spacing: 2px;
-  color: #F56476;
+  color: #783030;
 }
 input {
   border-radius: 10%;
@@ -111,14 +116,29 @@ input {
 #status {
   font-family: "Arimo", sans-serif;
   letter-spacing: 2px;
-  color: #F56476;
+  color: #783030;
 }
 #signup-link {
   font-family: "Arimo", sans-serif;
-  color: #F56476;
+  color: #783030;
   display: grid;
   align-items: center;
   justify-items: center;
   margin: 10px;
+}
+//TABLET
+@media only screen and (min-width: 670px) {
+  #logo {
+    width: 15%;
+    margin-bottom: 5vh;
+  }
+}
+
+// DESKTOP
+@media only screen and (min-width: 1020px) {
+  #logo {
+    width: 10%;
+    margin-bottom: 5vh;
+  }
 }
 </style>
