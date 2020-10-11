@@ -26,7 +26,7 @@ export default {
     userLogout() {
       cookies.remove("loginToken");
       cookies.remove("userId");
-      this.$router.push("/home");
+      this.$router.push("/");
     }
   }
 };
@@ -52,11 +52,11 @@ export default {
   transform: scale(0.9);
 }
 a:visited {
-  color: #783030;
+  color: white;
   font-family: "Arimo", sans-serif;
 }
 a:link {
-  color: #783030;
+  color: white;
   font-family: "Arimo", sans-serif;
   text-decoration: none;
 }
@@ -77,10 +77,10 @@ a:link {
   justify-items: center;
   text-align: center;
   grid-template-columns: 3fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  background-color: #A8A8A8;
+  background-color: #111111;
   padding: 10px;
   font-family: "Arimo", sans-serif;
-  color: #783030;
+  color: white;
   column-gap: 5px;
 }
 
@@ -102,10 +102,9 @@ a:link {
     justify-items: center;
     text-align: center;
     grid-template-columns: 2fr 1fr 2fr 1fr 1fr 1fr 1fr 1fr;
-    background-color: #A8A8A8;
     padding: 10px;
     font-family: "Arimo", sans-serif;
-    color: #783030;
+    color: white;
   }
   #nav-link {
     display: inline-block;
@@ -115,7 +114,6 @@ a:link {
     position: relative;
     overflow: hidden;
     font-size: 18px;
-    color: #783030;
     padding: 7px;
   }
 
@@ -126,7 +124,7 @@ a:link {
     left: 51%;
     right: 51%;
     bottom: 0;
-    background: black;
+    background: white;
     height: 3px;
     transition-property: left, right;
     transition-duration: 0.3s;

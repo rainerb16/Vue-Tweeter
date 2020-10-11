@@ -1,7 +1,8 @@
 <template>
   <div id="login-form">
     <h1 id="login-title" class="animate__animated animate__lightSpeedInRight">
-      NERDR LOGIN
+      <span id="nerdr">NERDR</span><br />
+      LOGIN
     </h1>
     <img id="logo" src="../assets/nerdface.png" alt="NERDR Logo" />
     <p>Email</p>
@@ -15,15 +16,20 @@
       >Not a user? Sign up here</router-link
     >
     <router-link to="/home">Home</router-link>
+    <footer-container />
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import cookies from "vue-cookies";
+import FooterContainer from "../components/Footer.vue";
 
 export default {
   name: "login-page",
+  components: {
+    FooterContainer
+  },
   data() {
     return {
       email: "",
@@ -126,11 +132,18 @@ input {
   justify-items: center;
   margin: 10px;
 }
+#nerdr {
+  font-family: 'Press Start 2P', cursive;
+  color: black;
+}
 //TABLET
 @media only screen and (min-width: 670px) {
   #logo {
     width: 15%;
     margin-bottom: 5vh;
+  }
+  #nerdr {
+    font-size: 38px;
   }
 }
 

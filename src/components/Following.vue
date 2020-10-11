@@ -1,16 +1,16 @@
 <template>
   <div>
     <div id="show-tweets">
-      <h3 id="show-tweets-btn" @click="userFollows">
-        Show Who You Follow
-      </h3>
+      <h4 id="show-tweets-btn">
+          WHO YOU FOLLOW
+      </h4>
       <br />
       <div v-if="users.length > 0">
         <div id="tweet-container" v-for="user in users" :key="user.userId">
           <h3 id="user-username">{{ user.username }}</h3>
-          <h4><u>Bio</u>: {{ user.bio }}</h4>
-          <h4><u>Birthdate</u>: {{ user.birthdate }}</h4>
-          <h4><u>Email</u>: {{ user.email }}</h4>
+          <h4 class="content"><u>Bio</u>: {{ user.bio }}</h4>
+          <h4 class="content"><u>Birthdate</u>: {{ user.birthdate }}</h4>
+          <h4 class="content"><u>Email</u>: {{ user.email }}</h4>
           <br />
         </div>
       </div>
@@ -59,6 +59,9 @@ export default {
           console.log(error);
         });
     }
+  },
+  mounted: function() {
+    this.userFollows();
   }
 };
 </script>
@@ -69,7 +72,7 @@ export default {
 }
 #show-tweets-btn {
   background-color: #f0f0f0;
-  color: black;
+  color: #783030;
   border: 1px solid black;
   padding: 5px;
   border-radius: 7%;
@@ -77,8 +80,8 @@ export default {
   transform: perspective(1px) translateZ(0);
   transition-duration: 0.3s;
   transition-property: transform;
-  width: 30%;
-  margin-left: 35%;
+  width: 50%;
+  margin-left: 25%;
   margin-top: 7vh;
   text-align: center;
   font-family: "Arimo", sans-serif;
@@ -138,12 +141,15 @@ hr {
 #user-username {
   color: #783030;
 }
+.content {
+  color: black;
+}
 
 //TABLET
 @media only screen and (min-width: 670px) {
   #show-tweets-btn {
     background-color: #f0f0f0;
-    color: black;
+    color: #783030;
     border: 1px solid black;
     padding: 5px;
     border-radius: 7%;
@@ -151,8 +157,8 @@ hr {
     transform: perspective(1px) translateZ(0);
     transition-duration: 0.3s;
     transition-property: transform;
-    width: 15%;
-    margin-left: 42.5%;
+    width: 25%;
+    margin-left: 37.5%;
     margin-top: 7vh;
     text-align: center;
     font-family: "Arimo", sans-serif;
@@ -179,6 +185,10 @@ hr {
     font-family: "Arimo", sans-serif;
     width: 60%;
     margin-left: 20%;
+  }
+  #show-tweets-btn {
+    width: 10%;
+    margin-left: 45%;
   }
 }
 </style>

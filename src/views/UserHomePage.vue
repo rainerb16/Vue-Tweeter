@@ -3,6 +3,7 @@
     <div v-if="loginToken != undefined">
       <nav-bar-section />
       <following-page />
+      <footer-container />
     </div>
     <div id="login-error" v-else>
       <error-message />
@@ -15,13 +16,15 @@ import FollowingPage from "../components/Following.vue";
 import NavBarSection from "../components/NavBar.vue";
 import cookies from "vue-cookies";
 import ErrorMessage from "../components/404error.vue";
+import FooterContainer from "../components/Footer.vue";
 
 export default {
   name: "user-homepage",
   components: {
     NavBarSection,
     FollowingPage,
-    ErrorMessage
+    ErrorMessage,
+    FooterContainer
   },
   data() {
     return {

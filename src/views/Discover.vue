@@ -6,10 +6,12 @@
         id="homepage-title"
         class="animate__animated animate__lightSpeedInRight"
       >
-        DISCOVER ALL NERDS
+        DISCOVER ALL<br />
+        <span id="nerdr">NERDS</span>
       </h2>
       <create-tweet />
       <show-tweets id="show-tweets" :tweetId="tweet.tweetId" />
+      <footer-container />
     </div>
     <div id="login-error" v-else>
       <error-message />
@@ -22,6 +24,7 @@ import ShowTweets from "../components/ShowTweets.vue";
 import CreateTweet from "../components/CreateTweet.vue";
 import NavBarSection from "../components/NavBar.vue";
 import ErrorMessage from "../components/404error.vue";
+import FooterContainer from "../components/Footer.vue";
 import cookies from "vue-cookies";
 
 export default {
@@ -30,7 +33,8 @@ export default {
     NavBarSection,
     ErrorMessage,
     ShowTweets,
-    CreateTweet
+    CreateTweet,
+    FooterContainer
   },
   data() {
     return {
@@ -67,6 +71,11 @@ hr {
   font-family: "Arimo", sans-serif;
   color: #783030;
 }
+#nerdr {
+  font-family: "Press Start 2P", cursive;
+  color: black;
+  font-size: 20px;
+}
 
 // DESKTOP
 @media only screen and (min-width: 1020px) {
@@ -77,6 +86,11 @@ hr {
     justify-items: center;
     color: #783030;
     font-family: "Arimo", sans-serif;
+  }
+  #nerdr {
+    font-family: "Press Start 2P", cursive;
+    color: black;
+    font-size: 24px;
   }
 }
 </style>

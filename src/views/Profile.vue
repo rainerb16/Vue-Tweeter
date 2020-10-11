@@ -5,6 +5,7 @@
       <profile-page />
       <hr />
       <delete-profile />
+      <footer-container />
     </div>
     <div id="login-error" v-else>
       <error-message />
@@ -18,6 +19,7 @@ import NavBarSection from "../components/NavBar.vue";
 import ProfilePage from "../components/EditProfile.vue";
 import DeleteProfile from "../components/DeleteProfile.vue";
 import ErrorMessage from "../components/404error.vue";
+import FooterContainer from "../components/Footer.vue";
 
 export default {
   name: "user-profile",
@@ -25,7 +27,8 @@ export default {
     ProfilePage,
     NavBarSection,
     DeleteProfile,
-    ErrorMessage
+    ErrorMessage,
+    FooterContainer
   },
   data() {
     return {

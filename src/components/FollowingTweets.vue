@@ -5,7 +5,7 @@
         id="homepage-title"
         class="animate__animated animate__lightSpeedInRight"
       >
-        YOUR NERDR FEED
+        YOUR<br /><span id="nerdr">NERDR</span><br />FEED
       </h2>
       <div id="button-container">
         <button id="show-following-tweets-btn" @click="showFollowingTweets">
@@ -286,6 +286,11 @@ p {
   justify-items: center;
   margin-top: 5vh;
 }
+#nerdr {
+  font-family: "Press Start 2P", cursive;
+  color: black;
+  font-size: 20px;
+}
 // TABLET
 @media only screen and (min-width: 670px) {
   #delete-tweet {
@@ -352,6 +357,11 @@ p {
   }
   #post-tweet-btn:hover {
     transform: scale(0.9);
+  }
+  #nerdr {
+    font-family: "Press Start 2P", cursive;
+    color: black;
+    font-size: 22px;
   }
 }
 
@@ -446,6 +456,11 @@ p {
   #delete-tweet:hover,
   #post-tweet-btn:hover {
     transform: scale(0.9);
+  }
+  #nerdr {
+    font-family: "Press Start 2P", cursive;
+    color: black;
+    font-size: 21px;
   }
 }
 </style>

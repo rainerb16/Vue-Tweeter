@@ -10,8 +10,8 @@
       <h1>UH OH...</h1>
       <img
         id="no-user"
-        src="../assets/404.gif"
-        alt="Uh Oh! No user logged in photo"
+        src="https://media.giphy.com/media/VwoJkTfZAUBSU/giphy.gif"
+        alt="The Force Leading User Back Home"
       />
     </div>
   </div>
@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: "404-error"
+  name: "error-page"
 };
 </script>
 
@@ -40,7 +40,7 @@ a:link {
   text-align: center;
   font-family: "Arimo", sans-serif;
   color: black;
-  margin-top: 20vh;
+  margin-top: 10vh;
   font-size: 24px;
   width: 40%;
   margin-left: 30%;
@@ -60,7 +60,23 @@ a:link {
   line-height: 5vh;
 }
 #no-user {
-  width: 75%;
+  width: 175%;
   margin: 5vh;
+}
+
+/* TABLET */
+@media only screen and (min-width: 670px) {
+  #no-user {
+    width: 125%;
+    margin: 5vh;
+  }
+}
+
+/* DESKTOP */
+@media only screen and (min-width: 1020px) {
+  #no-user {
+    width: 75%;
+    margin: 5vh;
+  }
 }
 </style>

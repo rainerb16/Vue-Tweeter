@@ -61,4 +61,18 @@ export default {
 #delete-tweet:hover {
   transform: scale(0.9);
 }
+
+// TABLET
+@media only screen and (min-width: 670px) {
+  #delete-tweet {
+    width: 15%;
+  }
+}
+
+//DESKTOP
+@media only screen and (min-width: 1020px) {
+  #delete-tweet {
+    width: 10%;
+  }
+}
 </style>

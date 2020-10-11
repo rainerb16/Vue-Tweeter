@@ -1,9 +1,17 @@
 <template>
   <div id="follow-unfollow-btn">
-    <button id="tweet-btn-unfollow" @click="followUser">
+    <button
+      id="tweet-btn-unfollow"
+      @click="followUser"
+      v-if="isFollowing == false"
+    >
       Follow
     </button>
-    <button id="tweet-btn-follow" @click="unfollowUser">
+    <button
+      id="tweet-btn-follow"
+      @click="unfollowUser"
+      v-else-if="isFollowing == true"
+    >
       Unfollow
     </button>
     <span></span>
@@ -19,7 +27,9 @@ export default {
   data() {
     return {
       loginToken: cookies.get("loginToken"),
-      userId: cookies.get("userId")
+      userId: cookies.get("userId"),
+      isFollowing: false,
+      usersFollowing: []
     };
   },
   methods: {
@@ -39,6 +49,7 @@ export default {
         })
         .then(response => {
           console.log(response.data);
+          this.isFollowing = true;
         })
         .catch(error => {
           console.log(error);
@@ -60,11 +71,42 @@ export default {
         })
         .then(response => {
           console.log(response);
+          this.isFollowing = false;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    checkFollowers: function() {
+      axios
+        .request({
+          method: "GET",
+          url: "https://tweeterest.ml/api/followers",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
+          },
+          params: {
+            userId: this.userId
+          }
+        })
+        .then(response => {
+          console.log(response);
+          this.usersFollowing = response.data;
+
+          for (let i = 0; i < this.usersFollowing.length; i++) {
+            if (this.userId == this.usersFollowing[i].userId) {
+              this.isFollowing = true;
+            }
+          }
         })
         .catch(error => {
           console.log(error);
         });
     }
+  },
+  mounted: function() {
+    this.checkFollowers();
   }
 };
 </script>
@@ -80,7 +122,7 @@ export default {
   transform: perspective(1px) translateZ(0);
   transition-duration: 0.3s;
   transition-property: transform;
-  width: 100%;
+  width: 75%;
   text-align: center;
   margin: 1vh;
 }
@@ -105,7 +147,7 @@ export default {
   transform: perspective(1px) translateZ(0);
   transition-duration: 0.3s;
   transition-property: transform;
-  width: 100%;
+  width: 75%;
   text-align: center;
   margin: 1vh;
 }
@@ -124,7 +166,7 @@ export default {
     transform: perspective(1px) translateZ(0);
     transition-duration: 0.3s;
     transition-property: transform;
-    width: 50%;
+    width: 30%;
     text-align: center;
     margin: 1vh;
   }
@@ -140,7 +182,7 @@ export default {
     transform: perspective(1px) translateZ(0);
     transition-duration: 0.3s;
     transition-property: transform;
-    width: 50%;
+    width: 30%;
     text-align: center;
     margin: 1vh;
   }
@@ -184,7 +226,7 @@ export default {
     transform: perspective(1px) translateZ(0);
     transition-duration: 0.3s;
     transition-property: transform;
-    width: 30%;
+    width: 20%;
     text-align: center;
     margin: 1vh;
   }

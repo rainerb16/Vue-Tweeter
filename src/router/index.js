@@ -7,17 +7,10 @@ import UserHomePage from "../views/UserHomePage.vue";
 import ProfilePage from "../views/Profile.vue";
 import DiscoverPage from "../views/Discover.vue";
 import UserTweetsPage from "../views/UserTweets.vue";
-import FollowersProfilePage from "../views/FollowersProfile.vue";
-import HashtagErrorPage from "../views/HashtagPage.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: "/home",
-    name: "homepage-page",
-    component: HomePage
-  },
   {
     path: "/signup",
     name: "signup-page",
@@ -49,14 +42,9 @@ const routes = [
     component: UserTweetsPage
   },
   {
-    path: "/followersprofile",
-    name: "folowers-profile",
-    component: FollowersProfilePage
-  },
-  {
-    path: "/#/",
-    name: "hashtag-page",
-    component: HashtagErrorPage
+    path: "/",
+    name: "homepage-page",
+    component: HomePage
   }
 ];
 
