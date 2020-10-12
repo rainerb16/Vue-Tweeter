@@ -9,10 +9,16 @@
         <h4 id="tweet-content">{{ tweet.content }}</h4>
         <br />
         <p id="tweet-content">Created on: {{ tweet.createdAt }}</p>
-        <update-tweet v-if="userId == tweet.userId" :tweetId="tweet.tweetId" />
-        <delete-tweet v-if="userId == tweet.userId" :tweetId="tweet.tweetId" />
-        <follow-unfollow-btn />
         <tweet-likes :tweetId="tweet.tweetId" />
+        <div id="follow-unfollow-btn">
+          <delete-tweet
+            v-if="userId == tweet.userId"
+            :tweetId="tweet.tweetId"
+          />
+          <follow-unfollow-btn />
+        </div>
+        <hr />
+        <tweet-comment :tweetId="tweet.tweetId" />
       </div>
     </div>
   </div>
@@ -21,9 +27,9 @@
 <script>
 import axios from "axios";
 import TweetLikes from "../components/TweetLikes.vue";
-import UpdateTweet from "../components/UpdateTweet.vue";
 import DeleteTweet from "../components/DeleteTweet.vue";
 import FollowUnfollowBtn from "../components/FollowUnfollowBtn.vue";
+import TweetComment from "../components/Comment.vue";
 import cookies from "vue-cookies";
 
 export default {
@@ -31,8 +37,8 @@ export default {
   components: {
     TweetLikes,
     DeleteTweet,
-    UpdateTweet,
-    FollowUnfollowBtn
+    FollowUnfollowBtn,
+    TweetComment
   },
   data() {
     return {
@@ -86,37 +92,54 @@ export default {
   align-items: center;
   justify-items: center;
 }
+#follow-unfollow-btn {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr 4fr;
+  width: 75%;
+}
+hr {
+  margin: 3vh;
+  background-color: black;
+  height: 1px;
+}
 
 // TABLET
 @media only screen and (min-width: 670px) {
-  #refresh-tweet {
-    background-color: #f0f0f0;
-    color: black;
-    padding: 10px;
-    border-radius: 7%;
-    cursor: pointer;
-    transform: perspective(1px) translateZ(0);
-    transition-duration: 0.3s;
-    transition-property: transform;
-    margin-bottom: 3vh;
-    text-align: center;
-    align-items: center;
-    justify-items: center;
+  // #refresh-tweet {
+  //   background-color: #f0f0f0;
+  //   color: black;
+  //   padding: 10px;
+  //   border-radius: 7%;
+  //   cursor: pointer;
+  //   transform: perspective(1px) translateZ(0);
+  //   transition-duration: 0.3s;
+  //   transition-property: transform;
+  //   margin-bottom: 3vh;
+  //   text-align: center;
+  //   align-items: center;
+  //   justify-items: center;
+  // }
+  // #refresh-tweet:hover {
+  //   transform: scale(0.9);
+  // }
+  hr {
+    margin: 7vh;
+    background-color: black;
+    height: 1px;
   }
-  #refresh-tweet:hover {
-    transform: scale(0.9);
-  }
+}
 
-  // DESKTOP
-  @media only screen and (min-width: 1020px) {
-    #tweet-container {
-      border: 1px solid black;
-      margin: 7px;
-      padding: 5px;
-      font-family: "Arimo", sans-serif;
-      background-color: #f0f0f0;
-      width: 75%;
-    }
+// DESKTOP
+@media only screen and (min-width: 1020px) {
+  #tweet-container {
+    border: 1px solid black;
+    margin: 7px;
+    padding: 5px;
+    font-family: "Arimo", sans-serif;
+    background-color: #f0f0f0;
+    width: 75%;
   }
 }
 </style>

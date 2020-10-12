@@ -15,7 +15,7 @@
     <router-link to="/signup" id="signup-link"
       >Not a user? Sign up here</router-link
     >
-    <router-link to="/home">Home</router-link>
+    <router-link to="/">Home</router-link>
     <footer-container />
   </div>
 </template>

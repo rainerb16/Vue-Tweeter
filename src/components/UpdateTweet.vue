@@ -9,7 +9,7 @@
       />
       <div></div>
       <button id="edit-tweet" @click="updateTweet">
-        Update
+        Update Post
       </button>
     </div>
   </div>

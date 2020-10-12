@@ -69,7 +69,6 @@ export default {
   font-family: "Arimo", sans-serif;
   color: #783030;
   border: 1px solid black;
-  padding: 10px;
   width: 75%;
   margin-left: 12.5%;
 }

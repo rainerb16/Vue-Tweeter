@@ -92,4 +92,18 @@ export default {
 #post-tweet-btn:hover {
   transform: scale(0.9);
 }
+
+// TABLET
+@media only screen and (min-width: 670px) {
+  #post-tweet-btn {
+    width: 20%;
+  }
+}
+
+// DESKTOP
+@media only screen and (min-width: 1020px) {
+  #post-tweet-btn {
+    width: 10%;
+  }
+}
 </style>

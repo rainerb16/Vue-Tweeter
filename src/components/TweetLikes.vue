@@ -125,6 +125,7 @@ export default {
   align-items: center;
   justify-items: center;
   grid-template-columns: repeat(5, 1fr);
+  color: #783030;
 }
 #like,
 #unlike {
@@ -148,7 +149,7 @@ export default {
 @media only screen and (min-width: 1020px) {
   #like,
   #unlike {
-    width: 15%;
+    width: 25%;
     margin: 4vw;
   }
   #likes-container {

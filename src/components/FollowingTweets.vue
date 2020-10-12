@@ -7,6 +7,7 @@
       >
         YOUR<br /><span id="nerdr">NERDR</span><br />FEED
       </h2>
+      <create-tweet />
       <div id="button-container">
         <button id="show-following-tweets-btn" @click="showFollowingTweets">
           VIEW YOUR NERDRS
@@ -31,11 +32,11 @@
           />
           <follow-unfollow-btn />
           <div></div>
-          <update-tweet
+        </div>
+        <update-tweet
             v-if="userId == tweet.userId"
             :tweetId="tweet.tweetId"
           />
-        </div>
         <hr />
         <tweet-comment :tweetId="tweet.tweetId" />
       </div>
@@ -44,6 +45,7 @@
 </template>
 
 <script>
+import CreateTweet from "../components/CreateTweet.vue";
 import TweetLikes from "../components/TweetLikes.vue";
 import DeleteTweet from "../components/DeleteTweet.vue";
 import axios from "axios";
@@ -56,6 +58,7 @@ import UpdateTweet from "../components/UpdateTweet.vue";
 export default {
   name: "following-tweets",
   components: {
+    CreateTweet,
     TweetLikes,
     TweetComment,
     FollowUnfollowBtn,
@@ -290,6 +293,16 @@ p {
   font-family: "Press Start 2P", cursive;
   color: black;
   font-size: 20px;
+}
+#follow-unfollow-btn {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr 4fr;
+  width: 75%;
+}
+#button-container {
+  margin-top: 5vh;
 }
 // TABLET
 @media only screen and (min-width: 670px) {

@@ -48,13 +48,13 @@ export default {
 #delete-tweet {
   background-color: #f0f0f0;
   color: black;
-  padding: 3px;
+  padding: 5px;
   border-radius: 7%;
   cursor: pointer;
   transform: perspective(1px) translateZ(0);
   transition-duration: 0.3s;
   transition-property: transform;
-  width: 20%;
+  width: 100%;
   text-align: center;
   margin: 1vh;
 }
@@ -65,14 +65,14 @@ export default {
 // TABLET
 @media only screen and (min-width: 670px) {
   #delete-tweet {
-    width: 15%;
+    width: 100%;
   }
 }
 
 //DESKTOP
 @media only screen and (min-width: 1020px) {
   #delete-tweet {
-    width: 10%;
+    width: 100%;
   }
 }
 </style>

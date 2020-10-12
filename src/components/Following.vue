@@ -1,8 +1,8 @@
 <template>
   <div>
     <div id="show-tweets">
-      <h4 id="show-tweets-btn">
-          WHO YOU FOLLOW
+      <h4 id="who-you-follow">
+        WHO YOU FOLLOW
       </h4>
       <br />
       <div v-if="users.length > 0">
@@ -69,6 +69,19 @@ export default {
 <style lang="scss" scoped>
 #show-tweets {
   margin-bottom: 5vh;
+}
+#who-you-follow {
+  background-color: #f0f0f0;
+  color: #783030;
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 7%;
+  cursor: pointer;
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 7vh;
+  text-align: center;
+  font-family: "Arimo", sans-serif;
 }
 #show-tweets-btn {
   background-color: #f0f0f0;
@@ -174,6 +187,19 @@ hr {
     width: 75%;
     margin-left: 12.5%;
   }
+  #who-you-follow {
+    background-color: #f0f0f0;
+    color: #783030;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 7%;
+    cursor: pointer;
+    width: 25%;
+    margin-left: 37.5%;
+    margin-top: 7vh;
+    text-align: center;
+    font-family: "Arimo", sans-serif;
+  }
 }
 
 //DESKTOP
@@ -189,6 +215,19 @@ hr {
   #show-tweets-btn {
     width: 10%;
     margin-left: 45%;
+  }
+  #who-you-follow {
+    background-color: #f0f0f0;
+    color: #783030;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 7%;
+    cursor: pointer;
+    width: 10%;
+    margin-left: 45%;
+    margin-top: 7vh;
+    text-align: center;
+    font-family: "Arimo", sans-serif;
   }
 }
 </style>

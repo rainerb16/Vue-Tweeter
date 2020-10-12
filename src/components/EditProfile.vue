@@ -85,7 +85,6 @@ export default {
   align-items: center;
   justify-items: center;
   border: 1px solid black;
-  padding: 10px;
   width: 75%;
   margin-left: 12.5%;
   margin-top: 5vh;

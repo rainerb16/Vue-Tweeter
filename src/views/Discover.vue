@@ -9,7 +9,6 @@
         DISCOVER ALL<br />
         <span id="nerdr">NERDS</span>
       </h2>
-      <create-tweet />
       <show-tweets id="show-tweets" :tweetId="tweet.tweetId" />
       <footer-container />
     </div>
@@ -21,7 +20,6 @@
 
 <script>
 import ShowTweets from "../components/ShowTweets.vue";
-import CreateTweet from "../components/CreateTweet.vue";
 import NavBarSection from "../components/NavBar.vue";
 import ErrorMessage from "../components/404error.vue";
 import FooterContainer from "../components/Footer.vue";
@@ -33,7 +31,6 @@ export default {
     NavBarSection,
     ErrorMessage,
     ShowTweets,
-    CreateTweet,
     FooterContainer
   },
   data() {

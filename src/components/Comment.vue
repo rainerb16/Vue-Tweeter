@@ -23,7 +23,7 @@
       placeholder="Max 150 characters"
     >
       <h2 id="user-username">{{ comment.username }}</h2>
-      <p id="user-comment">{{ comment.content }}</p>
+      <p id="user-comment-content">{{ comment.content }}</p>
       <p id="user-created-on">Created On: {{ comment.createdAt }}</p>
       <div v-if="comment.userId == userId">
         <textarea
@@ -198,6 +198,9 @@ hr {
 #username-comment,
 #user-created-on {
   padding: 5px;
+}
+#user-comment-content {
+  color: black;
 }
 #user-username {
   color: #783030;

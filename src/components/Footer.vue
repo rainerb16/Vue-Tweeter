@@ -19,6 +19,7 @@ export default {
   align-items: center;
   justify-items: center;
   margin-top: 10vh;
+  margin-bottom: 3vh;
 }
 
 // TABLET

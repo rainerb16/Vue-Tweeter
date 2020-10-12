@@ -136,8 +136,7 @@ a:link {
   font-size: 16px;
 }
 #twt-photo-gif {
-  width: 120%;
-  margin-left: -10%;
+  width: 100%;
   border-radius: 50%;
 }
 #twt-photo {
