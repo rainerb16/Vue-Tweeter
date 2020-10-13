@@ -37,6 +37,9 @@ export default {
       userId: cookies.get("userId")
     };
   },
+  mounted: function() {
+    this.userFollows();
+  },
   methods: {
     userFollows: function() {
       axios
@@ -59,9 +62,6 @@ export default {
           console.log(error);
         });
     }
-  },
-  mounted: function() {
-    this.userFollows();
   }
 };
 </script>

@@ -3,20 +3,20 @@
     <div id="likes-container">
       <img
         id="like"
-        @click="likeTweet(tweetId)"
+        @click="likeComment(commentId)"
         v-if="isLiked == false"
         src="../assets/like.png"
         alt="Heart Icon"
       />
       <img
         id="unlike"
-        @click="unlikeTweet"
+        @click="unlikeComment"
         v-else-if="isLiked == true"
         src="../assets/unlike.png"
         alt="Broken Heart Icon"
       />
       <span></span>
-      <div>Likes: {{ likesNum.length }}</div>
+      <div>Likes: {{ commentLikesNum.length }}</div>
       <span></span>
     </div>
   </div>
@@ -27,25 +27,25 @@ import axios from "axios";
 import cookies from "vue-cookies";
 
 export default {
-  name: "tweet-likes",
+  name: "comment-likes",
   data() {
     return {
-      likesNum: [],
+      commentLikesNum: [],
       isLiked: false
     };
   },
   props: {
-    tweetId: Number
+    commentId: Number
   },
   mounted: function() {
-    this.getLikes();
+    this.getCommentLikes();
   },
   methods: {
-    likeTweet: function(tweetId) {
+    likeComment: function(commentId) {
       (this.isLiked = true),
         axios
           .request({
-            url: "https://tweeterest.ml/api/tweet-likes",
+            url: "https://tweeterest.ml/api/comment-likes",
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -53,7 +53,7 @@ export default {
             },
             data: {
               loginToken: cookies.get("loginToken"),
-              tweetId: tweetId
+              commentId: commentId
             }
           })
           .then(response => {
@@ -63,26 +63,26 @@ export default {
             console.log(error);
           });
     },
-    getLikes: function() {
+    getCommentLikes: function() {
       axios
         .request({
-          url: "https://tweeterest.ml/api/tweet-likes",
+          url: "https://tweeterest.ml/api/comment-likes",
           method: "GET",
           headers: {
             "Content-Type": "application/json",
             "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
           },
           params: {
-            tweetId: this.tweetId
+            commentId: this.commentId
           }
         })
         .then(response => {
           console.log(response);
-          this.likesNum = response.data;
+          this.commentLikesNum = response.data;
 
           let currentUser = cookies.get("userId");
-          for (let i = 0; i < this.likesNum.length; i++) {
-            if (currentUser == this.likesNum[i].userId) {
+          for (let i = 0; i < this.commentLikesNum.length; i++) {
+            if (currentUser == this.commentLikesNum[i].userId) {
               this.isLiked = true;
               return;
             }
@@ -92,11 +92,11 @@ export default {
           console.log(error);
         });
     },
-    unlikeTweet: function() {
+    unlikeComment: function() {
       (this.isLiked = false),
         axios
           .request({
-            url: "https://tweeterest.ml/api/tweet-likes",
+            url: "https://tweeterest.ml/api/comment-likes",
             method: "DELETE",
             headers: {
               "Content-Type": "application/json",
@@ -104,7 +104,7 @@ export default {
             },
             data: {
               loginToken: cookies.get("loginToken"),
-              tweetId: this.tweetId
+              commentId: this.commentId
             }
           })
           .then(response => {

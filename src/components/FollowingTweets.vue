@@ -33,10 +33,7 @@
           <follow-unfollow-btn />
           <div></div>
         </div>
-        <update-tweet
-            v-if="userId == tweet.userId"
-            :tweetId="tweet.tweetId"
-          />
+        <update-tweet v-if="userId == tweet.userId" :tweetId="tweet.tweetId" />
         <hr />
         <tweet-comment :tweetId="tweet.tweetId" />
       </div>
@@ -53,7 +50,6 @@ import cookies from "vue-cookies";
 import TweetComment from "../components/Comment.vue";
 import FollowUnfollowBtn from "../components/FollowUnfollowBtn.vue";
 import UpdateTweet from "../components/UpdateTweet.vue";
-// import DeleteTweet from "../components/DeleteTweet.vue";
 
 export default {
   name: "following-tweets",
@@ -152,28 +148,6 @@ export default {
         .then(response => {
           console.log(response);
           this.users = response.data;
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
-    updateTweet: function(tweetId) {
-      axios
-        .request({
-          method: "PATCH",
-          url: "https://tweeterest.ml/api/tweets",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
-          },
-          data: {
-            loginToken: cookies.get("loginToken"),
-            tweetId: tweetId,
-            content: this.updateTweetContent
-          }
-        })
-        .then(response => {
-          console.log(response);
         })
         .catch(error => {
           console.log(error);

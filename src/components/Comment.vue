@@ -25,6 +25,7 @@
       <h2 id="user-username">{{ comment.username }}</h2>
       <p id="user-comment-content">{{ comment.content }}</p>
       <p id="user-created-on">Created On: {{ comment.createdAt }}</p>
+      <comment-likes :commentId="comment.commentId" />
       <div v-if="comment.userId == userId">
         <textarea
           type="text"
@@ -32,7 +33,7 @@
           v-model="editContent"
           placeholder="Max 150 characters"
         />
-        <div id="edit-comment-btn" @click="editComment(comment.commentId)">
+        <div id="edit-comment-btn" @click="editComment">
           Edit Comment
         </div>
       </div>
@@ -41,19 +42,25 @@
 </template>
 
 <script>
+import CommentLikes from "../components/CommentLikes.vue";
 import axios from "axios";
 import cookies from "vue-cookies";
 
 export default {
   name: "tweet-comment",
+  components: {
+    CommentLikes
+  },
   props: {
-    tweetId: Number
+    tweetId: {
+      type: Number,
+      required: true
+    }
   },
   data() {
     return {
       comments: [],
       commentContent: "",
-      commentId: Number,
       editContent: "",
       userId: cookies.get("userId")
     };
@@ -102,7 +109,7 @@ export default {
           console.log(error);
         });
     },
-    editComment: function(commentId) {
+    editComment: function() {
       axios
         .request({
           method: "PATCH",
@@ -113,12 +120,13 @@ export default {
           },
           data: {
             loginToken: cookies.get("loginToken"),
-            commentId: commentId,
+            commentId: this.commentId,
             content: this.editContent
           }
         })
         .then(response => {
           console.log(response);
+          this.editContent = response.data;
         })
         .catch(error => {
           console.log(error);
