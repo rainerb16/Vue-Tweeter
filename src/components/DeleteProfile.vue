@@ -59,7 +59,8 @@ export default {
         })
         .catch(error => {
           console.log(error);
-          this.deleteStatus = "There was an error. The NERDR Gods must want you to stay!";
+          this.deleteStatus =
+            "There was an error. The NERDR Gods must want you to stay!";
         });
     }
   }
@@ -67,7 +68,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#delete-title, h4 {
+#delete-title,
+h4 {
   text-align: center;
   font-family: "Arimo", sans-serif;
   color: #783030;
