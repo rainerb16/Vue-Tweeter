@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 <template>
   <div>
     <div id="comments-container">
@@ -39,8 +38,18 @@
           placeholder="Max 150 characters"
         />
         <div v-if="comment.userId == userId" id="edit-delete">
-          <img class="edit" src="../assets/edit-comment.png" id="edit-comment-btn" @click="editComment" />
-          <img class="edit" src="../assets/delete-comment.png" id="delete-comment-btn" @click="deleteComment" />
+          <img
+            class="edit"
+            src="../assets/edit-comment.png"
+            id="edit-comment-btn"
+            @click="editComment"
+          />
+          <img
+            class="edit"
+            src="../assets/delete-comment.png"
+            id="delete-comment-btn"
+            @click="deleteComment"
+          />
           <span></span>
           <span></span>
         </div>
@@ -173,6 +182,7 @@ hr {
 }
 .edit {
   width: 60%;
+  cursor: pointer;
 }
 #comments-container {
   display: grid;
@@ -204,14 +214,14 @@ hr {
   column-gap: 10px;
 }
 #post-comment-btn {
-  width: 10%;
+  width: 7%;
   margin-bottom: 5vh;
 }
 #edit-delete {
   display: grid;
   align-items: center;
   justify-items: center;
-  grid-template-columns: 1fr 1fr 3fr 3fr;
+  grid-template-columns: 1fr 1fr 4fr 4fr;
 }
 #comment-btn {
   background-color: #f0f0f0;
@@ -248,5 +258,22 @@ hr {
 }
 #title-comment {
   color: #783030;
+}
+
+// TABLET
+@media only screen and (min-width: 670px) {
+  #post-comment-btn {
+    width: 5%;
+  }
+  .edit {
+    width: 30%;
+  }
+}
+
+// DESKTOP
+@media only screen and (min-width: 1020px) {
+  .edit {
+    width: 25%;
+  }
 }
 </style>

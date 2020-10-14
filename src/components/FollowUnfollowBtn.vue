@@ -1,19 +1,19 @@
 <template>
   <div id="follow-unfollow-btn">
-    <button
+    <img
+      src="../assets/follow.png"
+      alt="Follow Icon"
       id="tweet-btn-unfollow"
       @click="followUser"
       v-if="isFollowing == false"
-    >
-      Follow
-    </button>
-    <button
+    />
+    <img
+      src="../assets/unfollow.png"
+      alt="Unfollow Icon"
       id="tweet-btn-follow"
       @click="unfollowUser"
       v-else-if="isFollowing == true"
-    >
-      Unfollow
-    </button>
+    />
     <span></span>
   </div>
 </template>
@@ -110,17 +110,16 @@ export default {
 // MOBILE
 #tweet-btn-unfollow,
 #tweet-btn-follow {
-  background-color: #f0f0f0;
-  color: black;
   padding: 5px;
   border-radius: 7%;
   cursor: pointer;
   transform: perspective(1px) translateZ(0);
   transition-duration: 0.3s;
   transition-property: transform;
-  width: 100%;
-  text-align: center;
-  margin: 1vh;
+  width: 50%;
+  margin: 5vw;
+  align-items: center;
+  justify-items: center;
 }
 #follow-unfollow-btn {
   display: grid;
@@ -128,8 +127,6 @@ export default {
   justify-items: center;
   grid-template-columns: 1fr 1fr;
   column-gap: 10px;
-  text-align: center;
-  margin-left: 2%;
 }
 #tweet-btn-unfollow:hover,
 #tweet-btn-follow:hover {
@@ -140,16 +137,11 @@ export default {
 @media only screen and (min-width: 670px) {
   #tweet-btn-follow,
   #tweet-btn-unfollow {
-    background-color: #f0f0f0;
-    color: black;
-    padding: 5px;
-    border-radius: 7%;
     cursor: pointer;
     transform: perspective(1px) translateZ(0);
     transition-duration: 0.3s;
     transition-property: transform;
-    width: 100%;
-    text-align: center;
+    width: 90%;
     margin: 1vh;
   }
   #tweet-btn-follow:hover,
@@ -162,7 +154,6 @@ export default {
     justify-items: center;
     grid-template-columns: 1fr 1fr;
     column-gap: 10px;
-    text-align: center;
   }
 }
 
@@ -170,16 +161,13 @@ export default {
 @media only screen and (min-width: 1020px) {
   #tweet-btn-follow,
   #tweet-btn-unfollow {
-    background-color: #f0f0f0;
-    color: black;
     padding: 5px;
     border-radius: 7%;
     cursor: pointer;
     transform: perspective(1px) translateZ(0);
     transition-duration: 0.3s;
     transition-property: transform;
-    width: 100%;
-    text-align: center;
+    width: 90%;
     margin: 1vh;
   }
   #tweet-btn-follow:hover,
@@ -192,8 +180,6 @@ export default {
     justify-items: center;
     grid-template-columns: 1fr 1fr;
     column-gap: 10px;
-    text-align: center;
-    margin-left: 2%;
   }
 }
 </style>

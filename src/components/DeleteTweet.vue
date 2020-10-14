@@ -1,8 +1,6 @@
 <template>
   <div>
-    <button id="delete-tweet" @click="deleteTweet">
-      Delete
-    </button>
+    <img src="../assets/delete-tweet.png" id="delete-tweet" @click="deleteTweet" />
   </div>
 </template>
 
@@ -46,16 +44,13 @@ export default {
 
 <style lang="scss" scoped>
 #delete-tweet {
-  background-color: #f0f0f0;
-  color: black;
   padding: 5px;
   border-radius: 7%;
   cursor: pointer;
   transform: perspective(1px) translateZ(0);
   transition-duration: 0.3s;
   transition-property: transform;
-  width: 100%;
-  text-align: center;
+  width: 70%;
   margin: 1vh;
 }
 #delete-tweet:hover {
@@ -65,14 +60,14 @@ export default {
 // TABLET
 @media only screen and (min-width: 670px) {
   #delete-tweet {
-    width: 100%;
+    width: 50%;
   }
 }
 
 //DESKTOP
 @media only screen and (min-width: 1020px) {
   #delete-tweet {
-    width: 100%;
+    width: 50%;
   }
 }
 </style>
