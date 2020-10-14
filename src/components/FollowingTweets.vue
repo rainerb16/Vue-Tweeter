@@ -10,13 +10,13 @@
       <create-tweet />
       <div id="button-container">
         <button class="show-following-tweets-btn" @click="showFollowingTweets">
-          VIEW YOUR NERDRS
+          VIEW YOUR NERDRS POSTS
         </button>
         <button
           class="show-following-tweets-btn"
           @click="showCurrentUserTweets"
         >
-          VIEW YOUR NERDS
+          VIEW YOUR OWN POSTS
         </button>
       </div>
       <div id="tweet-container" v-for="tweet in tweets" :key="tweet.tweetId">
@@ -71,7 +71,7 @@ export default {
   data() {
     return {
       loginToken: cookies.get("loginToken"),
-      followedTweets: [],
+      follows: [],
       userId: cookies.get("userId"),
       tweets: []
     };
@@ -113,8 +113,9 @@ export default {
         })
         .then(response => {
           console.log(response);
-          this.followedTweets = response.data;
-          for (let i = 0; i < this.followedTweets.length; i++) {
+          this.follows = response.data;
+          this.tweets = [];
+          for (let i = 0; i < this.follows.length; i++) {
             axios
               .request({
                 method: "GET",
@@ -124,7 +125,7 @@ export default {
                   "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
                 },
                 params: {
-                  userId: this.followedTweets[i].userId
+                  userId: this.follows[i].userId
                 }
               })
               .then(response => {

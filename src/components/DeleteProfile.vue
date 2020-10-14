@@ -1,10 +1,17 @@
 <template>
   <div>
-    <div id="delete-container">
-      <h3 id="delete-title">Delete Profile</h3>
-      <h3>Enter your password to delete your profile</h3>
-      <input type="text" v-model="password" />
-      <button id="delete-btn" @click="deleteProfile">Delete Profile</button>
+    <div v-if="loginToken != undefined">
+      <h4>{{ deleteStatus }}</h4>
+      <br />
+      <div id="delete-container">
+        <h3 id="delete-title">Delete Profile</h3>
+        <h3>Enter your password to delete your profile</h3>
+        <input type="password" v-model="password" />
+        <button id="delete-btn" @click="deleteProfile">Delete Profile</button>
+      </div>
+    </div>
+    <div v-else>
+      <error-page />
     </div>
   </div>
 </template>
@@ -12,17 +19,24 @@
 <script>
 import axios from "axios";
 import cookies from "vue-cookies";
+import ErrorPage from "../components/404error.vue";
 
 export default {
   name: "delete-profile",
+  components: {
+    ErrorPage
+  },
   data() {
     return {
+      loginToken: cookies.get("loginToken"),
       username: "",
-      password: ""
+      password: "",
+      deleteStatus: ""
     };
   },
   methods: {
     deleteProfile: function() {
+      this.deleteStatus = "There's no turning back!";
       axios
         .request({
           method: "DELETE",
@@ -38,12 +52,14 @@ export default {
         })
         .then(response => {
           console.log(response);
+          this.deleteStatus = "You're no longer a NERDR :(";
+          this.$router.push("/");
           cookies.delete("loginToken");
           cookies.delete("userId");
-          this.$router.push("/home");
         })
         .catch(error => {
           console.log(error);
+          this.deleteStatus = "There was an error. The NERDR Gods must want you to stay!";
         });
     }
   }
@@ -51,7 +67,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#delete-title {
+#delete-title, h4 {
   text-align: center;
   font-family: "Arimo", sans-serif;
   color: #783030;

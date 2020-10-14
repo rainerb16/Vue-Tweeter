@@ -32,6 +32,9 @@ export default {
       usersFollowing: []
     };
   },
+  mounted: function() {
+    this.checkFollowers();
+  },
   methods: {
     followUser: function() {
       this.isFollowing = true;
@@ -93,15 +96,11 @@ export default {
         .then(response => {
           console.log(response);
           this.usersFollowing = response.data;
-          this.isFollowing = true;
         })
         .catch(error => {
           console.log(error);
         });
     }
-  },
-  mounted: function() {
-    this.checkFollowers();
   }
 };
 </script>

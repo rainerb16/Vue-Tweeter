@@ -11,6 +11,7 @@
       <div></div>
       <button id="post-tweet-btn" @click="postTweet">Post NERD</button>
       <h4>{{ tweetStatus }}</h4>
+      <br />
     </div>
   </div>
 </template>
