@@ -108,7 +108,8 @@ export default {
 
 <style lang="scss" scoped>
 // MOBILE
-#tweet-btn-unfollow, #tweet-btn-follow {
+#tweet-btn-unfollow,
+#tweet-btn-follow {
   background-color: #f0f0f0;
   color: black;
   padding: 5px;
@@ -130,13 +131,15 @@ export default {
   text-align: center;
   margin-left: 2%;
 }
-#tweet-btn-unfollow:hover, #tweet-btn-follow:hover {
+#tweet-btn-unfollow:hover,
+#tweet-btn-follow:hover {
   transform: scale(0.9);
 }
 
 // TABLET
 @media only screen and (min-width: 670px) {
-  #tweet-btn-follow, #tweet-btn-unfollow {
+  #tweet-btn-follow,
+  #tweet-btn-unfollow {
     background-color: #f0f0f0;
     color: black;
     padding: 5px;
@@ -149,7 +152,8 @@ export default {
     text-align: center;
     margin: 1vh;
   }
-  #tweet-btn-follow:hover, #tweet-btn-unfollow:hover {
+  #tweet-btn-follow:hover,
+  #tweet-btn-unfollow:hover {
     transform: scale(0.9);
   }
   #follow-unfollow-btn {
@@ -164,7 +168,8 @@ export default {
 
 //DESKTOP
 @media only screen and (min-width: 1020px) {
-  #tweet-btn-follow, #tweet-btn-unfollow {
+  #tweet-btn-follow,
+  #tweet-btn-unfollow {
     background-color: #f0f0f0;
     color: black;
     padding: 5px;
@@ -177,7 +182,8 @@ export default {
     text-align: center;
     margin: 1vh;
   }
-  #tweet-btn-follow:hover, #tweet-btn-unfollow:hover {
+  #tweet-btn-follow:hover,
+  #tweet-btn-unfollow:hover {
     transform: scale(0.9);
   }
   #follow-unfollow-btn {

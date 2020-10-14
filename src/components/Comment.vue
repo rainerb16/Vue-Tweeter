@@ -14,7 +14,7 @@
       <div id="comments-container">
         <img
           id="post-comment-btn"
-          src="../assets/post-comment.png"
+          src="../assets/edit-comment.png"
           alt="Post Comment Icon"
           @click="createComment"
         />
@@ -34,13 +34,15 @@
       <div v-if="comment.userId == userId">
         <textarea
           type="text"
-          id="edit-comment"
+          id="comment"
           v-model="editContent"
           placeholder="Max 150 characters"
         />
         <div v-if="comment.userId == userId" id="edit-delete">
-          <div id="edit-comment-btn" @click="editComment">Edit</div>
-          <div id="delete-comment-btn" @click="deleteComment">Delete</div>
+          <img class="edit" src="../assets/edit-comment.png" id="edit-comment-btn" @click="editComment" />
+          <img class="edit" src="../assets/delete-comment.png" id="delete-comment-btn" @click="deleteComment" />
+          <span></span>
+          <span></span>
         </div>
       </div>
     </div>
@@ -169,8 +171,10 @@ hr {
   margin: 2vh;
   background-color: black;
 }
+.edit {
+  width: 60%;
+}
 #comments-container {
-  margin-top: 2vh;
   display: grid;
   align-items: center;
   justify-items: center;
@@ -200,24 +204,14 @@ hr {
   column-gap: 10px;
 }
 #post-comment-btn {
-  width: 25%;
+  width: 10%;
   margin-bottom: 5vh;
-}
-#edit-comment-btn,
-#delete-comment-btn {
-  width: 50%;
-  color: black;
-  border: 1px solid black;
-  text-align: center;
-  padding: 5px;
-  border-radius: 5%;
-  margin: 3vw;
 }
 #edit-delete {
   display: grid;
   align-items: center;
   justify-items: center;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 3fr 3fr;
 }
 #comment-btn {
   background-color: #f0f0f0;
@@ -229,7 +223,7 @@ hr {
   transform: perspective(1px) translateZ(0);
   transition-duration: 0.3s;
   transition-property: transform;
-  width: 100%;
+  width: 50%;
   text-align: center;
   margin: 1vh;
 }
