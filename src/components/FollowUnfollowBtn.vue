@@ -34,6 +34,7 @@ export default {
   },
   methods: {
     followUser: function() {
+      this.isFollowing = true;
       axios
         .request({
           method: "POST",
@@ -49,13 +50,13 @@ export default {
         })
         .then(response => {
           console.log(response.data);
-          this.isFollowing = true;
         })
         .catch(error => {
           console.log(error);
         });
     },
     unfollowUser: function() {
+      this.isFollowing = false;
       axios
         .request({
           method: "DELETE",
@@ -71,7 +72,6 @@ export default {
         })
         .then(response => {
           console.log(response);
-          this.isFollowing = false;
         })
         .catch(error => {
           console.log(error);
@@ -93,12 +93,7 @@ export default {
         .then(response => {
           console.log(response);
           this.usersFollowing = response.data;
-
-          for (let i = 0; i < this.usersFollowing.length; i++) {
-            if (this.userId == this.usersFollowing[i].userId) {
-              this.isFollowing = true;
-            }
-          }
+          this.isFollowing = true;
         })
         .catch(error => {
           console.log(error);

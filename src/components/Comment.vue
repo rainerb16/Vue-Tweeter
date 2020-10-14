@@ -12,7 +12,12 @@
       />
       <br />
       <div id="comments-container">
-        <div id="comment-btn" @click="createComment">Post Comment</div>
+        <img
+          id="post-comment-btn"
+          src="../assets/post-comment.png"
+          alt="Post Comment Icon"
+          @click="createComment"
+        />
         <div id="comment-btn" @click="showComments">Show Comments</div>
       </div>
     </div>
@@ -33,8 +38,9 @@
           v-model="editContent"
           placeholder="Max 150 characters"
         />
-        <div id="edit-comment-btn" @click="editComment">
-          Edit Comment
+        <div v-if="comment.userId == userId" id="edit-delete">
+          <div id="edit-comment-btn" @click="editComment">Edit</div>
+          <div id="delete-comment-btn" @click="deleteComment">Delete</div>
         </div>
       </div>
     </div>
@@ -62,7 +68,8 @@ export default {
       comments: [],
       commentContent: "",
       editContent: "",
-      userId: cookies.get("userId")
+      userId: cookies.get("userId"),
+      comment: ""
     };
   },
   methods: {
@@ -131,6 +138,27 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    deleteComment: function() {
+      axios
+        .request({
+          method: "DELETE",
+          url: "https://tweeterest.ml/api/comments",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
+          },
+          data: {
+            loginToken: cookies.get("loginToken"),
+            commentId: this.commentId
+          }
+        })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 };
@@ -171,14 +199,25 @@ hr {
   grid-template-columns: 2fr 2fr;
   column-gap: 10px;
 }
-#edit-comment-btn {
+#post-comment-btn {
+  width: 25%;
+  margin-bottom: 5vh;
+}
+#edit-comment-btn,
+#delete-comment-btn {
   width: 50%;
   color: black;
   border: 1px solid black;
-  margin: 2vh;
-  padding: 5px;
-  border-radius: 7%;
   text-align: center;
+  padding: 5px;
+  border-radius: 5%;
+  margin: 3vw;
+}
+#edit-delete {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr;
 }
 #comment-btn {
   background-color: #f0f0f0;

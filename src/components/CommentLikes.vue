@@ -16,7 +16,7 @@
         alt="Broken Heart Icon"
       />
       <span></span>
-      <div>Likes: {{ commentLikesNum.length }}</div>
+      <div>Likes: {{ commentLikesAmount }}</div>
       <span></span>
     </div>
   </div>
@@ -31,7 +31,8 @@ export default {
   data() {
     return {
       commentLikesNum: [],
-      isLiked: false
+      isLiked: false,
+      commentLikesAmount: 0
     };
   },
   props: {
@@ -58,6 +59,7 @@ export default {
           })
           .then(response => {
             console.log(response);
+            this.commentLikesAmount++;
           })
           .catch(error => {
             console.log(error);
@@ -79,6 +81,7 @@ export default {
         .then(response => {
           console.log(response);
           this.commentLikesNum = response.data;
+          this.commentLikesAmount = this.commentLikesNum.length;
 
           let currentUser = cookies.get("userId");
           for (let i = 0; i < this.commentLikesNum.length; i++) {
@@ -109,6 +112,7 @@ export default {
           })
           .then(response => {
             console.log(response);
+            this.commentLikesAmount--;
           })
           .catch(error => {
             console.log(error);
