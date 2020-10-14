@@ -79,7 +79,7 @@ export default {
   color: #783030;
 }
 #post-tweet-btn {
-  margin: 2vh;
+  margin: 4vh;
   padding: 5px;
   width: 30%;
   box-shadow: 3px 5px 5px darkgray;

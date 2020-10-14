@@ -3,12 +3,11 @@
     <div id="edit-container">
       <textarea
         type="text"
-        id="tweet-post"
+        class="tweet-post"
         v-model="updateTweetContent"
         placeholder="Update your NERDR. Max 200 characters"
       />
-      <div></div>
-      <button id="edit-tweet" @click="updateTweet">
+      <button @click="updateTweet">
         Update Post
       </button>
     </div>
@@ -62,66 +61,44 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#edit-tweet {
-  background-color: #f0f0f0;
-  color: black;
-  padding: 5px;
-  border-radius: 7%;
-  cursor: pointer;
-  transform: perspective(1px) translateZ(0);
-  transition-duration: 0.3s;
-  transition-property: transform;
-  width: 40%;
-  text-align: center;
-  margin: 1vh;
-}
-#edit-tweet:hover {
-  transform: scale(0.9);
-}
 #edit-container {
   display: grid;
   align-items: center;
   justify-items: center;
   margin-top: 5vh;
 }
+button {
+  padding: 5px;
+  margin-top: 10px;
+  border-radius: 5%;
+  box-shadow: 1px 0px 6px darkgray;
+  cursor: pointer;
+  transform: perspective(1px) translateZ(0);
+  transition-duration: 0.3s;
+  transition-property: transform;
+}
+button:hover {
+  transform: scale(0.9);
+}
 
 // TABLET
 @media only screen and (min-width: 670px) {
-  #edit-tweet {
-    background-color: #f0f0f0;
-    color: black;
+  button {
     padding: 5px;
-    border-radius: 7%;
+    margin-top: 10px;
+    border-radius: 5%;
+    box-shadow: 1px 0px 6px darkgray;
     cursor: pointer;
     transform: perspective(1px) translateZ(0);
     transition-duration: 0.3s;
     transition-property: transform;
-    width: 20%;
-    text-align: center;
-    margin: 1vh;
   }
-  #edit-tweet:hover {
+  button:hover {
     transform: scale(0.9);
   }
 }
 
 // DESKTOP
 @media only screen and (min-width: 1020px) {
-  #edit-tweet {
-    background-color: #f0f0f0;
-    color: black;
-    padding: 5px;
-    border-radius: 7%;
-    cursor: pointer;
-    transform: perspective(1px) translateZ(0);
-    transition-duration: 0.3s;
-    transition-property: transform;
-    width: 13%;
-    text-align: center;
-    margin: 1vh;
-  }
-  #edit-tweet:hover {
-    transform: scale(0.9);
-  }
 }
 </style>

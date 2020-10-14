@@ -135,6 +135,7 @@ export default {
 #unlike {
   width: 30%;
   margin: 4vw;
+  cursor: pointer;
 }
 
 // TABLET

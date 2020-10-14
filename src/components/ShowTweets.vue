@@ -78,7 +78,6 @@ export default {
   margin: 7px;
   padding: 5px;
   font-family: "Arimo", sans-serif;
-  background-color: #f0f0f0;
   width: 90%;
 }
 #tweet-content {

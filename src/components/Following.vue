@@ -7,7 +7,7 @@
       <br />
       <div v-if="users.length > 0">
         <div id="tweet-container" v-for="user in users" :key="user.userId">
-          <h3 id="user-username">{{ user.username }}</h3>
+          <h3 class="user-username">{{ user.username }}</h3>
           <h4 class="content"><u>Bio</u>: {{ user.bio }}</h4>
           <h4 class="content"><u>Birthdate</u>: {{ user.birthdate }}</h4>
           <h4 class="content"><u>Email</u>: {{ user.email }}</h4>
@@ -151,7 +151,7 @@ hr {
   color: #783030;
   margin: 5vh;
 }
-#user-username {
+.user-username {
   color: #783030;
 }
 .content {

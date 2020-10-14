@@ -130,11 +130,13 @@ export default {
   justify-items: center;
   grid-template-columns: repeat(5, 1fr);
   color: #783030;
+  width: 100%;
 }
 #like,
 #unlike {
   width: 30%;
   margin: 4vw;
+  cursor: pointer;
 }
 
 // TABLET
@@ -146,6 +148,7 @@ export default {
   }
   #likes-container {
     grid-template-columns: repeat(6, 1fr);
+    width: 75%;
   }
 }
 
@@ -158,6 +161,7 @@ export default {
   }
   #likes-container {
     grid-template-columns: repeat(10, 1fr);
+    width: 75%;
   }
 }
 </style>

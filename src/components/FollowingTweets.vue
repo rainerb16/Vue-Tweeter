@@ -9,15 +9,18 @@
       </h2>
       <create-tweet />
       <div id="button-container">
-        <button id="show-following-tweets-btn" @click="showFollowingTweets">
+        <button class="show-following-tweets-btn" @click="showFollowingTweets">
           VIEW YOUR NERDRS
         </button>
-        <button id="show-following-tweets-btn" @click="showCurrentUserTweets">
+        <button
+          class="show-following-tweets-btn"
+          @click="showCurrentUserTweets"
+        >
           VIEW YOUR NERDS
         </button>
       </div>
       <div id="tweet-container" v-for="tweet in tweets" :key="tweet.tweetId">
-        <h2 id="tweet-user">
+        <h2 class="tweet-user">
           <strong>{{ tweet.username }}</strong>
         </h2>
         <br />
@@ -25,15 +28,19 @@
         <br />
         <p>Created on: {{ tweet.createdAt }}</p>
         <tweet-likes :tweetId="tweet.tweetId" />
-        <div id="follow-unfollow-btn">
+        <div class="delete-follow-container">
           <delete-tweet
+            class="delete-btn"
             v-if="userId == tweet.userId"
             :tweetId="tweet.tweetId"
           />
-          <follow-unfollow-btn />
-          <div></div>
+          <follow-unfollow-btn class="follow-btn" />
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
         <update-tweet v-if="userId == tweet.userId" :tweetId="tweet.tweetId" />
+        <span></span>
         <hr />
         <tweet-comment :tweetId="tweet.tweetId" />
       </div>
@@ -187,7 +194,14 @@ hr {
   color: #783030;
   font-family: "Arimo", sans-serif;
 }
-#delete-tweet {
+.delete-btn {
+  cursor: pointer;
+  width: 60%;
+}
+.follow-btn {
+  width: 45%;
+}
+#edit-tweet {
   background-color: #f0f0f0;
   color: black;
   padding: 5px;
@@ -200,26 +214,16 @@ hr {
   text-align: center;
   margin: 1vh;
 }
-#delete-tweet:hover {
+#edit-tweet:hover {
   transform: scale(0.9);
 }
-#post-tweet-btn {
-  background-color: #f0f0f0;
-  color: black;
-  padding: 5px;
-  border-radius: 7%;
-  cursor: pointer;
-  transform: perspective(1px) translateZ(0);
-  transition-duration: 0.3s;
-  transition-property: transform;
-  width: 20%;
-  text-align: center;
-  margin: 1vh;
+.delete-follow-container {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: 3fr 3fr 2fr 4fr 4fr;
 }
-#post-tweet-btn:hover {
-  transform: scale(0.9);
-}
-#show-following-tweets-btn {
+.show-following-tweets-btn {
   background-color: #f0f0f0;
   color: black;
   border: 1px solid black;
@@ -236,7 +240,7 @@ hr {
   text-align: center;
   font-family: "Arimo", sans-serif;
 }
-#show-following-tweets-btn:hover {
+.show-following-tweets-btn:hover {
   transform: scale(0.9);
 }
 #tweet-container {
@@ -250,7 +254,7 @@ hr {
   background-color: black;
 }
 
-#tweet-user {
+.tweet-user {
   color: #783030;
 }
 h4,
@@ -268,34 +272,8 @@ p {
   color: black;
   font-size: 20px;
 }
-#follow-unfollow-btn {
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  grid-template-columns: 1fr 1fr 4fr;
-  width: 75%;
-}
-#button-container {
-  margin-top: 5vh;
-}
 // TABLET
 @media only screen and (min-width: 670px) {
-  #delete-tweet {
-    background-color: #f0f0f0;
-    color: black;
-    padding: 5px;
-    border-radius: 7%;
-    cursor: pointer;
-    transform: perspective(1px) translateZ(0);
-    transition-duration: 0.3s;
-    transition-property: transform;
-    width: 20%;
-    text-align: center;
-    margin: 1vh;
-  }
-  #delete-tweet:hover {
-    transform: scale(0.9);
-  }
   #edit-tweet {
     background-color: #f0f0f0;
     color: black;
@@ -312,7 +290,7 @@ p {
   #edit-tweet:hover {
     transform: scale(0.9);
   }
-  #show-following-tweets-btn {
+  .show-following-tweets-btn {
     background-color: #f0f0f0;
     color: black;
     border: 1px solid black;
@@ -326,7 +304,7 @@ p {
     margin-left: 40%;
     text-align: center;
   }
-  #show-following-tweets-btn:hover {
+  .show-following-tweets-btn:hover {
     transform: scale(0.9);
   }
   #post-tweet-btn {
@@ -349,6 +327,19 @@ p {
     font-family: "Press Start 2P", cursive;
     color: black;
     font-size: 22px;
+  }
+  .delete-follow-container {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: 2fr 2fr 2fr 6fr 6fr;
+  }
+  .follow-btn {
+    width: 7%;
+  }
+  .delete-btn {
+    cursor: pointer;
+    width: 60%;
   }
 }
 
@@ -380,7 +371,7 @@ p {
     align-items: center;
     justify-items: center;
   }
-  #show-following-tweets-btn {
+  .show-following-tweets-btn {
     background-color: #f0f0f0;
     color: black;
     border: 1px solid black;
@@ -394,7 +385,7 @@ p {
     margin-left: 45%;
     text-align: center;
   }
-  #show-following-tweets-btn:hover {
+  .show-following-tweets-btn:hover {
     transform: scale(0.9);
   }
   #tweet-container {
@@ -409,40 +400,6 @@ p {
   hr {
     margin: 2vh;
     background-color: black;
-  }
-  #delete-tweet-btn {
-    background-color: #f0f0f0;
-    color: black;
-    padding: 5px;
-    border-radius: 7%;
-    cursor: pointer;
-    transform: perspective(1px) translateZ(0);
-    transition-duration: 0.3s;
-    transition-property: transform;
-    width: 10%;
-    text-align: center;
-    margin: 1vh;
-  }
-  #delete-tweet-btn:hover {
-    transform: scale(0.9);
-  }
-  #delete-tweet,
-  #post-tweet-btn {
-    background-color: #f0f0f0;
-    color: black;
-    padding: 5px;
-    border-radius: 7%;
-    cursor: pointer;
-    transform: perspective(1px) translateZ(0);
-    transition-duration: 0.3s;
-    transition-property: transform;
-    width: 10%;
-    text-align: center;
-    margin: 1vh;
-  }
-  #delete-tweet:hover,
-  #post-tweet-btn:hover {
-    transform: scale(0.9);
   }
   #nerdr {
     font-family: "Press Start 2P", cursive;
