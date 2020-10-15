@@ -1,18 +1,18 @@
 <template>
   <div id="follow-unfollow-btn">
     <img
+      v-if="isFollowing == false"
       src="../assets/follow.png"
       alt="Follow Icon"
       id="tweet-btn-unfollow"
       @click="followUser"
-      v-if="isFollowing == false"
     />
     <img
+      v-else-if="isFollowing == true"
       src="../assets/unfollow.png"
       alt="Unfollow Icon"
       id="tweet-btn-follow"
       @click="unfollowUser"
-      v-else-if="isFollowing == true"
     />
     <span></span>
   </div>
@@ -26,18 +26,18 @@ export default {
   name: "follow-unfollow-btn",
   data() {
     return {
-      loginToken: cookies.get("loginToken"),
-      userId: cookies.get("userId"),
       isFollowing: false,
       usersFollowing: []
     };
   },
+  props: {
+    userId: Number
+  },
   mounted: function() {
-    this.checkFollowers();
+    this.checkFollowing();
   },
   methods: {
     followUser: function() {
-      this.isFollowing = true;
       axios
         .request({
           method: "POST",
@@ -53,13 +53,13 @@ export default {
         })
         .then(response => {
           console.log(response.data);
+          this.isFollowing = true;
         })
         .catch(error => {
           console.log(error);
         });
     },
     unfollowUser: function() {
-      this.isFollowing = false;
       axios
         .request({
           method: "DELETE",
@@ -75,27 +75,35 @@ export default {
         })
         .then(response => {
           console.log(response);
+          this.isFollowing = false;
         })
         .catch(error => {
           console.log(error);
         });
     },
-    checkFollowers: function() {
+    checkFollowing: function() {
       axios
         .request({
           method: "GET",
-          url: "https://tweeterest.ml/api/followers",
+          url: "https://tweeterest.ml/api/follows",
           headers: {
             "Content-Type": "application/json",
             "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
           },
           params: {
-            userId: this.userId
+            userId: cookies.get("userId")
           }
         })
         .then(response => {
           console.log(response);
           this.usersFollowing = response.data;
+
+          let currentUser = cookies.get("userId");
+          for (let i = 0; i < this.usersFollowing.length; i++) {
+            if (currentUser == this.usersFollowing[i].userId) {
+              this.isFollowing = true;
+            }
+          }
         })
         .catch(error => {
           console.log(error);

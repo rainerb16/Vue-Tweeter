@@ -133,9 +133,13 @@ input {
   margin: 10px;
 }
 #nerdr {
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Press Start 2P", cursive;
   color: black;
 }
+#status {
+  text-align: center;
+}
+
 //TABLET
 @media only screen and (min-width: 670px) {
   #logo {

@@ -15,7 +15,7 @@
             v-if="userId == tweet.userId"
             :tweetId="tweet.tweetId"
           />
-          <follow-unfollow-btn />
+          <follow-unfollow-btn :userId="tweet.userId" />
         </div>
         <hr />
         <tweet-comment :tweetId="tweet.tweetId" />
@@ -43,7 +43,7 @@ export default {
   data() {
     return {
       tweets: [],
-      userId: cookies.get("userId")
+      userId: parseInt(cookies.get("userId"))
     };
   },
   mounted: function() {
@@ -61,7 +61,7 @@ export default {
           }
         })
         .then(response => {
-          this.tweets = response.data;
+          this.tweets = response.data.reverse();
           console.log(response);
         })
         .catch(error => {
