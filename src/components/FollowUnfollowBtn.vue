@@ -41,10 +41,9 @@ export default {
       axios
         .request({
           method: "POST",
-          url: "https://tweeterest.ml/api/follows",
+          url: "https://nerdr.ml/api/follows",
           headers: {
-            "Content-Type": "application/json",
-            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
+            "Content-Type": "application/json"
           },
           data: {
             loginToken: cookies.get("loginToken"),
@@ -63,10 +62,9 @@ export default {
       axios
         .request({
           method: "DELETE",
-          url: "https://tweeterest.ml/api/follows",
+          url: "https://nerdr.ml/api/follows",
           headers: {
-            "Content-Type": "application/json",
-            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
+            "Content-Type": "application/json"
           },
           data: {
             loginToken: cookies.get("loginToken"),
@@ -85,10 +83,9 @@ export default {
       axios
         .request({
           method: "GET",
-          url: "https://tweeterest.ml/api/follows",
+          url: "https://nerdr.ml/api/follows",
           headers: {
-            "Content-Type": "application/json",
-            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
+            "Content-Type": "application/json"
           },
           params: {
             userId: cookies.get("userId")

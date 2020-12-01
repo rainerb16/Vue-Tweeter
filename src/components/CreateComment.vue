@@ -36,10 +36,9 @@ export default {
       axios
         .request({
           method: "POST",
-          url: "https://tweeterest.ml/api/comments",
+          url: "https://nerdr.ml/api/comments",
           headers: {
-            "Content-Type": "application/json",
-            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
+            "Content-Type": "application/json"
           },
           data: {
             loginToken: cookies.get("loginToken"),
@@ -69,5 +68,6 @@ export default {
 #post-comment-btn {
   width: 7%;
   margin-bottom: 5vh;
+  cursor: pointer;
 }
 </style>

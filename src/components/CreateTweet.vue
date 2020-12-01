@@ -33,11 +33,10 @@ export default {
       this.tweetStatus = "Posting...";
       axios
         .request({
-          url: "https://tweeterest.ml/api/tweets",
+          url: "https://nerdr.ml/api/tweets",
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
-            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
+            "Content-Type": "application/json"
           },
           data: {
             loginToken: cookies.get("loginToken"),

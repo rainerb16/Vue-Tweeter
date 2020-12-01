@@ -23,10 +23,9 @@ export default {
       axios
         .request({
           method: "DELETE",
-          url: "https://tweeterest.ml/api/comments",
+          url: "https://nerdr.ml/api/comments",
           headers: {
-            "Content-Type": "application/json",
-            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
+            "Content-Type": "application/json"
           },
           data: {
             loginToken: cookies.get("loginToken"),
@@ -52,11 +51,17 @@ export default {
   align-items: center;
   justify-items: center;
 }
+#delete-comment-btn {
+  cursor: pointer;
+}
 
 // TABLET
 @media only screen and (min-width: 670px) {
   .edit {
     width: 30%;
+  }
+  #delete-comment-btn {
+    cursor: pointer;
   }
 }
 
@@ -64,6 +69,9 @@ export default {
 @media only screen and (min-width: 1020px) {
   .edit {
     width: 20%;
+  }
+  #delete-comment-btn {
+    cursor: pointer;
   }
 }
 </style>

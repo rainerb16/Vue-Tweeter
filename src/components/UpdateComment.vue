@@ -34,10 +34,9 @@ export default {
       axios
         .request({
           method: "PATCH",
-          url: "https://tweeterest.ml/api/comments",
+          url: "https://nerdr.ml/api/comments",
           headers: {
-            "Content-Type": "application/json",
-            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
+            "Content-Type": "application/json"
           },
           data: {
             loginToken: cookies.get("loginToken"),
@@ -66,12 +65,14 @@ export default {
 }
 .edit-comment-btn {
   width: 60%;
+  cursor: pointer;
 }
 
 // TABLET
 @media only screen and (min-width: 670px) {
   .edit-comment-btn {
     width: 30%;
+    cursor: pointer;
   }
 }
 
@@ -79,6 +80,7 @@ export default {
 @media only screen and (min-width: 1020px) {
   .edit-comment-btn {
     width: 25%;
+    cursor: pointer;
   }
 }
 </style>

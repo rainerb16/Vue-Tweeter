@@ -39,10 +39,9 @@ export default {
       axios
         .request({
           method: "POST",
-          url: "https://tweeterest.ml/api/users",
+          url: "https://nerdr.ml/api/users",
           headers: {
-            "content-Type": "application/json",
-            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
+            "content-Type": "application/json"
           },
           data: {
             email: this.email,

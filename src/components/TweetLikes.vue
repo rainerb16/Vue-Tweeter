@@ -46,11 +46,10 @@ export default {
       (this.isLiked = true),
         axios
           .request({
-            url: "https://tweeterest.ml/api/tweet-likes",
+            url: "https://nerdr.ml/api/tweet-likes",
             method: "POST",
             headers: {
-              "Content-Type": "application/json",
-              "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
+              "Content-Type": "application/json"
             },
             data: {
               loginToken: cookies.get("loginToken"),
@@ -68,11 +67,10 @@ export default {
     getLikes: function() {
       axios
         .request({
-          url: "https://tweeterest.ml/api/tweet-likes",
+          url: "https://nerdr.ml/api/tweet-likes",
           method: "GET",
           headers: {
-            "Content-Type": "application/json",
-            "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
+            "Content-Type": "application/json"
           },
           params: {
             tweetId: this.tweetId
@@ -99,11 +97,10 @@ export default {
       (this.isLiked = false),
         axios
           .request({
-            url: "https://tweeterest.ml/api/tweet-likes",
+            url: "https://nerdr.ml/api/tweet-likes",
             method: "DELETE",
             headers: {
-              "Content-Type": "application/json",
-              "X-Api-Key": "Hd4E3CxvXOCyZUkTL9PE6sVJ3V5DS6PzgSUA2P0hJ5IUa"
+              "Content-Type": "application/json"
             },
             data: {
               loginToken: cookies.get("loginToken"),
