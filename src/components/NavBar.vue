@@ -4,7 +4,7 @@
       <router-link to="/userhome"
         ><img id="nerdr-logo" src="../assets/nerdface.png" alt="A NERDR Logo"
       /></router-link>
-      <h4 id="logout-btn" @click="userLogout"><u>Logout</u></h4>
+      <h4 id="logout-btn" @click="logout"><u>Logout</u></h4>
       <span></span>
       <router-link to="/profile"><h4 id="nav-link">Profile</h4></router-link> |
 
@@ -19,14 +19,32 @@
 </template>
 
 <script>
+import axios from "axios";
 import cookies from "vue-cookies";
 export default {
   name: "navbar-section",
   methods: {
-    userLogout() {
-      cookies.remove("loginToken");
-      cookies.remove("userId");
-      this.$router.push("/");
+    logout: function() {
+      axios
+        .request({
+          method: "DELETE",
+          url: "https://nerdr.ml/api/login",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          data: {
+            loginToken: cookies.get("loginToken")
+          }
+        })
+        .then(response => {
+          console.log(response);
+          cookies.remove("loginToken");
+          cookies.remove("userId");
+          this.$router.push("/");
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 };
